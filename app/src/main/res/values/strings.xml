@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="location_chooser_text">Which place do you want to explore?</string>
+    <string name="location_chooser_example">For example: amsterdam</string>
+    <string name="enter">enter</string>
+    <string name="my_location">My current location</string>
+    <string name="sway_logo">sway logo</string>
+    <string name="location_chooser_warning">For now, only Amsterdam available.</string>
+    <string name="back_to_image_selection">Back to image selection</string>
 </resources>

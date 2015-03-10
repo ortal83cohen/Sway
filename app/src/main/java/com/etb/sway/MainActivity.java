@@ -1,10 +1,13 @@
 package com.etb.sway;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Created by ortal on 09-Mar-15.
+ */
 
 public class MainActivity extends ActionBarActivity {
 
