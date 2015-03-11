@@ -74,6 +74,7 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 	}
 
 	public void add(CardModel item) {
+            item.setOnCardDimissedListener();
 		synchronized (mLock) {
 			mData.add(item);
 		}

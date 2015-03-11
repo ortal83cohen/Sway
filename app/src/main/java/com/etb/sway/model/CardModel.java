@@ -1,9 +1,14 @@
 package com.etb.sway.model;
 
 
+import com.etb.sway.MainActivity;
+
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by ortal on 09-Mar-15.
@@ -51,15 +56,19 @@ public class CardModel {
 
     private Drawable cardDislikeImageDrawable;
 
+    private boolean likedFlag;
+
+    private boolean dislikedFlag;
+
     private OnCardDimissedListener mOnCardDimissedListener = null;
 
     private OnClickListener mOnClickListener = null;
 
     public interface OnCardDimissedListener {
 
-        void onLike(CardModel cardModel);
+        void onLike();
 
-        void onDislike(CardModel cardModel);
+        void onDislike();
     }
 
     public interface OnClickListener {
@@ -129,8 +138,22 @@ public class CardModel {
         this.cardDislikeImageDrawable = cardDislikeImageDrawable;
     }
 
-    public void setOnCardDimissedListener(OnCardDimissedListener listener) {
-        this.mOnCardDimissedListener = listener;
+    public void setOnCardDimissedListener() {
+        this.mOnCardDimissedListener = new com.etb.sway.model.CardModel.OnCardDimissedListener() {
+            public void onLike() {
+//                Toast.makeText(MainActivity.ma.getBaseContext(), "I like the card " + getTitle(),
+//                        Toast.LENGTH_SHORT)
+//                        .show();
+                  Log.i("Swipeable Cards","I like the card");
+            }
+
+            public void onDislike() {
+                setDislike();
+//                Toast.makeText(getApplicationContext(), "I dislike the card "+card.getTitle(), Toast.LENGTH_SHORT)
+//                        .show();
+                Log.i("Swipeable Cards","I dislike the card");
+            }
+        };
     }
 
     public OnCardDimissedListener getOnCardDimissedListener() {
@@ -139,10 +162,24 @@ public class CardModel {
 
 
     public void setOnClickListener(OnClickListener listener) {
-        this.mOnClickListener = listener;
+        this.mOnClickListener =  new com.etb.sway.model.CardModel.OnClickListener() {
+            @Override
+            public void OnClickListener() {
+                Log.i("Swipeable Cards", "I am pressing the card");
+            }
+        };
     }
 
     public OnClickListener getOnClickListener() {
         return this.mOnClickListener;
+    }
+
+
+    public void setLike(){
+        this.likedFlag = true;
+    }
+
+    public void setDislike(){
+        this.dislikedFlag= true;
     }
 }

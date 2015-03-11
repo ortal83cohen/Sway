@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.Matrix;
@@ -454,9 +455,9 @@ public class CardContainer extends AdapterView<ListAdapter> {
 
                 if (cardModel.getOnCardDimissedListener() != null) {
                     if ( targetX > 0 ) {
-                        cardModel.getOnCardDimissedListener().onDislike(cardModel);
+                        cardModel.getOnCardDimissedListener().onDislike();
                     } else {
-                        cardModel.getOnCardDimissedListener().onLike(cardModel);
+                        cardModel.getOnCardDimissedListener().onLike();
                     }
                 }
 

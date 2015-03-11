@@ -33,6 +33,7 @@ public class CardsScreen extends Activity {
     /**
      * This variable is the container that will host our cards
      */
+    private com.etb.sway.view.SimpleCardStackAdapter adapter;
     private com.etb.sway.view.CardContainer mCardContainer;
 
     @Override
@@ -45,8 +46,7 @@ public class CardsScreen extends Activity {
 
         Resources r = getResources();
 
-        com.etb.sway.view.SimpleCardStackAdapter
-                adapter = new com.etb.sway.view.SimpleCardStackAdapter(this);
+        adapter = new com.etb.sway.view.SimpleCardStackAdapter(this);
 
         adapter.add(new com.etb.sway.model.CardModel(1,"Title1", "Description goes here1", r.getDrawable(R.drawable.picture1),1,2));
         adapter.add(new com.etb.sway.model.CardModel(2,"Title2", "Description goes here2", r.getDrawable(R.drawable.picture2),1,2));
@@ -54,35 +54,6 @@ public class CardsScreen extends Activity {
         adapter.add(new com.etb.sway.model.CardModel(4,"Title4", "Description goes here4", r.getDrawable(R.drawable.picture1),1,2));
         adapter.add(new com.etb.sway.model.CardModel(5,"Title5", "Description goes here5", r.getDrawable(R.drawable.picture2),1,2));
         adapter.add(new com.etb.sway.model.CardModel(6,"Title6", "Description goes here6", r.getDrawable(R.drawable.picture3),1,2));
-
-
-        com.etb.sway.model.CardModel
-                cardModel = new com.etb.sway.model.CardModel(7,"Title1", "Description goes here7", r.getDrawable(R.drawable.picture1),1,2);
-        cardModel.setOnClickListener(new com.etb.sway.model.CardModel.OnClickListener() {
-            @Override
-            public void OnClickListener() {
-                Log.i("Swipeable Cards", "I am pressing the card");
-            }
-        });
-
-        cardModel.setOnCardDimissedListener(new com.etb.sway.model.CardModel.OnCardDimissedListener() {
-            @Override
-            public void onLike(CardModel card) {
-                Toast.makeText(getApplicationContext(), "I like the card ", Toast.LENGTH_SHORT)
-                        .show();
-                //  Log.i("Swipeable Cards","I like the card");
-            }
-
-            @Override
-            public void onDislike(CardModel card) {
-                card.getId();
-                Toast.makeText(getApplicationContext(), "I dislike the card "+card.getTitle(), Toast.LENGTH_SHORT)
-                        .show();
-//                Log.i("Swipeable Cards","I dislike the card");
-            }
-        });
-
-        adapter.add(cardModel);
 
         mCardContainer.setAdapter(adapter);
     }
