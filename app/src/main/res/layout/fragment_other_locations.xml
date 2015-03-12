@@ -14,7 +14,8 @@
             android:layout_height="wrap_content"
             android:text="@string/amsterdam"
             android:id="@+id/button4" android:layout_gravity="right"
-            android:onClick="otherLocations"/>
+            android:onClick="otherLocations"
+            />
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -9,6 +9,6 @@
     <string name="my_location">My current location</string>
     <string name="sway_logo">sway logo</string>
     <string name="location_chooser_warning">For now, only Amsterdam available.</string>
-    <string name="back_to_image_selection">Select different POI's</string>
+    <string name="back_to_image_selection">Select different POI\'s</string>
     <string name="amsterdam">Amsterdam</string>
 </resources>
