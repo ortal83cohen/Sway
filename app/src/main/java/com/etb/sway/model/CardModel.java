@@ -10,11 +10,37 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.Serializable;
+
 /**
  * Created by ortal on 09-Mar-15.
  */
 
-public class CardModel {
+public class CardModel implements Serializable {
+
+    private int id;
+
+    private String title;
+
+    private String description;
+
+    private double latitude;
+
+    private double longitude;
+
+    private transient  Drawable cardImageDrawable;
+
+    private transient  Drawable cardLikeImageDrawable;
+
+    private transient Drawable cardDislikeImageDrawable;
+
+    private boolean likedFlag;
+
+    private boolean dislikedFlag;
+
+    private transient OnCardDimissedListener mOnCardDimissedListener = null;
+
+    private transient OnClickListener mOnClickListener = null;
 
     public int getId() {
         return id;
@@ -24,7 +50,7 @@ public class CardModel {
         this.id = id;
     }
 
-    public int getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
@@ -32,37 +58,13 @@ public class CardModel {
         this.latitude = latitude;
     }
 
-    public int getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
     public void setLongitude(int longitude) {
         this.longitude = longitude;
     }
-
-    private int id;
-
-    private String title;
-
-    private String description;
-
-    private int latitude;
-
-    private int longitude;
-
-    private Drawable cardImageDrawable;
-
-    private Drawable cardLikeImageDrawable;
-
-    private Drawable cardDislikeImageDrawable;
-
-    private boolean likedFlag;
-
-    private boolean dislikedFlag;
-
-    private OnCardDimissedListener mOnCardDimissedListener = null;
-
-    private OnClickListener mOnClickListener = null;
 
     public interface OnCardDimissedListener {
 
@@ -80,7 +82,7 @@ public class CardModel {
         this(0,null, null, (Drawable) null,0,0);
     }
 
-    public CardModel(int id,String title, String description, Drawable cardImage,int latitude,int longitude) {
+    public CardModel(int id,String title, String description, Drawable cardImage,double latitude,double longitude) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -89,7 +91,7 @@ public class CardModel {
         this.latitude=latitude;
     }
 
-    public CardModel(int id,String title, String description, Bitmap cardImage,int latitude,int longitude) {
+    public CardModel(int id,String title, String description, Bitmap cardImage,double latitude,double longitude) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -141,6 +143,7 @@ public class CardModel {
     public void setOnCardDimissedListener() {
         this.mOnCardDimissedListener = new com.etb.sway.model.CardModel.OnCardDimissedListener() {
             public void onLike() {
+                setLike();
 //                Toast.makeText(MainActivity.ma.getBaseContext(), "I like the card " + getTitle(),
 //                        Toast.LENGTH_SHORT)
 //                        .show();

@@ -89,7 +89,6 @@ public class LocationChooser extends FragmentActivity {
         try {
                 Intent intent = new Intent(LocationChooser.this, CardsScreen.class);
                 startActivity(intent);
-                finish();
 
         }catch (Exception e){
             Toast.makeText(LocationChooser.this,e.getMessage(),

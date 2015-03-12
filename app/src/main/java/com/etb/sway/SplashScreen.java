@@ -11,7 +11,7 @@ import android.widget.TextView;
  * Created by ortal on 08-Mar-15.
  */
 public class SplashScreen extends Activity{
-    private static int SPLASH_SCREEN_DELAY = 3000;
+    private static int SPLASH_SCREEN_DELAY = 1000;
 
     TextView percent;
 

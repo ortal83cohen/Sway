@@ -1,26 +1,46 @@
 package com.etb.sway.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ortal on 09-Mar-15.
  */
+@SuppressWarnings("serial")//with this annotation we are going to hide compiler warning
+public class Likes implements Serializable {
+    public ArrayList<CardModel> likeCardList ;
+    public ArrayList<CardModel> disLikeCardList ;
 
-public class Likes {
-	 public enum Like {
-	        None(0), Liked(1), Disliked(2);
+    public ArrayList<CardModel> getLikeCardList() {
+        return likeCardList;
+    }
 
-	        public final int value;
+    public void setLikeCardList(ArrayList<CardModel> likeCardList) {
+        this.likeCardList = likeCardList;
+    }
 
-	        private Like(int value) {
-	            this.value = value;
-	        }
+    public ArrayList<CardModel> getDisLikeCardList() {
+        return disLikeCardList;
+    }
 
-	        public static Like fromValue(int value) {
-	            for (Like style : Like.values()) {
-	                if (style.value == value) {
-	                    return style;
-	                }
-	            }
-	            return null;
-	        }
-	    }
+    public void setDisLikeCardList(ArrayList<CardModel> disLikeCardList) {
+        this.disLikeCardList = disLikeCardList;
+    }
+
+    public  Likes(){
+        likeCardList = new ArrayList<CardModel>();
+        disLikeCardList = new ArrayList<CardModel>();
+    }
+
+    public void addLikeItem(CardModel cardModel ){
+
+        likeCardList.add(cardModel);
+
+    }
+    public void addDisLikeItem(CardModel cardModel ){
+
+        disLikeCardList.add(cardModel);
+
+    }
 }

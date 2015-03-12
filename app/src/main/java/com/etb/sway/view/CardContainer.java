@@ -1,13 +1,17 @@
 package com.etb.sway.view;
 
 
+import com.etb.sway.R;
+import com.etb.sway.model.CardModel;
+import com.etb.sway.model.Likes;
+import com.etb.sway.model.Orientations.Orientation;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.Matrix;
@@ -26,19 +30,15 @@ import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 
-import com.etb.sway.R;
-import com.etb.sway.model.CardModel;
-import com.etb.sway.model.Orientations.Orientation;
-
 import java.util.Random;
 
 public class CardContainer extends AdapterView<ListAdapter> {
 	public static final int INVALID_POINTER_ID = -1;
 	private int mActivePointerId = INVALID_POINTER_ID;
 	private static final double DISORDERED_MAX_ROTATION_RADIANS = Math.PI / 64;
-    private int mNumberOfCards = -1;
-	private final DataSetObserver mDataSetObserver = new DataSetObserver() {
-		@Override
+
+    private final DataSetObserver mDataSetObserver = new DataSetObserver() {
+        @Override
 		public void onChanged() {
 			super.onChanged();
 			clearStack();
@@ -51,14 +51,19 @@ public class CardContainer extends AdapterView<ListAdapter> {
 			clearStack();
 		}
 	};
-	private final Random mRandom = new Random();
-	private final Rect boundsRect = new Rect();
-	private final Rect childRect = new Rect();
-	private final Matrix mMatrix = new Matrix();
 
+    private final Random mRandom = new Random();
 
-	//TODO: determine max dynamically based on device speed
-	private int mMaxVisible = 10;
+    private final Rect boundsRect = new Rect();
+
+    private final Rect childRect = new Rect();
+
+    private final Matrix mMatrix = new Matrix();
+
+    private int mNumberOfCards = -1;
+
+    //TODO: determine max dynamically based on device speed
+    private int mMaxVisible = 10;
 	private GestureDetector mGestureDetector;
 	private int mFlingSlop;
 	private Orientation mOrientation;
@@ -69,10 +74,13 @@ public class CardContainer extends AdapterView<ListAdapter> {
 	private int mTouchSlop;
 	private int mGravity;
 	private int mNextAdapterPosition;
-	private boolean mDragging;
 
-	public CardContainer(Context context) {
-		super(context);
+    private boolean mDragging;
+
+    private Likes likes;
+
+    public CardContainer(Context context) {
+        super(context);
 
         setOrientation(Orientation.Disordered);
 		setGravity(Gravity.CENTER);
@@ -116,9 +124,9 @@ public class CardContainer extends AdapterView<ListAdapter> {
 		return mListAdapter;
 	}
 
-	@Override
-	public void setAdapter(ListAdapter adapter) {
-		if (mListAdapter != null)
+    @Override
+    public void setAdapter(ListAdapter adapter) {
+        if (mListAdapter != null)
 			mListAdapter.unregisterDataSetObserver(mDataSetObserver);
 
 		clearStack();
@@ -130,15 +138,23 @@ public class CardContainer extends AdapterView<ListAdapter> {
 		ensureFull();
 
 		if (getChildCount() != 0) {
-			mTopCard = getChildAt(getChildCount() - 1);
-			mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
+                    mTopCard = getChildAt(getChildCount() - 1);
+                    mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
 		}
         mNumberOfCards = getAdapter().getCount();
-		requestLayout();
-	}
+        requestLayout();
+    }
 
-	private void ensureFull() {
-		while (mNextAdapterPosition < mListAdapter.getCount() && getChildCount() < mMaxVisible) {
+    public void setLikes(Likes newLikes) {
+        likes = newLikes;
+    }
+
+    public Likes getLikes() {
+        return likes;
+    }
+
+    private void ensureFull() {
+        while (mNextAdapterPosition < mListAdapter.getCount() && getChildCount() < mMaxVisible) {
 			View view = mListAdapter.getView(mNextAdapterPosition, null, this);
 			view.setLayerType(LAYER_TYPE_SOFTWARE, null);
 			if(mOrientation == Orientation.Disordered) {
@@ -448,15 +464,17 @@ public class CardContainer extends AdapterView<ListAdapter> {
 				duration = Math.min(500, duration);
 
 				mTopCard = getChildAt(getChildCount() - 2);
-                CardModel cardModel = (CardModel)getAdapter().getItem(0);
+                            CardModel cardModel = (CardModel) getAdapter()
+                                    .getItem(getAdapter().getCount() - getChildCount());
+                            if (mTopCard != null)
+                                mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
 
-				if(mTopCard != null)
-					mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
-
-                if (cardModel.getOnCardDimissedListener() != null) {
+                            if (cardModel.getOnCardDimissedListener() != null) {
                     if ( targetX > 0 ) {
+                        likes.addDisLikeItem(cardModel);
                         cardModel.getOnCardDimissedListener().onDislike();
                     } else {
+                        likes.addLikeItem(cardModel);
                         cardModel.getOnCardDimissedListener().onLike();
                     }
                 }
