@@ -4,11 +4,18 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"  android:id="@+id/insert_location_fragment" class="com.etb.sway.InsertLocationFragment"/>
-    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"  android:id="@+id/other_locations_fragment" class="com.etb.sway.OtherLocationsFragment"
-                 android:paddingTop="40dp"/>
 
+    <fragment android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/insert_location_fragment"
+              android:name="com.etb.sway.InsertLocationFragment"
+              android:layout_gravity="center_horizontal"
+            />
 
+    <fragment android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/other_locations_fragment"
+              android:name="com.etb.sway.OtherLocationsFragment"
+              android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>
-

@@ -1,9 +1,13 @@
 package com.etb.sway;
 
+import com.etb.sway.model.Likes;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 /**
  * Created by ortal on 09-Mar-15.
@@ -21,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main_in_cards, menu);
         return true;
     }
 
@@ -37,6 +41,15 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
 
+        if (id == R.id.action_show_map) {
+            com.etb.sway.view.CardContainer mCardContainer = (com.etb.sway.view.CardContainer) findViewById(R.id.layoutview);
+            Intent intent = new Intent(this, MapActivity.class);
+            Likes likes = mCardContainer.getLikes();
+            intent.putExtra("likes", likes);
+            startActivity(intent);
+        }
+
         return super.onOptionsItemSelected(item);
     }
+
 }

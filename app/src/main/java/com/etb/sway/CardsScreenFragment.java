@@ -2,33 +2,23 @@ package com.etb.sway;
 
 
         import android.app.Activity;
+        import android.app.Fragment;
         import android.content.Intent;
         import android.content.res.Resources;
-        import android.graphics.Bitmap;
-        import android.graphics.BitmapFactory;
-        import android.graphics.drawable.Drawable;
         import android.os.Bundle;
-        import android.os.Environment;
-        import android.util.Log;
+        import android.view.LayoutInflater;
         import android.view.View;
+        import android.view.ViewGroup;
         import android.view.Window;
-        import android.widget.Toast;
 
         import com.etb.sway.helpers.ImageActions;
-        import com.etb.sway.model.CardModel;
         import com.etb.sway.model.Likes;
-        import com.etb.sway.view.CardContainer;
-        import com.etb.sway.view.SimpleCardStackAdapter;
-
-        import java.io.File;
-        import java.io.InputStream;
-        import java.net.URL;
 
 /**
  * Created by ortal on 09-Mar-15.
  */
 
-public class CardsScreen extends Activity {
+public class CardsScreenFragment extends Fragment {
 
     private static String MEDIA_PATH = null;
 
@@ -40,21 +30,27 @@ public class CardsScreen extends Activity {
     private com.etb.sway.view.CardContainer mCardContainer;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.cards_screen_layout);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
 
-        mCardContainer = (com.etb.sway.view.CardContainer) findViewById(R.id.layoutview);
+
+        return inflater.inflate(R.layout.fragment_cards_screen,container,false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        mCardContainer = (com.etb.sway.view.CardContainer) getActivity().findViewById(R.id.layoutview);
 
         Resources r = getResources();
 
         ImageActions imageActions = new ImageActions(r);
 
-        adapter = new com.etb.sway.view.SimpleCardStackAdapter(this);
+        adapter = new com.etb.sway.view.SimpleCardStackAdapter(getActivity());
         Likes likes = null;
         try {
-            Intent intent = getIntent();
+            Intent intent = getActivity().getIntent();
             likes = (Likes) intent
                     .getSerializableExtra("likes");
         }catch (Exception e){
@@ -73,13 +69,8 @@ public class CardsScreen extends Activity {
 
         mCardContainer.setAdapter(adapter);
         mCardContainer.setLikes(new Likes());
+
     }
 
-    public void shoeOnMap(View view) {
 
-        Intent intent = new Intent(CardsScreen.this, MapActivity.class);
-        Likes likes = mCardContainer.getLikes();
-        intent.putExtra("likes", likes);
-        startActivity(intent);
-    }
 }
