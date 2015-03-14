@@ -10,7 +10,7 @@ import android.widget.TextView;
 /**
  * Created by ortal on 08-Mar-15.
  */
-public class SplashScreen extends Activity{
+public class SplashScreenActivity extends Activity{
     private static int SPLASH_SCREEN_DELAY = 1000;
 
     TextView percent;
@@ -57,7 +57,7 @@ public class SplashScreen extends Activity{
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, LocationChooserActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this, LocationChooserActivity.class);
                 startActivity(intent);
                 finish();
             }

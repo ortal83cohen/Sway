@@ -2,48 +2,89 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-        tools:conext=".LocationChooser">
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        tools:conext=".LocationChooser"
+        android:background="#FFBB00">
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"     android:layout_gravity="center_horizontal" android:text="Others are currently exploring"/>
-
-
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/amsterdam"
-            android:id="@+id/button4" android:layout_gravity="right"
-            android:onClick="otherLocations"
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:text="Others are currently exploring"
+              android:layout_marginTop="30dp"
+              android:textSize="21sp"
             />
-    <Button
-            android:layout_width="wrap_content"
+
+
+    <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/amsterdam"
-            android:id="@+id/button3"
-            android:onClick="otherLocations"/>
-    <Button
-            android:layout_width="wrap_content"
+            android:layout_margin="22dp" >
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amsterdam"
+                android:id="@+id/button1"
+                android:onClick="otherLocations"
+                android:layout_alignParentLeft="true" />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amsterdam"
+                android:id="@+id/button2"
+                android:onClick="otherLocations"
+                android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/amsterdam"
-            android:id="@+id/button5" android:layout_gravity="right"
-            android:onClick="otherLocations"/>
-    <Button
-            android:layout_width="wrap_content"
+            android:layout_margin="22dp" >
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amsterdam"
+                android:id="@+id/button3"
+                android:onClick="otherLocations"
+                android:layout_alignParentLeft="true" />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amsterdam"
+                android:id="@+id/button4"
+                android:onClick="otherLocations"
+                android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/relativeLayout3"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/amsterdam"
-            android:id="@+id/button6"
-            android:onClick="otherLocations"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/amsterdam"
-            android:id="@+id/button7" android:layout_gravity="right"
-            android:onClick="otherLocations"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/amsterdam"
-            android:id="@+id/button8"
-            android:onClick="otherLocations"/>
+            android:layout_margin="22dp" >
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amsterdam"
+                android:id="@+id/button5"
+                android:onClick="otherLocations"
+                android:layout_alignParentLeft="true" />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amsterdam"
+                android:id="@+id/button6"
+                android:onClick="otherLocations"
+                android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
 </LinearLayout>

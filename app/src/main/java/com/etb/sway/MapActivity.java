@@ -1,5 +1,6 @@
 package com.etb.sway;
 
+        import android.app.Activity;
         import android.content.Intent;
         import android.os.Bundle;
         import android.support.v7.app.ActionBarActivity;
@@ -14,7 +15,7 @@ package com.etb.sway;
 /**
  * Created by ortal on 09-Mar-15.
  */
-public class MapActivity extends ActionBarActivity {
+public class MapActivity extends Activity {
 
     // Constant for defining latitude and longitude
 
@@ -35,6 +36,7 @@ public class MapActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_in_map, menu);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
 

@@ -2,6 +2,7 @@ package com.etb.sway;
 
 import com.etb.sway.model.Likes;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -13,7 +14,7 @@ import android.view.View;
  * Created by ortal on 09-Mar-15.
  */
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_in_cards, menu);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
 

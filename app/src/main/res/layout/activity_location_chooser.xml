@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="#FFBB00"
+        >
 
 
     <fragment android:layout_width="match_parent"
@@ -12,8 +14,8 @@
               android:layout_gravity="center_horizontal"
             />
 
-    <fragment android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+    <fragment android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
               android:id="@+id/other_locations_fragment"
               android:name="com.etb.sway.OtherLocationsFragment"
               android:layout_gravity="center_horizontal"/>
