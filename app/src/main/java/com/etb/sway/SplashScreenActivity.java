@@ -1,5 +1,7 @@
 package com.etb.sway;
 
+import com.etb.sway.domains.GlobalState;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +13,7 @@ import android.widget.TextView;
  * Created by ortal on 08-Mar-15.
  */
 public class SplashScreenActivity extends Activity{
-    private static int SPLASH_SCREEN_DELAY = 1000;
+    private static int SPLASH_SCREEN_DELAY = 2;
 
     TextView percent;
 
@@ -26,6 +28,7 @@ public class SplashScreenActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initClasses();
         handler = new Handler();
         setContentView(R.layout.activity_splash_screen);
         percent = (TextView) findViewById(R.id.textView2);
@@ -62,5 +65,10 @@ public class SplashScreenActivity extends Activity{
                 finish();
             }
         }, SPLASH_SCREEN_DELAY);
+    }
+
+    private void initClasses() {
+        GlobalState gs = (GlobalState) getApplication();
+        gs.init();
     }
 }

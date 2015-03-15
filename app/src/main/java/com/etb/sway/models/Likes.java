@@ -1,8 +1,7 @@
-package com.etb.sway.model;
+package com.etb.sway.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ortal on 09-Mar-15.

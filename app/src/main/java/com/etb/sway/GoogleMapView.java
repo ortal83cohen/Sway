@@ -2,18 +2,19 @@ package com.etb.sway;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import com.etb.sway.model.CardModel;
-import com.etb.sway.model.Likes;
+import com.etb.sway.models.CardModel;
+import com.etb.sway.models.Likes;
 
-import android.app.Fragment;
-import android.content.Intent;
+import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -21,20 +22,31 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by inbal on 3/14/2015.
+ * Created by ortal on 3/14/2015.
  */
-public class GoogleMapFragment extends Fragment {
+public class GoogleMapView extends Fragment {
 
     private Likes likes;
 
     // GoogleMap class
     private GoogleMap googleMap;
+private View view;
+
+    public static GoogleMapView newInstance() {
+        GoogleMapView fragment = new GoogleMapView();
+        return fragment;
+    }
+
+    public void setLikes(Likes likes) {
+        this.likes = likes;
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_google_map,container,false);
+         view = inflater.inflate(R.layout.fragment_google_map,container,false);
+        return view;
     }
 
     @Override
@@ -45,21 +57,23 @@ public class GoogleMapFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        try {
-            Intent intent = getActivity().getIntent();
-            likes = (Likes) intent
-                    .getSerializableExtra("likes");
-        }catch (Exception e){
-
-        }
         if(likes == null){
             likes= new Likes();
         }
         // verify we can interact with the Google Map
         try {
             if (googleMap == null) {
-                googleMap = ((MapFragment) getChildFragmentManager().
-                        findFragmentById(R.id.google_map)).getMap();
+                MapView mMapView = ((MapView) view.findViewById(R.id.google_map));
+                mMapView.onCreate(savedInstanceState);
+
+                mMapView.onResume();// needed to get the map to display immediately
+
+                try {
+                    MapsInitializer.initialize(getActivity().getApplicationContext());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                googleMap = mMapView.getMap();
             }
             // Show a satellite map with roads
             /* MAP_TYPE_NORMAL: Basic map with roads.
@@ -110,4 +124,11 @@ public class GoogleMapFragment extends Fragment {
         }
 
     }
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+
+            ((MainActivity) activity).onSectionAttached(3);
+        }
+
 }

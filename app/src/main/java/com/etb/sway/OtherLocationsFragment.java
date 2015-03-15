@@ -2,6 +2,7 @@ package com.etb.sway;
 
 import com.etb.sway.R;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

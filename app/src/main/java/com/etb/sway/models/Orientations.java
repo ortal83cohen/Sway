@@ -1,5 +1,5 @@
 
-package com.etb.sway.model;
+package com.etb.sway.models;
 
 /**
  * Created by ortal on 09-Mar-15.

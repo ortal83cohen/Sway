@@ -15,10 +15,11 @@
             android:glEsVersion="0x00020000"
             android:required="true"/>
     <application
+            android:name="com.etb.sway.domains.GlobalState"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label=""
-        android:theme="@style/CustomActionBarTheme" >
+        android:theme="@style/AppTheme" >
         <meta-data
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version" />

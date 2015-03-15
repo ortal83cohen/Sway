@@ -3,14 +3,13 @@ package com.etb.sway;
         import android.app.Activity;
         import android.content.Intent;
         import android.os.Bundle;
-        import android.support.v7.app.ActionBarActivity;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
 
         import com.google.android.gms.maps.GoogleMap;
 
-        import com.etb.sway.model.Likes;
+        import com.etb.sway.models.Likes;
 
 /**
  * Created by ortal on 09-Mar-15.

@@ -11,4 +11,24 @@
     <string name="location_chooser_warning">For now, only Amsterdam available.</string>
     <string name="back_to_image_selection">Select different POI\'s</string>
     <string name="amsterdam">Amsterdam</string>
+    <string name="cards_view">cards view</string>
+    <string name="list_view">list view</string>
+    <string name="map_view">map view</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="locations">Amsterdam</string>
+
+    <string-array name="locations">
+        <item>Amsterdam</item>
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
 </resources>

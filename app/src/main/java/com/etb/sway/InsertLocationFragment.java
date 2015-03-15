@@ -3,7 +3,7 @@ package com.etb.sway;
 import com.etb.sway.R;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,6 +22,12 @@ import java.util.Arrays;
  * Created by ortal on 10-Mar-15.
  */
 public class InsertLocationFragment extends Fragment{
+
+    public static InsertLocationFragment newInstance() {
+        InsertLocationFragment fragment = new InsertLocationFragment();
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_insert_location, container, false);
