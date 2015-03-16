@@ -1,4 +1,4 @@
-package com.etb.sway.models;
+package com.etb.sway.model;
 
 
 import android.graphics.Bitmap;
@@ -137,7 +137,7 @@ public class CardModel implements Serializable {
     }
 
     public void setOnCardDimissedListener() {
-        this.mOnCardDimissedListener = new com.etb.sway.models.CardModel.OnCardDimissedListener() {
+        this.mOnCardDimissedListener = new com.etb.sway.model.CardModel.OnCardDimissedListener() {
             public void onLike() {
                 setLike();
 //                Toast.makeText(MainActivity.ma.getBaseContext(), "I like the card " + getTitle(),
@@ -161,7 +161,7 @@ public class CardModel implements Serializable {
 
 
     public void setOnClickListener(OnClickListener listener) {
-        this.mOnClickListener =  new com.etb.sway.models.CardModel.OnClickListener() {
+        this.mOnClickListener =  new com.etb.sway.model.CardModel.OnClickListener() {
             @Override
             public void OnClickListener() {
                 Log.i("Swipeable Cards", "I am pressing the card");

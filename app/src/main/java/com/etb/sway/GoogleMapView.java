@@ -10,8 +10,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import com.etb.sway.models.CardModel;
-import com.etb.sway.models.Likes;
+import com.etb.sway.model.CardModel;
+import com.etb.sway.model.Likes;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;

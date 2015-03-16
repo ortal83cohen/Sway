@@ -1,4 +1,4 @@
-package com.etb.sway.adapters;
+package com.etb.sway.adapter;
 
 /**
  * Created by ortal on 15-Mar-15.
@@ -6,7 +6,7 @@ package com.etb.sway.adapters;
 
 
 import com.etb.sway.R;
-import com.etb.sway.models.SpinnerNavItem;
+import com.etb.sway.model.SpinnerNavItem;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.etb.sway.helpers;
+package com.etb.sway.helper;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

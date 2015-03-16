@@ -9,7 +9,7 @@ package com.etb.sway;
         import android.view.View;
         import android.view.ViewGroup;
 
-        import com.etb.sway.models.Likes;
+        import com.etb.sway.model.Likes;
         import com.etb.sway.view.SimpleCardStackAdapter;
 
 /**
@@ -31,6 +31,10 @@ public class CardsScreenFragment extends Fragment {
         CardsScreenFragment fragment = new CardsScreenFragment();
 
         return fragment;
+    }
+
+    public SimpleCardStackAdapter getAdapter() {
+        return adapter;
     }
 
     public void setAdapter(SimpleCardStackAdapter adapter) {

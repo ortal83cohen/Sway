@@ -1,6 +1,6 @@
 package com.etb.sway;
 
-import com.etb.sway.domains.GlobalState;
+import com.etb.sway.domain.GlobalState;
 
 import android.app.Activity;
 import android.content.Intent;

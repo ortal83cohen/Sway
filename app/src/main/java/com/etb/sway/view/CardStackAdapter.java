@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.etb.sway.R;
-import com.etb.sway.models.CardModel;
+import com.etb.sway.model.CardModel;
 
 import java.util.ArrayList;
 import java.util.Collection;

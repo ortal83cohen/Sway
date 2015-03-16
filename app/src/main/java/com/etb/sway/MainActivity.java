@@ -1,7 +1,7 @@
 package com.etb.sway;
 
-import com.etb.sway.domains.GlobalState;
-import com.etb.sway.models.Likes;
+import com.etb.sway.domain.GlobalState;
+import com.etb.sway.model.Likes;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 /**

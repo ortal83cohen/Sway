@@ -2,9 +2,9 @@ package com.etb.sway.view;
 
 
 import com.etb.sway.R;
-import com.etb.sway.models.CardModel;
-import com.etb.sway.models.Likes;
-import com.etb.sway.models.Orientations.Orientation;
+import com.etb.sway.model.CardModel;
+import com.etb.sway.model.Likes;
+import com.etb.sway.model.Orientations.Orientation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

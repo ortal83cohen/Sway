@@ -1,4 +1,4 @@
-package com.etb.sway.models;
+package com.etb.sway.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

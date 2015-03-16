@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.etb.sway.R;
-import com.etb.sway.models.CardModel;
+import com.etb.sway.model.CardModel;
 
 public final class SimpleCardStackAdapter extends CardStackAdapter {
 

@@ -9,7 +9,7 @@ package com.etb.sway;
 
         import com.google.android.gms.maps.GoogleMap;
 
-        import com.etb.sway.models.Likes;
+        import com.etb.sway.model.Likes;
 
 /**
  * Created by ortal on 09-Mar-15.
