@@ -62,7 +62,7 @@ private View view;
         }
         // verify we can interact with the Google Map
         try {
-            if (googleMap == null) {
+//            if (googleMap == null) {
                 MapView mMapView = ((MapView) view.findViewById(R.id.google_map));
                 mMapView.onCreate(savedInstanceState);
 
@@ -74,7 +74,7 @@ private View view;
                     e.printStackTrace();
                 }
                 googleMap = mMapView.getMap();
-            }
+//            }
             // Show a satellite map with roads
             /* MAP_TYPE_NORMAL: Basic map with roads.
             MAP_TYPE_SATELLITE: Satellite view with roads.
