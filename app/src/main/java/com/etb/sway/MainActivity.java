@@ -4,11 +4,12 @@ import com.etb.sway.domain.GlobalState;
 import com.etb.sway.model.Likes;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
+import android.view.View;
+
 
 /**
  * Created by ortal on 09-Mar-15.
@@ -24,9 +25,7 @@ public class MainActivity extends ActionBarActivity        implements Navigation
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
+
     private CharSequence mTitle;
 
     @Override
@@ -72,29 +71,12 @@ public class MainActivity extends ActionBarActivity        implements Navigation
                     .replace(R.id.container, googleMapView,GOOGLE_MAP_FRAGMENT)
                     .commit();
         }
-
+//        View itemMap = findViewById(R.id.item_map);
+//        itemMap.setVisibility(View.VISIBLE);
     }
 
     public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.cards_view);
-                break;
-            case 2:
-                mTitle = getString(R.string.list_view);
-                break;
-            case 3:
-                mTitle = getString(R.string.map_view);
 
-                break;
-        }
-    }
-
-    public void restoreActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
     }
 
 
@@ -115,11 +97,16 @@ public class MainActivity extends ActionBarActivity        implements Navigation
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+
+        GlobalState gs = (GlobalState) getApplication();
+
         int id = item.getItemId();
 
+        if (item.getItemId() == R.id.item_map) {
+            mNavigationDrawerFragment.selectItem(2);
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

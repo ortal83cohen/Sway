@@ -368,6 +368,7 @@ public class ExpandableDraggableSwipeableItemAdapter
                 break;
         }
 
+
         holder.itemView.setBackgroundResource(bgResId);
     }
 
@@ -422,12 +423,17 @@ public class ExpandableDraggableSwipeableItemAdapter
                 mEventListener.onGroupItemRemoved(groupPosition);
             }
         } else if (reaction == RecyclerViewSwipeManager.AFTER_SWIPE_REACTION_MOVE_TO_SWIPED_DIRECTION) {
-            item.setPinnedToSwipeLeft(true);
-            notifyItemChanged(flatPosition);
-
+//            item.setPinnedToSwipeLeft(true); todo:if you want to pin
+//            notifyItemChanged(flatPosition);
+//            if (mEventListener != null) {
+//                mEventListener.onGroupItemPinned(groupPosition);
+//            }
+            mProvider.removeGroupItem(groupPosition);
+            notifyItemRemoved(flatPosition);
             if (mEventListener != null) {
-                mEventListener.onGroupItemPinned(groupPosition);
+                mEventListener.onGroupItemRemoved(groupPosition);
             }
+
         } else {
             item.setPinnedToSwipeLeft(false);
         }

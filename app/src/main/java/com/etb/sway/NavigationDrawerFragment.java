@@ -3,6 +3,7 @@ package com.etb.sway;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -79,7 +80,8 @@ public class NavigationDrawerFragment extends Fragment {
             mFromSavedInstanceState = true;
         }
 
-
+        View itemMap = getActivity().findViewById(R.id.item_map);
+//        itemMap.setVisibility(View.VISIBLE);
         // Select either the default item (0) or the last selected item.
         selectItem(mCurrentSelectedPosition);
     }
@@ -204,7 +206,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    private void selectItem(int position) {
+    public void selectItem(int position) {
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
@@ -260,11 +262,6 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        if (item.getItemId() == R.id.menu_location_selector) {
-            Toast.makeText(getActivity(), "We currently don't support change location from here, go back to previous screen.", Toast.LENGTH_LONG).show();
             return true;
         }
 

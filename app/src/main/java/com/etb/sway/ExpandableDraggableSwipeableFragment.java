@@ -77,7 +77,7 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
                         .actionColorResource(R.color.snackbar_action_color_done)
                         .duration(5000)
                         .type(SnackbarType.SINGLE_LINE)
-                        .swipeToDismiss(false)
+                        .swipeToDismiss(true)
                 , getActivity());
     }
 

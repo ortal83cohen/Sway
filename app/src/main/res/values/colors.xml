@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="background_app">#FFBB00</color>
+    <color name="background_actionbar">#AB4D00</color>
+
     <color name="card_bg">#EBEBEB</color>
     <color name="card_outline">#D0D0CE</color>
 
@@ -23,7 +27,7 @@
     <color name="bg_swipe_item_left">#fff9930d</color>
     <color name="bg_swipe_item_right">#ff2f8b2a</color>
     <color name="bg_swipe_group_item_left">#fff45f30</color>
-    <color name="bg_swipe_group_item_right">#ff295db3</color>
+    <color name="bg_swipe_group_item_right">#ff2f8b2a</color>
 
     <color name="snackbar_action_color_done">#ffccccff</color>
 
