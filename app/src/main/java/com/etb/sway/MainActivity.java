@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.Toast;
 
 /**
  * Created by ortal on 09-Mar-15.
@@ -17,7 +16,9 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-
+    public static String DRAGGABLE_SWIPEABLE_FRAGMENT= "draggable_swipeable_fragment" ;
+    public static String CARDS_SCREEN_FRAGMENT= "cards_screen_fragment" ;
+    public static String GOOGLE_MAP_FRAGMENT= "google_map_fragment" ;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -52,12 +53,14 @@ public class MainActivity extends ActionBarActivity        implements Navigation
 
         if(position == 0){
             fragmentManager.beginTransaction()
-                    .replace(R.id.container,gs.getCardsScreenFragment())
+                    .replace(R.id.container,gs.getCardsScreenFragment(),CARDS_SCREEN_FRAGMENT)
                     .commit();
         }
         if(position == 1){
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, gs.getExpandableDraggableSwipeableFragment(),DRAGGABLE_SWIPEABLE_FRAGMENT)
+                    .commit();
 
-            Toast.makeText(this,"We currently don't support list view", Toast.LENGTH_LONG).show();
         }
         if(position == 2){
 
@@ -66,7 +69,7 @@ public class MainActivity extends ActionBarActivity        implements Navigation
             GoogleMapView googleMapView = gs.getGoogleMapView();
             googleMapView.setLikes(likes);
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, googleMapView)
+                    .replace(R.id.container, googleMapView,GOOGLE_MAP_FRAGMENT)
                     .commit();
         }
 

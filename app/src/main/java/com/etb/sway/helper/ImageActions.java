@@ -16,8 +16,11 @@ public class ImageActions {
     }
 
     public Drawable resize(Drawable image) {
+        return  resize(image,1000, 1200);
+    }
+    public Drawable resize(Drawable image,int dstWidth, int dstHeight) {
         Bitmap b = ((BitmapDrawable)image).getBitmap();
-        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 1000, 1200, false);
+        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, dstWidth, dstHeight, false);
         return new BitmapDrawable(resources, bitmapResized);
     }
 

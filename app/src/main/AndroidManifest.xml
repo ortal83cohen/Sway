@@ -44,6 +44,15 @@
         </activity>
 
         <activity
+            android:name=".ExpandableDraggableSwipeableFragment"
+            android:label=""
+            android:parentActivityName=".LocationChooserActivity" >
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".LocationChooserActivity" />
+        </activity>
+
+        <activity
                 android:name=".LocationChooserActivity"
                 android:label="">
         </activity>
