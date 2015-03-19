@@ -169,17 +169,6 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
         }
     }
 
-    public void onChildItemClicked(int groupPosition, int childPosition) {
-        final Fragment fragment = getFragmentManager().findFragmentByTag(FRAGMENT_LIST_VIEW);
-        AbstractExpandableDataProvider.ChildData data = getDataProvider().getChildItem(groupPosition, childPosition);
-
-        if (data.isPinnedToSwipeLeft()) {
-            // unpin if tapped the pinned item
-            data.setPinnedToSwipeLeft(false);
-            ((RecyclerListViewFragment) fragment).notifyChildItemChanged(groupPosition, childPosition);
-        }
-    }
-
     private void onItemUndoActionClicked() {
         final Fragment fragment = getFragmentManager().findFragmentByTag(FRAGMENT_LIST_VIEW);
         final long result = getDataProvider().undoLastRemoval();
@@ -209,10 +198,6 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
             // group item
             getDataProvider().getGroupItem(groupPosition).setPinnedToSwipeLeft(ok);
             ((RecyclerListViewFragment) fragment).notifyGroupItemChanged(groupPosition);
-        } else {
-            // child item
-            getDataProvider().getChildItem(groupPosition, childPosition).setPinnedToSwipeLeft(ok);
-            ((RecyclerListViewFragment) fragment).notifyChildItemChanged(groupPosition, childPosition);
         }
     }
 

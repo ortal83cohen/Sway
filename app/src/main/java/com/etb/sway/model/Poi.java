@@ -12,7 +12,7 @@ import android.util.Log;
  * Created by ortal on 09-Mar-15.
  */
 
-public final class CardModel extends AbstractExpandableDataProvider.GroupData  {
+public final class Poi extends AbstractExpandableDataProvider.GroupData  {
 
 
     private long mId;
@@ -42,11 +42,11 @@ public final class CardModel extends AbstractExpandableDataProvider.GroupData  {
     private long mNextChildId;
 
 
-    public CardModel() {
+    public Poi() {
         this(0, null, null, (Drawable) null, 0, 0);
     }
 
-    public CardModel(int id, String title, String description, Drawable cardImage, double latitude,
+    public Poi(int id, String title, String description, Drawable cardImage, double latitude,
             double longitude) {
         setOnCardDimissedListener();
         mSwipeReaction = RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT;
@@ -59,7 +59,7 @@ public final class CardModel extends AbstractExpandableDataProvider.GroupData  {
         this.mLatitude = latitude;
     }
 
-    public CardModel(int id, String title, String description, Bitmap cardImage, double latitude,
+    public Poi(int id, String title, String description, Bitmap cardImage, double latitude,
             double longitude) {
         setOnCardDimissedListener();
         this.mId = id;
@@ -70,7 +70,7 @@ public final class CardModel extends AbstractExpandableDataProvider.GroupData  {
         this.mLatitude = latitude;
     }
 
-    public CardModel(long id, boolean isSectionHeader, String text, int swipeReaction) {
+    public Poi(long id, boolean isSectionHeader, String text, int swipeReaction) {
         mId = id;
         mIsSectionHeader = isSectionHeader;
         mTitle = text;
@@ -107,7 +107,7 @@ public final class CardModel extends AbstractExpandableDataProvider.GroupData  {
     }
 
     public void setOnCardDimissedListener() {
-        this.mOnCardDimissedListener = new com.etb.sway.model.CardModel.OnCardDimissedListener() {
+        this.mOnCardDimissedListener = new Poi.OnCardDimissedListener() {
             public void onLike() {
 
 //                Toast.makeText(MainActivity.ma.getBaseContext(), "I like the card " + getTitle(),
@@ -134,7 +134,7 @@ public final class CardModel extends AbstractExpandableDataProvider.GroupData  {
     }
 
     public void setOnClickListener(OnClickListener listener) {
-        this.mOnClickListener = new com.etb.sway.model.CardModel.OnClickListener() {
+        this.mOnClickListener = new Poi.OnClickListener() {
             @Override
             public void OnClickListener() {
                 Log.i("Swipeable Cards", "I am pressing the card");
@@ -187,11 +187,6 @@ public final class CardModel extends AbstractExpandableDataProvider.GroupData  {
     @Override
     public int getSwipeReaction() {
         return mSwipeReaction;
-    }
-
-    @Override
-    public long getNextChildId() {
-        return 0;
     }
 
     @Override

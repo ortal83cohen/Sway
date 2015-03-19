@@ -79,7 +79,7 @@ public class ExpandableDraggableSwipeableItemAdapter
 
     @Override
     public int getChildCount(int groupPosition) {
-        return mProvider.getChildCount(groupPosition);
+        return 0;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class ExpandableDraggableSwipeableItemAdapter
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return mProvider.getChildItem(groupPosition, childPosition).getChildId();
+        return 0;
     }
 
     @Override
@@ -166,8 +166,6 @@ public class ExpandableDraggableSwipeableItemAdapter
     public void onBindChildViewHolder(MyChildViewHolder holder, int groupPosition,
             int childPosition, int viewType) {
         // child item
-        final AbstractExpandableDataProvider.ChildData item = mProvider
-                .getChildItem(groupPosition, childPosition);
 
         // set listeners
         // (if the item is *not pinned*, click event comes to the itemView)
@@ -176,7 +174,7 @@ public class ExpandableDraggableSwipeableItemAdapter
         holder.mContainer.setOnClickListener(mSwipeableViewContainerOnClickListener);
 
         // set text
-        holder.mTextView.setText(item.getTitle());
+//        holder.mTextView.setText(item.getTitle());
 
         final int dragState = holder.getDragStateFlags();
         final int swipeState = holder.getSwipeStateFlags();
@@ -201,9 +199,9 @@ public class ExpandableDraggableSwipeableItemAdapter
         }
 
         // set swiping properties
-        holder.setSwipeItemSlideAmount(
-                item.isPinnedToSwipeLeft() ? RecyclerViewSwipeManager.OUTSIDE_OF_THE_WINDOW_LEFT
-                        : 0);
+//        holder.setSwipeItemSlideAmount(
+//                item.isPinnedToSwipeLeft() ? RecyclerViewSwipeManager.OUTSIDE_OF_THE_WINDOW_LEFT
+//                        : 0);
     }
 
     @Override
@@ -283,8 +281,8 @@ public class ExpandableDraggableSwipeableItemAdapter
     @Override
     public void onMoveChildItem(int fromGroupPosition, int fromChildPosition, int toGroupPosition,
             int toChildPosition) {
-        mProvider.moveChildItem(fromGroupPosition, fromChildPosition, toGroupPosition,
-                toChildPosition);
+//        mProvider.moveChildItem(fromGroupPosition, fromChildPosition, toGroupPosition,
+//                toChildPosition);
     }
 
     @Override
@@ -304,7 +302,7 @@ public class ExpandableDraggableSwipeableItemAdapter
             return RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_BOTH;
         }
 
-        return mProvider.getChildItem(groupPosition, childPosition).getSwipeReactionType();
+        return 0;
     }
 
     @Override
@@ -426,12 +424,12 @@ public class ExpandableDraggableSwipeableItemAdapter
                 + ", childPosition = " + childPosition +
                 ", result = " + result + ", reaction = " + reaction + ")");
 
-        final AbstractExpandableDataProvider.ChildData item = mProvider
-                .getChildItem(groupPosition, childPosition);
+//        final AbstractExpandableDataProvider.ChildData item = mProvider
+//                .getChildItem(groupPosition, childPosition);
         final int flatPosition = holder.getPosition();
 
         if (reaction == RecyclerViewSwipeManager.AFTER_SWIPE_REACTION_REMOVE_ITEM) {
-            mProvider.removeChildItem(groupPosition, childPosition);
+//            mProvider.removeChildItem(groupPosition, childPosition);
             notifyItemRemoved(flatPosition);
 
             if (mEventListener != null) {
@@ -439,14 +437,14 @@ public class ExpandableDraggableSwipeableItemAdapter
             }
         } else if (reaction
                 == RecyclerViewSwipeManager.AFTER_SWIPE_REACTION_MOVE_TO_SWIPED_DIRECTION) {
-            item.setPinnedToSwipeLeft(true);
+//            item.setPinnedToSwipeLeft(true);
             notifyItemChanged(flatPosition);
 
             if (mEventListener != null) {
                 mEventListener.onChildItemPinned(groupPosition, childPosition);
             }
         } else {
-            item.setPinnedToSwipeLeft(false);
+//            item.setPinnedToSwipeLeft(false);
         }
     }
 

@@ -3,7 +3,7 @@ package com.etb.sway.adapter;
 
 import com.etb.sway.LikeListener;
 import com.etb.sway.R;
-import com.etb.sway.model.CardModel;
+import com.etb.sway.model.Poi;
 import com.etb.sway.model.Orientations.Orientation;
 
 import android.animation.Animator;
@@ -382,10 +382,10 @@ public class CardContainer extends AdapterView<ListAdapter> {
             case MotionEvent.ACTION_DOWN:
                 mTopCard.getHitRect(childRect);
 
-                CardModel cardModel = (CardModel) getAdapter().getItem(0);
+                Poi poi = (Poi) getAdapter().getItem(0);
 
-                if (cardModel.getOnClickListener() != null) {
-                    cardModel.getOnClickListener().OnClickListener();
+                if (poi.getOnClickListener() != null) {
+                    poi.getOnClickListener().OnClickListener();
                 }
                 pointerIndex = event.getActionIndex();
                 x = event.getX(pointerIndex);
@@ -483,19 +483,19 @@ public class CardContainer extends AdapterView<ListAdapter> {
                 duration = Math.min(500, duration);
 
                 mTopCard = getChildAt(getChildCount() - 2);
-                CardModel cardModel = (CardModel) getAdapter()
+                Poi poi = (Poi) getAdapter()
                         .getItem(getAdapter().getCount() - getChildCount());
                 if (mTopCard != null) {
                     mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
                 }
 
-                if (cardModel.getOnCardDimissedListener() != null) {
+                if (poi.getOnCardDimissedListener() != null) {
                     if (targetX < 0) {
-                        ((LikeListener) context).addDisLikeItem(cardModel);
-                        cardModel.getOnCardDimissedListener().onDislike();
+                        ((LikeListener) context).addDisLikeItem(poi);
+                        poi.getOnCardDimissedListener().onDislike();
                     } else {
-                        ((LikeListener) context).addLikeItem(cardModel);
-                        cardModel.getOnCardDimissedListener().onLike();
+                        ((LikeListener) context).addLikeItem(poi);
+                        poi.getOnCardDimissedListener().onLike();
                     }
                 }
 

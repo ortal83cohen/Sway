@@ -211,8 +211,6 @@ public class RecyclerListViewFragment extends Fragment {
 
         if (childPosition == RecyclerView.NO_POSITION) {
             ((ExpandableDraggableSwipeableFragment) getFragmentManager().findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT)).onGroupItemClicked(groupPosition);
-        } else {
-            ((ExpandableDraggableSwipeableFragment) getFragmentManager().findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT)).onChildItemClicked(groupPosition, childPosition);
         }
     }
 

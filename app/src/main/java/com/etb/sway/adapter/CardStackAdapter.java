@@ -2,7 +2,7 @@ package com.etb.sway.adapter;
 
 
 import com.etb.sway.R;
-import com.etb.sway.model.CardModel;
+import com.etb.sway.model.Poi;
 
 import android.content.Context;
 import android.view.View;
@@ -22,16 +22,16 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
      */
     private final Object mLock = new Object();
 
-    private ArrayList<CardModel> mData;
+    private ArrayList<Poi> mData;
 
     public CardStackAdapter(Context context) {
         mContext = context;
-        mData = new ArrayList<CardModel>();
+        mData = new ArrayList<Poi>();
     }
 
-    public CardStackAdapter(Context context, Collection<? extends CardModel> items) {
+    public CardStackAdapter(Context context, Collection<? extends Poi> items) {
         mContext = context;
-        mData = new ArrayList<CardModel>(items);
+        mData = new ArrayList<Poi>(items);
     }
 
     @Override
@@ -69,22 +69,22 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
         return wrapper;
     }
 
-    protected abstract View getCardView(int position, CardModel model, View convertView,
+    protected abstract View getCardView(int position, Poi model, View convertView,
             ViewGroup parent);
 
     public boolean shouldFillCardBackground() {
         return true;
     }
 
-    public void add(CardModel item) {
+    public void add(Poi item) {
         synchronized (mLock) {
             mData.add(item);
         }
         notifyDataSetChanged();
     }
 
-    public CardModel pop() {
-        CardModel model;
+    public Poi pop() {
+        Poi model;
         synchronized (mLock) {
             model = mData.remove(mData.size() - 1);
         }
@@ -97,7 +97,7 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
         return getCardModel(position);
     }
 
-    public CardModel getCardModel(int position) {
+    public Poi getCardModel(int position) {
         synchronized (mLock) {
             return mData.get(mData.size() - 1 - position);
         }
