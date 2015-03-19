@@ -55,18 +55,7 @@ public class CardsScreenFragment extends Fragment {
 
             mCardContainer = (com.etb.sway.view.CardContainer) getActivity().findViewById(R.id.layoutview);
             mCardContainer.setAdapter(adapter);
-            mCardContainer.setLikes(new Likes());
-            Likes likes = null;
-            try {
-                Intent intent = getActivity().getIntent();
-                likes = (Likes) intent
-                        .getSerializableExtra("likes");
-            }catch (Exception e){
-
-            }
-            if(likes == null){
-                likes= new Likes();
-            }
+            mCardContainer.setContext(getActivity());
         }
 
     @Override

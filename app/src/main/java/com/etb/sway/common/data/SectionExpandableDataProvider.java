@@ -258,6 +258,11 @@ public class SectionExpandableDataProvider extends AbstractExpandableDataProvide
         }
 
         @Override
+        public String getTitle() {
+            return null;
+        }
+
+        @Override
         public int getSwipeReaction() {
             return 0;
         }

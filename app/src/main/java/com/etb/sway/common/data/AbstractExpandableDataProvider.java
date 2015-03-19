@@ -1,6 +1,8 @@
 
 package com.etb.sway.common.data;
 
+import com.etb.sway.LikeListenerHolder;
+
 import android.graphics.drawable.Drawable;
 
 public abstract class AbstractExpandableDataProvider {
@@ -29,7 +31,7 @@ public abstract class AbstractExpandableDataProvider {
         public abstract boolean isPinnedToSwipeLeft();
     }
 
-    public static abstract class GroupData extends BaseData {
+    public static abstract class GroupData extends BaseData implements MapPoiInterface {
         public abstract boolean isSectionHeader();
         public abstract long getGroupId();
     }

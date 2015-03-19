@@ -11,6 +11,8 @@ import com.etb.sway.helper.ImageActions;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
 import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -282,6 +284,11 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
         @Override
         public String getDescription() {
             return mDescription;
+        }
+
+        @Override
+        public String getTitle() {
+            return mText;
         }
 
         @Override

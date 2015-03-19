@@ -1,5 +1,7 @@
 package com.etb.sway.model;
 
+import com.etb.sway.common.data.MapPoiInterface;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,37 +9,37 @@ import java.util.ArrayList;
  * Created by ortal on 09-Mar-15.
  */
 @SuppressWarnings("serial")//with this annotation we are going to hide compiler warning
-public class Likes implements Serializable {
-    public ArrayList<CardModel> likeCardList ;
-    public ArrayList<CardModel> disLikeCardList ;
+public class Likes {
+    public ArrayList<MapPoiInterface> likeCardList ;
+    public ArrayList<MapPoiInterface> disLikeCardList ;
 
-    public ArrayList<CardModel> getLikeCardList() {
+    public ArrayList<MapPoiInterface> getLikeCardList() {
         return likeCardList;
     }
 
-    public void setLikeCardList(ArrayList<CardModel> likeCardList) {
+    public void setLikeCardList(ArrayList<MapPoiInterface> likeCardList) {
         this.likeCardList = likeCardList;
     }
 
-    public ArrayList<CardModel> getDisLikeCardList() {
+    public ArrayList<MapPoiInterface> getDisLikeCardList() {
         return disLikeCardList;
     }
 
-    public void setDisLikeCardList(ArrayList<CardModel> disLikeCardList) {
+    public void setDisLikeCardList(ArrayList<MapPoiInterface> disLikeCardList) {
         this.disLikeCardList = disLikeCardList;
     }
 
     public  Likes(){
-        likeCardList = new ArrayList<CardModel>();
-        disLikeCardList = new ArrayList<CardModel>();
+        likeCardList = new ArrayList<MapPoiInterface>();
+        disLikeCardList = new ArrayList<MapPoiInterface>();
     }
 
-    public void addLikeItem(CardModel cardModel ){
+    public void addLikeItem(MapPoiInterface cardModel ){
 
         likeCardList.add(cardModel);
 
     }
-    public void addDisLikeItem(CardModel cardModel ){
+    public void addDisLikeItem(MapPoiInterface cardModel ){
 
         disLikeCardList.add(cardModel);
 

@@ -64,6 +64,8 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
      * @param groupPosition The position of the group item within data set
      */
     public void onGroupItemRemoved(int groupPosition) {
+        ((LikeListenerHolder)getActivity()).addLikeItem( getDataProvider().getGroupItem(groupPosition));
+
         SnackbarManager.show(
                 Snackbar.with(getActivity().getApplicationContext())
                         .text(R.string.snack_bar_text_group_item_removed)

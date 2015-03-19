@@ -1,6 +1,7 @@
 package com.etb.sway.view;
 
 
+import com.etb.sway.LikeListenerHolder;
 import com.etb.sway.R;
 import com.etb.sway.model.CardModel;
 import com.etb.sway.model.Likes;
@@ -33,10 +34,10 @@ import android.widget.ListAdapter;
 import java.util.Random;
 
 public class CardContainer extends AdapterView<ListAdapter> {
-	public static final int INVALID_POINTER_ID = -1;
-	private int mActivePointerId = INVALID_POINTER_ID;
-	private static final double DISORDERED_MAX_ROTATION_RADIANS = Math.PI / 64;
-
+    public static final int INVALID_POINTER_ID = -1;
+    private int mActivePointerId = INVALID_POINTER_ID;
+    private static final double DISORDERED_MAX_ROTATION_RADIANS = Math.PI / 64;
+    private Context context;
     private final DataSetObserver mDataSetObserver = new DataSetObserver() {
         @Override
 		public void onChanged() {
@@ -77,7 +78,6 @@ public class CardContainer extends AdapterView<ListAdapter> {
 
     private boolean mDragging;
 
-    private Likes likes;
 
     public CardContainer(Context context) {
         super(context);
@@ -145,12 +145,8 @@ public class CardContainer extends AdapterView<ListAdapter> {
         requestLayout();
     }
 
-    public void setLikes(Likes newLikes) {
-        likes = newLikes;
-    }
-
-    public Likes getLikes() {
-        return likes;
+    public void setContext(Context activityContext) {
+        context = activityContext;
     }
 
     private void ensureFull() {
@@ -471,10 +467,10 @@ public class CardContainer extends AdapterView<ListAdapter> {
 
                             if (cardModel.getOnCardDimissedListener() != null) {
                     if ( targetX < 0 ) {
-                        likes.addDisLikeItem(cardModel);
+                        ((LikeListenerHolder)context).addDisLikeItem(cardModel);
                         cardModel.getOnCardDimissedListener().onDislike();
                     } else {
-                        likes.addLikeItem(cardModel);
+                        ((LikeListenerHolder)context).addLikeItem(cardModel);
                         cardModel.getOnCardDimissedListener().onLike();
                     }
                 }

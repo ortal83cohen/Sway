@@ -10,6 +10,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.etb.sway.common.data.MapPoiInterface;
 import com.etb.sway.model.CardModel;
 import com.etb.sway.model.Likes;
 
@@ -26,7 +27,6 @@ import android.view.ViewGroup;
  */
 public class GoogleMapView extends Fragment {
 
-    private Likes likes;
 
     // GoogleMap class
     private GoogleMap googleMap;
@@ -37,9 +37,6 @@ private View view;
         return fragment;
     }
 
-    public void setLikes(Likes likes) {
-        this.likes = likes;
-    }
 
     @Nullable
     @Override
@@ -57,9 +54,6 @@ private View view;
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        if(likes == null){
-            likes= new Likes();
-        }
         // verify we can interact with the Google Map
         try {
 //            if (googleMap == null) {
@@ -109,12 +103,12 @@ private View view;
             BitmapDescriptor bitmapMarker
                     = BitmapDescriptorFactory
                     .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
-            for( CardModel cardModel: likes.getLikeCardList()){
+            for( MapPoiInterface MapPoi: ((LikeListenerHolder)getActivity()).getLikes().getLikeCardList()){
 
                 googleMap.addMarker(new MarkerOptions().
-                        position(new LatLng(cardModel.getLatitude(),
-                                cardModel.getLongitude())).title(cardModel.getTitle()).snippet(
-                        cardModel.getDescription()).icon(
+                        position(new LatLng(MapPoi.getLatitude(),
+                                MapPoi.getLongitude())).title(MapPoi.getTitle()).snippet(
+                        MapPoi.getDescription()).icon(
                         bitmapMarker));
             }
 
