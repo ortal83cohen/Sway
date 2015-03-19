@@ -27,6 +27,7 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
        final ImageActions imageActions = new ImageActions(r);
         mData = new LinkedList<>();
 
+        
         GroupData group = new Poi(1, "Verzetsmuseum","The Dutch Resistance Museum is located in the Plantage neighbourhood in Amsterdam. The Dutch Resistance Museum, chosen as the best historical museum of the Netherlands, tells the story of the Dutch people in World War II.",imageActions.resize(r.getDrawable( R.drawable.verzetsmuseum),300,300),52.3677799,4.9128112);
         mData.add( group);
 
