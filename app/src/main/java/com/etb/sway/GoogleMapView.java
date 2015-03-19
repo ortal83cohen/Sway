@@ -11,13 +11,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.etb.sway.common.data.MapPoiInterface;
-import com.etb.sway.model.CardModel;
-import com.etb.sway.model.Likes;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +28,8 @@ public class GoogleMapView extends Fragment {
 
     // GoogleMap class
     private GoogleMap googleMap;
-private View view;
+
+    private View view;
 
     public static GoogleMapView newInstance() {
         GoogleMapView fragment = new GoogleMapView();
@@ -42,7 +41,7 @@ private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-         view = inflater.inflate(R.layout.fragment_google_map,container,false);
+        view = inflater.inflate(R.layout.fragment_google_map, container, false);
         return view;
     }
 
@@ -57,17 +56,17 @@ private View view;
         // verify we can interact with the Google Map
         try {
 //            if (googleMap == null) {
-                MapView mMapView = ((MapView) view.findViewById(R.id.google_map));
-                mMapView.onCreate(savedInstanceState);
+            MapView mMapView = ((MapView) view.findViewById(R.id.google_map));
+            mMapView.onCreate(savedInstanceState);
 
-                mMapView.onResume();// needed to get the map to display immediately
+            mMapView.onResume();// needed to get the map to display immediately
 
-                try {
-                    MapsInitializer.initialize(getActivity().getApplicationContext());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                googleMap = mMapView.getMap();
+            try {
+                MapsInitializer.initialize(getActivity().getApplicationContext());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            googleMap = mMapView.getMap();
 //            }
             // Show a satellite map with roads
             /* MAP_TYPE_NORMAL: Basic map with roads.
@@ -91,7 +90,7 @@ private View view;
             // Show Zoom buttons
             googleMap.getUiSettings().setZoomControlsEnabled(true);
 
-            LatLng amsterdam = new LatLng(52.3704,4.897);
+            LatLng amsterdam = new LatLng(52.3704, 4.897);
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(amsterdam)          // Sets the center of the map to Mountain View
                     .zoom(12)                   // Sets the zoom
@@ -103,7 +102,8 @@ private View view;
             BitmapDescriptor bitmapMarker
                     = BitmapDescriptorFactory
                     .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
-            for( MapPoiInterface MapPoi: ((LikeListenerHolder)getActivity()).getLikes().getLikeCardList()){
+            for (MapPoiInterface MapPoi : ((LikeListener) getActivity()).getData()
+                    .getLikeCardList()) {
 
                 googleMap.addMarker(new MarkerOptions().
                         position(new LatLng(MapPoi.getLatitude(),
@@ -118,11 +118,12 @@ private View view;
         }
 
     }
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
 
-            ((MainActivity) activity).onSectionAttached(3);
-        }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        ((MainActivity) activity).onSectionAttached(3);
+    }
 
 }

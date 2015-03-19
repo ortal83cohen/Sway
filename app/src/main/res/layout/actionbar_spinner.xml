@@ -4,4 +4,4 @@
           android:padding="7dp"
           android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
           android:textColor="#FFFFFF"
-          android:textStyle="italic" />
+          android:textStyle="italic"/>

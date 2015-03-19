@@ -1,6 +1,9 @@
 package com.etb.sway.view;
 
 
+import com.etb.sway.R;
+import com.etb.sway.model.CardModel;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,27 +11,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.etb.sway.R;
-import com.etb.sway.model.CardModel;
-
 public final class SimpleCardStackAdapter extends CardStackAdapter {
 
-	public SimpleCardStackAdapter(Context mContext) {
-		super(mContext);
-	}
+    public SimpleCardStackAdapter(Context mContext) {
+        super(mContext);
+    }
 
-	@Override
-	public View getCardView(int position, CardModel model, View convertView, ViewGroup parent) {
-		if(convertView == null) {
-			LayoutInflater inflater = LayoutInflater.from(getContext());
-			convertView = inflater.inflate(R.layout.std_card_inner, parent, false);
-			assert convertView != null;
-		}
+    @Override
+    public View getCardView(int position, CardModel model, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.std_card_inner, parent, false);
+            assert convertView != null;
+        }
 
-		((ImageView) convertView.findViewById(R.id.image)).setImageDrawable(model.getCardImageDrawable());
-		((TextView) convertView.findViewById(R.id.title)).setText(model.getTitle());
-		((TextView) convertView.findViewById(R.id.description)).setText(model.getDescription());
+        ((ImageView) convertView.findViewById(R.id.image))
+                .setImageDrawable(model.getCardImageDrawable());
+        ((TextView) convertView.findViewById(R.id.title)).setText(model.getTitle());
+        ((TextView) convertView.findViewById(R.id.description)).setText(model.getDescription());
 
-		return convertView;
-	}
+        return convertView;
+    }
 }

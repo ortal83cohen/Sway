@@ -18,6 +18,7 @@ import java.util.Arrays;
 public class LocationChooserActivity extends FragmentActivity {
 
     AutoCompleteTextView location;
+
     String[] locations = {"amsterdam"};
 
     @Override
@@ -46,7 +47,7 @@ public class LocationChooserActivity extends FragmentActivity {
 //        fragmentTransaction.replace(R.id.insert_location_fragment,
 //                insertLocationFragment);
         View view = findViewById(R.id.other_locations_fragment);
-        if(configInfo.orientation == Configuration.ORIENTATION_LANDSCAPE){
+        if (configInfo.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             view.setVisibility(View.GONE);
         } else {
             view.setVisibility(View.VISIBLE);
@@ -62,8 +63,10 @@ public class LocationChooserActivity extends FragmentActivity {
         try {
             location = (AutoCompleteTextView) findViewById(
                     R.id.autoCompleteTextView_location);
-            if (location == null || !Arrays.asList(locations).contains(location.getText().toString())) {
-                Toast.makeText(LocationChooserActivity.this, getString(R.string.location_chooser_warning),
+            if (location == null || !Arrays.asList(locations)
+                    .contains(location.getText().toString())) {
+                Toast.makeText(LocationChooserActivity.this,
+                        getString(R.string.location_chooser_warning),
                         Toast.LENGTH_LONG)
                         .show();
             } else {
@@ -71,8 +74,8 @@ public class LocationChooserActivity extends FragmentActivity {
                 startActivity(intent);
                 finish();
             }
-        }catch (Exception e){
-            Toast.makeText(LocationChooserActivity.this,e.getMessage(),
+        } catch (Exception e) {
+            Toast.makeText(LocationChooserActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG)
                     .show();
         }
@@ -80,11 +83,11 @@ public class LocationChooserActivity extends FragmentActivity {
 
     public void otherLocations(View view) {
         try {
-                Intent intent = new Intent(LocationChooserActivity.this, MainActivity.class);
-                startActivity(intent);
+            Intent intent = new Intent(LocationChooserActivity.this, MainActivity.class);
+            startActivity(intent);
 
-        }catch (Exception e){
-            Toast.makeText(LocationChooserActivity.this,e.getMessage(),
+        } catch (Exception e) {
+            Toast.makeText(LocationChooserActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG)
                     .show();
         }

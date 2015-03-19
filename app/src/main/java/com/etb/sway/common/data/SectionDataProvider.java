@@ -1,4 +1,3 @@
-
 package com.etb.sway.common.data;
 
 import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager;
@@ -7,12 +6,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SectionDataProvider extends AbstractDataProvider {
-    private List<ConcreteData> mData;
-    private ConcreteData mLastRemovedData;
-    private int mLastRemovedPosition = -1;
 
     public static final int ITEM_VIEW_TYPE_SECTION_HEADER = 0;
+
     public static final int ITEM_VIEW_TYPE_SECTION_ITEM = 1;
+
+    private List<ConcreteData> mData;
+
+    private ConcreteData mLastRemovedData;
+
+    private int mLastRemovedPosition = -1;
 
     public SectionDataProvider() {
         final String sectionItems = "ABCDE";
@@ -36,7 +39,8 @@ public class SectionDataProvider extends AbstractDataProvider {
                 final long id = mData.size();
                 final int viewType = ITEM_VIEW_TYPE_SECTION_ITEM;
                 final String text = Character.toString(innerSectionItems.charAt(j));
-                final int swipeReaction = RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT;
+                final int swipeReaction = RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT
+                        | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT;
                 mData.add(new ConcreteData(id, false, viewType, text, swipeReaction));
             }
         }
@@ -101,13 +105,19 @@ public class SectionDataProvider extends AbstractDataProvider {
     public static final class ConcreteData extends Data {
 
         private final long mId;
+
         private final boolean mIsSectionHeader;
+
         private final String mText;
+
         private final int mViewType;
+
         private final int mSwipeReaction;
+
         private boolean mPinnedToSwipeLeft;
 
-        ConcreteData(long id, boolean isSectionHeader, int viewType, String text, int swipeReaction) {
+        ConcreteData(long id, boolean isSectionHeader, int viewType, String text,
+                int swipeReaction) {
             mId = id;
             mIsSectionHeader = isSectionHeader;
             mViewType = viewType;

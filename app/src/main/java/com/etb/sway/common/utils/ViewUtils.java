@@ -1,10 +1,10 @@
-
 package com.etb.sway.common.utils;
 
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 
 public class ViewUtils {
+
     public static boolean hitTest(View v, int x, int y) {
         final int tx = (int) (ViewCompat.getTranslationX(v) + 0.5f);
         final int ty = (int) (ViewCompat.getTranslationY(v) + 0.5f);

@@ -6,7 +6,7 @@
     </item>
     <item android:right="16dp">
         <bitmap
-            android:src="@drawable/ic_item_swipe_left"
-            android:gravity="right|center_vertical"/>
+                android:src="@drawable/ic_item_swipe_left"
+                android:gravity="right|center_vertical"/>
     </item>
 </layer-list>

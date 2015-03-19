@@ -19,8 +19,6 @@
     </style>
 
 
-
-
     <style name="fixedTextViewStyle" parent="android:Widget.TextView">
         <!-- Override the textColor attribute explicitly to avoid unexpected text color issue on HTC devices -->
         <item name="android:textColor">@color/abc_primary_text_material_light</item>

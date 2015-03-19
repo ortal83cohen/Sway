@@ -1,5 +1,6 @@
-
 package com.etb.sway.common.fragment;
+
+import com.etb.sway.R;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,13 +10,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 
-import com.etb.sway.R;
-
 public class ItemPinnedMessageDialogFragment extends DialogFragment {
+
     private static final String KEY_ITEM_POSITION = "position";
 
-    public interface EventListener {
-        void onNotifyItemPinnedDialogDismissed(int position, boolean ok);
+    public ItemPinnedMessageDialogFragment() {
+        super();
     }
 
     public static ItemPinnedMessageDialogFragment newInstance(int position) {
@@ -26,10 +26,6 @@ public class ItemPinnedMessageDialogFragment extends DialogFragment {
 
         frag.setArguments(args);
         return frag;
-    }
-
-    public ItemPinnedMessageDialogFragment() {
-        super();
     }
 
     @NonNull
@@ -65,6 +61,11 @@ public class ItemPinnedMessageDialogFragment extends DialogFragment {
     private void notifyItemPinnedDialogDismissed(boolean ok) {
         final int position = getArguments().getInt(KEY_ITEM_POSITION);
         ((EventListener) getActivity()).onNotifyItemPinnedDialogDismissed(position, ok);
+    }
+
+    public interface EventListener {
+
+        void onNotifyItemPinnedDialogDismissed(int position, boolean ok);
     }
 
 }

@@ -1,5 +1,7 @@
-
 package com.etb.sway.common.fragment;
+
+import com.etb.sway.MainActivity;
+import com.etb.sway.R;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,19 +12,20 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
 
-import com.etb.sway.MainActivity;
-import com.etb.sway.R;
-
 public class ExpandableItemPinnedMessageDialogFragment extends DialogFragment {
+
     private static final String KEY_GROUP_ITEM_POSITION = "group_position";
+
     private static final String KEY_CHILD_ITEM_POSITION = "child_position";
 
-    public interface EventListener {
-        void onNotifyExpandableItemPinnedDialogDismissed(int groupPosition, int childPosition, boolean ok);
+    public ExpandableItemPinnedMessageDialogFragment() {
+        super();
     }
 
-    public static ExpandableItemPinnedMessageDialogFragment newInstance(int groupPosition, int childPosition) {
-        final ExpandableItemPinnedMessageDialogFragment frag = new ExpandableItemPinnedMessageDialogFragment();
+    public static ExpandableItemPinnedMessageDialogFragment newInstance(int groupPosition,
+            int childPosition) {
+        final ExpandableItemPinnedMessageDialogFragment frag
+                = new ExpandableItemPinnedMessageDialogFragment();
         final Bundle args = new Bundle();
 
         args.putInt(KEY_GROUP_ITEM_POSITION, groupPosition);
@@ -30,10 +33,6 @@ public class ExpandableItemPinnedMessageDialogFragment extends DialogFragment {
 
         frag.setArguments(args);
         return frag;
-    }
-
-    public ExpandableItemPinnedMessageDialogFragment() {
-        super();
     }
 
     @NonNull
@@ -48,7 +47,8 @@ public class ExpandableItemPinnedMessageDialogFragment extends DialogFragment {
         if (childPosition == RecyclerView.NO_POSITION) {
             builder.setMessage(getString(R.string.dialog_message_group_item_pinned, groupPosition));
         } else {
-            builder.setMessage(getString(R.string.dialog_message_child_item_pinned, groupPosition, childPosition));
+            builder.setMessage(getString(R.string.dialog_message_child_item_pinned, groupPosition,
+                    childPosition));
         }
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
@@ -75,8 +75,15 @@ public class ExpandableItemPinnedMessageDialogFragment extends DialogFragment {
     private void notifyItemPinnedDialogDismissed(boolean ok) {
         final int groupPosition = getArguments().getInt(KEY_GROUP_ITEM_POSITION);
         final int childPosition = getArguments().getInt(KEY_CHILD_ITEM_POSITION);
-        ((EventListener)  getFragmentManager().findFragmentByTag(
-                MainActivity.DRAGGABLE_SWIPEABLE_FRAGMENT)).onNotifyExpandableItemPinnedDialogDismissed(groupPosition, childPosition, ok);
+        ((EventListener) getFragmentManager().findFragmentByTag(
+                MainActivity.DRAGGABLE_SWIPEABLE_FRAGMENT))
+                .onNotifyExpandableItemPinnedDialogDismissed(groupPosition, childPosition, ok);
+    }
+
+    public interface EventListener {
+
+        void onNotifyExpandableItemPinnedDialogDismissed(int groupPosition, int childPosition,
+                boolean ok);
     }
 
 }

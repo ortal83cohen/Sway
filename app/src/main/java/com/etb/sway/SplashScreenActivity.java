@@ -12,7 +12,8 @@ import android.widget.TextView;
 /**
  * Created by ortal on 08-Mar-15.
  */
-public class SplashScreenActivity extends Activity{
+public class SplashScreenActivity extends Activity {
+
     private static int SPLASH_SCREEN_DELAY = 2000;
 
     TextView percent;
@@ -32,7 +33,7 @@ public class SplashScreenActivity extends Activity{
         handler = new Handler();
         setContentView(R.layout.activity_splash_screen);
         percent = (TextView) findViewById(R.id.textView2);
-        progressBar = (ProgressBar)  findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         new Thread(new Runnable() {
             public void run() {
@@ -60,7 +61,8 @@ public class SplashScreenActivity extends Activity{
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, LocationChooserActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this,
+                        LocationChooserActivity.class);
                 startActivity(intent);
                 finish();
             }

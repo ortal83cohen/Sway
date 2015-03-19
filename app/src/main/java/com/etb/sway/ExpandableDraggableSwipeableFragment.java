@@ -1,15 +1,6 @@
 
 package com.etb.sway;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.etb.sway.common.data.AbstractExpandableDataProvider;
 import com.etb.sway.common.fragment.ExpandableDataProviderFragment;
 import com.etb.sway.common.fragment.ExpandableItemPinnedMessageDialogFragment;
@@ -20,20 +11,29 @@ import com.nispok.snackbar.SnackbarManager;
 import com.nispok.snackbar.enums.SnackbarType;
 import com.nispok.snackbar.listeners.ActionClickListener;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 public class ExpandableDraggableSwipeableFragment extends Fragment implements ExpandableItemPinnedMessageDialogFragment.EventListener {
     private static final String FRAGMENT_TAG_DATA_PROVIDER = "data provider";
     private static final String FRAGMENT_LIST_VIEW = "list view";
     private static final String FRAGMENT_TAG_ITEM_PINNED_DIALOG = "item pinned dialog";
     private com.etb.sway.view.SimpleCardStackAdapter adapter;
 
-    public void setAdapter(SimpleCardStackAdapter adapter) {
-        this.adapter = adapter;
-    }
-
     public static ExpandableDraggableSwipeableFragment newInstance() {
         ExpandableDraggableSwipeableFragment fragment = new ExpandableDraggableSwipeableFragment();
 
         return fragment;
+    }
+
+    public void setAdapter(SimpleCardStackAdapter adapter) {
+        this.adapter = adapter;
     }
 
     @Override
@@ -63,8 +63,34 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
      *
      * @param groupPosition The position of the group item within data set
      */
-    public void onGroupItemRemoved(int groupPosition) {
-        ((LikeListenerHolder)getActivity()).addLikeItem( getDataProvider().getGroupItem(groupPosition));
+    public void onGroupItemLikedRemoved(int groupPosition) {
+        final AbstractExpandableDataProvider.GroupData group = getDataProvider()
+                .getLastGroupRemoved();
+        ((LikeListener) getActivity()).addLikeItem(group);
+
+        SnackbarManager.show(
+                Snackbar.with(getActivity().getApplicationContext())
+                        .text(R.string.snack_bar_text_group_item_added)
+                        .actionLabel(R.string.snack_bar_action_undo)
+                        .actionListener(new ActionClickListener() {
+                            @Override
+                            public void onActionClicked(Snackbar snackbar) {
+                                onItemUndoActionClicked();
+                                ((LikeListener) getActivity()).onUndo(
+                                        group);
+                            }
+                        })
+                        .actionColorResource(R.color.snackbar_action_color_done)
+                        .duration(5000)
+                        .type(SnackbarType.SINGLE_LINE)
+                        .swipeToDismiss(true)
+                , getActivity());
+    }
+
+    public void onGroupItemDisLikedRemoved(int groupPosition) {
+        final AbstractExpandableDataProvider.GroupData group = getDataProvider()
+                .getLastGroupRemoved();
+        ((LikeListener) getActivity()).addDisLikeItem(group);
 
         SnackbarManager.show(
                 Snackbar.with(getActivity().getApplicationContext())
@@ -74,6 +100,8 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
                             @Override
                             public void onActionClicked(Snackbar snackbar) {
                                 onItemUndoActionClicked();
+                                ((LikeListener) getActivity()).onUndo(
+                                        group);
                             }
                         })
                         .actionColorResource(R.color.snackbar_action_color_done)

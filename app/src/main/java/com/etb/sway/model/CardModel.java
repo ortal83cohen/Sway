@@ -8,8 +8,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
-import java.io.Serializable;
-
 /**
  * Created by ortal on 09-Mar-15.
  */
@@ -26,15 +24,39 @@ public class CardModel implements MapPoiInterface {
 
     private double longitude;
 
-    private transient  Drawable cardImageDrawable;
+    private transient Drawable cardImageDrawable;
 
-    private transient  Drawable cardLikeImageDrawable;
+    private transient Drawable cardLikeImageDrawable;
 
     private transient Drawable cardDislikeImageDrawable;
 
     private transient OnCardDimissedListener mOnCardDimissedListener = null;
 
     private transient OnClickListener mOnClickListener = null;
+
+    public CardModel() {
+        this(0, null, null, (Drawable) null, 0, 0);
+    }
+
+    public CardModel(int id, String title, String description, Drawable cardImage, double latitude,
+            double longitude) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.cardImageDrawable = cardImage;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
+    public CardModel(int id, String title, String description, Bitmap cardImage, double latitude,
+            double longitude) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.cardImageDrawable = new BitmapDrawable(null, cardImage);
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 
     public int getId() {
         return id;
@@ -50,40 +72,6 @@ public class CardModel implements MapPoiInterface {
 
     public double getLongitude() {
         return longitude;
-    }
-
-    public interface OnCardDimissedListener {
-
-        void onLike();
-
-        void onDislike();
-    }
-
-    public interface OnClickListener {
-
-        void OnClickListener();
-    }
-
-    public CardModel() {
-        this(0,null, null, (Drawable) null,0,0);
-    }
-
-    public CardModel(int id,String title, String description, Drawable cardImage,double latitude,double longitude) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.cardImageDrawable = cardImage;
-        this.longitude=longitude;
-        this.latitude=latitude;
-    }
-
-    public CardModel(int id,String title, String description, Bitmap cardImage,double latitude,double longitude) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.cardImageDrawable = new BitmapDrawable(null, cardImage);
-        this.longitude=longitude;
-        this.latitude=latitude;
     }
 
     public String getTitle() {
@@ -133,14 +121,14 @@ public class CardModel implements MapPoiInterface {
 //                Toast.makeText(MainActivity.ma.getBaseContext(), "I like the card " + getTitle(),
 //                        Toast.LENGTH_SHORT)
 //                        .show();
-                  Log.i("Swipeable Cards","I like the card");
+                Log.i("Swipeable Cards", "I like the card");
             }
 
             public void onDislike() {
 
 //                Toast.makeText(getApplicationContext(), "I dislike the card "+card.getTitle(), Toast.LENGTH_SHORT)
 //                        .show();
-                Log.i("Swipeable Cards","I dislike the card");
+                Log.i("Swipeable Cards", "I dislike the card");
             }
         };
     }
@@ -149,9 +137,12 @@ public class CardModel implements MapPoiInterface {
         return this.mOnCardDimissedListener;
     }
 
+    public OnClickListener getOnClickListener() {
+        return this.mOnClickListener;
+    }
 
     public void setOnClickListener(OnClickListener listener) {
-        this.mOnClickListener =  new com.etb.sway.model.CardModel.OnClickListener() {
+        this.mOnClickListener = new com.etb.sway.model.CardModel.OnClickListener() {
             @Override
             public void OnClickListener() {
                 Log.i("Swipeable Cards", "I am pressing the card");
@@ -159,8 +150,17 @@ public class CardModel implements MapPoiInterface {
         };
     }
 
-    public OnClickListener getOnClickListener() {
-        return this.mOnClickListener;
+
+    public interface OnCardDimissedListener {
+
+        void onLike();
+
+        void onDislike();
+    }
+
+    public interface OnClickListener {
+
+        void OnClickListener();
     }
 
 }

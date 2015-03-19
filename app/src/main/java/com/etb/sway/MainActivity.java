@@ -2,27 +2,29 @@ package com.etb.sway;
 
 import com.etb.sway.common.data.MapPoiInterface;
 import com.etb.sway.domain.GlobalState;
-import com.etb.sway.model.CardModel;
-import com.etb.sway.model.Likes;
+import com.etb.sway.model.PoiData;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.widget.DrawerLayout;
-import android.view.View;
 
 
 /**
  * Created by ortal on 09-Mar-15.
  */
 
-public class MainActivity extends ActionBarActivity  implements NavigationDrawerFragment.NavigationDrawerCallbacks , LikeListenerHolder {
+public class MainActivity extends ActionBarActivity
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks,
+        LikeListener {
 
     public static String DRAGGABLE_SWIPEABLE_FRAGMENT= "draggable_swipeable_fragment" ;
     public static String CARDS_SCREEN_FRAGMENT= "cards_screen_fragment" ;
     public static String GOOGLE_MAP_FRAGMENT= "google_map_fragment" ;
-    private Likes likes;
+
+    private PoiData mPoiData;
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -36,7 +38,7 @@ public class MainActivity extends ActionBarActivity  implements NavigationDrawer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        likes=new Likes();
+        mPoiData = new PoiData();
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -44,7 +46,6 @@ public class MainActivity extends ActionBarActivity  implements NavigationDrawer
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
     }
 
     @Override
@@ -118,33 +119,23 @@ public class MainActivity extends ActionBarActivity  implements NavigationDrawer
     }
 
     @Override
-    public void onLike(int id) {
-
+    public void onUndo(MapPoiInterface MapPoi) {
+        mPoiData.onUndo(MapPoi);
     }
 
     @Override
-    public void onDislike(int id) {
-
+    public void addLikeItem(MapPoiInterface MapPoi) {
+        mPoiData.addLikeItem(MapPoi);
     }
 
     @Override
-    public void onUndo(int id) {
-
+    public void addDisLikeItem(MapPoiInterface MapPoi) {
+        mPoiData.addDisLikeItem(MapPoi);
     }
 
     @Override
-    public void addLikeItem(MapPoiInterface cardModel) {
-        likes.addLikeItem(cardModel);
-    }
-
-    @Override
-    public void addDisLikeItem(MapPoiInterface cardModel) {
-        likes.addDisLikeItem(cardModel);
-    }
-
-    @Override
-    public Likes getLikes() {
-        return likes;
+    public PoiData getData() {
+        return mPoiData;
     }
 }
 

@@ -20,7 +20,8 @@
     <string name="dialog_message_item_pinned">dialog_message_item_pinned</string>
     <string name="dialog_message_group_item_pinned">dialog_message_group_item_pinned</string>
     <string name="dialog_message_child_item_pinned">dialog_message_child_item_pinned</string>
-    <string name="snack_bar_text_group_item_removed">Added to map</string>
+    <string name="snack_bar_text_group_item_added">Added to map</string>
+    <string name="snack_bar_text_group_item_removed">Removed from list</string>
     <string name="snack_bar_action_undo">Undo</string>
     <string name="snack_bar_text_child_item_removed">snack_bar_text_child_item_removed</string>
 

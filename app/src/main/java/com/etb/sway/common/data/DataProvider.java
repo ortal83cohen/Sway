@@ -1,4 +1,3 @@
-
 package com.etb.sway.common.data;
 
 import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager;
@@ -7,8 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DataProvider extends AbstractDataProvider {
+
     private List<ConcreteData> mData;
+
     private ConcreteData mLastRemovedData;
+
     private int mLastRemovedPosition = -1;
 
     public DataProvider(boolean simple) {
@@ -22,22 +24,32 @@ public class DataProvider extends AbstractDataProvider {
                     final long id = mData.size();
                     final int viewType = 0;
                     final String text = Character.toString(atoz.charAt(j));
-                    final int swipeReaction = RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT;
+                    final int swipeReaction = RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT
+                            | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT;
                     mData.add(new ConcreteData(id, viewType, text, swipeReaction, true));
                 }
             }
         } else {
             @SuppressWarnings("PointlessBitwiseExpression")
             final int[] swipeReactionTable = {
-                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT,
-                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT_WITH_RUBBER_BAND_EFFECT,
-                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT,
-                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT_WITH_RUBBER_BAND_EFFECT | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT,
-                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT_WITH_RUBBER_BAND_EFFECT | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT_WITH_RUBBER_BAND_EFFECT,
-                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT_WITH_RUBBER_BAND_EFFECT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT,
-                    RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT,
-                    RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT_WITH_RUBBER_BAND_EFFECT,
-                    RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT,
+                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT
+                            | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT,
+                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT
+                            | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT_WITH_RUBBER_BAND_EFFECT,
+                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT
+                            | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT,
+                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT_WITH_RUBBER_BAND_EFFECT
+                            | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT,
+                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT_WITH_RUBBER_BAND_EFFECT
+                            | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT_WITH_RUBBER_BAND_EFFECT,
+                    RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_LEFT_WITH_RUBBER_BAND_EFFECT
+                            | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT,
+                    RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT
+                            | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT,
+                    RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT
+                            | RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_RIGHT_WITH_RUBBER_BAND_EFFECT,
+                    RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT
+                            | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT,
             };
 
             for (int i = 0; i < 2; i++) {
@@ -111,9 +123,13 @@ public class DataProvider extends AbstractDataProvider {
     public static final class ConcreteData extends Data {
 
         private final long mId;
+
         private final String mText;
+
         private final int mViewType;
+
         private final int mSwipeReaction;
+
         private boolean mPinnedToSwipeLeft;
 
         ConcreteData(long id, int viewType, String text, int swipeReaction, boolean simplified) {
@@ -123,7 +139,8 @@ public class DataProvider extends AbstractDataProvider {
             mSwipeReaction = swipeReaction;
         }
 
-        private static String makeText(long id, String text, int swipeReaction, boolean simplified) {
+        private static String makeText(long id, String text, int swipeReaction,
+                boolean simplified) {
             final StringBuilder sb = new StringBuilder();
 
             sb.append(id);

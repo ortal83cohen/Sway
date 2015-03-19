@@ -1,4 +1,3 @@
-
 package com.etb.sway.common.utils;
 
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +5,7 @@ import android.view.View;
 import android.view.ViewParent;
 
 public class AdapterUtils {
+
     public static View findParentViewHolderItemView(View v) {
         final ViewParent parent = v.getParent();
         if (parent instanceof RecyclerView) {

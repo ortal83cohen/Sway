@@ -2,11 +2,11 @@
 package com.etb.sway.common.data;
 
 
-import android.graphics.drawable.Drawable;
-import android.support.v4.util.Pair;
-
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
 import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager;
+
+import android.graphics.drawable.Drawable;
+import android.support.v4.util.Pair;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -56,6 +56,11 @@ public class SectionExpandableDataProvider extends AbstractExpandableDataProvide
 
             mData.add(new Pair<GroupData, List<ChildData>>(group, children));
         }
+    }
+
+    @Override
+    public GroupData getLastGroupRemoved() {
+        return mLastRemovedGroup.first;
     }
 
     @Override
@@ -288,13 +293,13 @@ public class SectionExpandableDataProvider extends AbstractExpandableDataProvide
         }
 
         @Override
-        public void setPinnedToSwipeLeft(boolean pinnedToSwipeLeft) {
-            mPinnedToSwipeLeft = pinnedToSwipeLeft;
+        public boolean isPinnedToSwipeLeft() {
+            return mPinnedToSwipeLeft;
         }
 
         @Override
-        public boolean isPinnedToSwipeLeft() {
-            return mPinnedToSwipeLeft;
+        public void setPinnedToSwipeLeft(boolean pinnedToSwipeLeft) {
+            mPinnedToSwipeLeft = pinnedToSwipeLeft;
         }
 
         public long generateNewChildId() {
@@ -306,9 +311,12 @@ public class SectionExpandableDataProvider extends AbstractExpandableDataProvide
 
     public static final class ConcreteChildData extends ChildData {
 
-        private long mId;
         private final String mText;
+
         private final int mSwipeReaction;
+
+        private long mId;
+
         private boolean mPinnedToSwipeLeft;
 
         ConcreteChildData(long id, String text, int swipeReaction) {
@@ -320,6 +328,10 @@ public class SectionExpandableDataProvider extends AbstractExpandableDataProvide
         @Override
         public long getChildId() {
             return mId;
+        }
+
+        public void setChildId(long id) {
+            this.mId = id;
         }
 
         @Override
@@ -368,17 +380,13 @@ public class SectionExpandableDataProvider extends AbstractExpandableDataProvide
         }
 
         @Override
-        public void setPinnedToSwipeLeft(boolean pinnedToSwipeLeft) {
-            mPinnedToSwipeLeft = pinnedToSwipeLeft;
-        }
-
-        @Override
         public boolean isPinnedToSwipeLeft() {
             return mPinnedToSwipeLeft;
         }
 
-        public void setChildId(long id) {
-            this.mId = id;
+        @Override
+        public void setPinnedToSwipeLeft(boolean pinnedToSwipeLeft) {
+            mPinnedToSwipeLeft = pinnedToSwipeLeft;
         }
     }
 }

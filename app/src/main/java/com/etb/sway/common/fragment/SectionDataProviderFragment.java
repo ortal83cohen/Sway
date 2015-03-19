@@ -1,15 +1,14 @@
-
 package com.etb.sway.common.fragment;
-
-
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 
 
 import com.etb.sway.common.data.AbstractDataProvider;
 import com.etb.sway.common.data.SectionDataProvider;
 
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+
 public class SectionDataProviderFragment extends Fragment {
+
     private SectionDataProvider mDataProvider;
 
     @Override

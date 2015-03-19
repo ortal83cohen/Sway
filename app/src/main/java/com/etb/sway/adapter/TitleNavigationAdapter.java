@@ -8,8 +8,6 @@ package com.etb.sway.adapter;
 import com.etb.sway.R;
 import com.etb.sway.model.SpinnerNavItem;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,11 +17,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class TitleNavigationAdapter extends BaseAdapter {
 
     private ImageView imgIcon;
+
     private TextView txtTitle;
+
     private ArrayList<SpinnerNavItem> spinnerNavItem;
+
     private Context context;
 
     public TitleNavigationAdapter(Context context,

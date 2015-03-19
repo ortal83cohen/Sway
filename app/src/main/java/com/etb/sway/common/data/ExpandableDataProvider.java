@@ -1,17 +1,15 @@
 package com.etb.sway.common.data;
 
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.support.v4.util.Pair;
-
 import com.etb.sway.R;
 import com.etb.sway.helper.ImageActions;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
 import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager;
 
-import org.w3c.dom.Text;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.support.v4.util.Pair;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -85,6 +83,11 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
         children.add(new ConcreteChildData(0, childText, childSwipeReaction));
         mData.add( new Pair<GroupData, List<ChildData>>(group, children));
 
+    }
+
+    @Override
+    public GroupData getLastGroupRemoved() {
+        return mLastRemovedGroup.first;
     }
 
     @Override
@@ -317,13 +320,13 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
         }
 
         @Override
-        public void setPinnedToSwipeLeft(boolean pinnedToSwipeLeft) {
-            mPinnedToSwipeLeft = pinnedToSwipeLeft;
+        public boolean isPinnedToSwipeLeft() {
+            return mPinnedToSwipeLeft;
         }
 
         @Override
-        public boolean isPinnedToSwipeLeft() {
-            return mPinnedToSwipeLeft;
+        public void setPinnedToSwipeLeft(boolean pinnedToSwipeLeft) {
+            mPinnedToSwipeLeft = pinnedToSwipeLeft;
         }
 
         public long generateNewChildId() {
@@ -335,9 +338,12 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
 
     public static final class ConcreteChildData extends ChildData {
 
-        private long mId;
         private final String mText;
+
         private final int mSwipeReaction;
+
+        private long mId;
+
         private boolean mPinnedToSwipeLeft;
 
         ConcreteChildData(long id, String text, int swipeReaction) {
@@ -349,6 +355,10 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
         @Override
         public long getChildId() {
             return mId;
+        }
+
+        public void setChildId(long id) {
+            this.mId = id;
         }
 
         @Override
@@ -397,17 +407,13 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
         }
 
         @Override
-        public void setPinnedToSwipeLeft(boolean pinnedToSwipeLeft) {
-            mPinnedToSwipeLeft = pinnedToSwipeLeft;
-        }
-
-        @Override
         public boolean isPinnedToSwipeLeft() {
             return mPinnedToSwipeLeft;
         }
 
-        public void setChildId(long id) {
-            this.mId = id;
+        @Override
+        public void setPinnedToSwipeLeft(boolean pinnedToSwipeLeft) {
+            mPinnedToSwipeLeft = pinnedToSwipeLeft;
         }
     }
 }

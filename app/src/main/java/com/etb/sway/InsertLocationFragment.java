@@ -1,27 +1,23 @@
 package com.etb.sway;
 
-import com.etb.sway.R;
-
-import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Toast;
-
-import java.util.Arrays;
 
 /**
  * Created by ortal on 10-Mar-15.
  */
-public class InsertLocationFragment extends Fragment{
+public class InsertLocationFragment extends Fragment {
+
+    AutoCompleteTextView location;
+
+    String[] locations = {"amsterdam"};
 
     public static InsertLocationFragment newInstance() {
         InsertLocationFragment fragment = new InsertLocationFragment();
@@ -29,7 +25,8 @@ public class InsertLocationFragment extends Fragment{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_insert_location, container, false);
         //Creating the instance of ArrayAdapter containing list of language names
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
@@ -40,12 +37,8 @@ public class InsertLocationFragment extends Fragment{
         location.setThreshold(1);//will start working from first character
         location.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
         location.setTextColor(Color.RED);
-        return view ;
+        return view;
     }
-
-
-    AutoCompleteTextView location;
-    String[] locations = {"amsterdam"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

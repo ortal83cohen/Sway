@@ -1,17 +1,6 @@
 
 package com.etb.sway;
 
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.etb.sway.adapter.ExpandableDraggableSwipeableItemAdapter;
 import com.etb.sway.common.data.AbstractExpandableDataProvider;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
@@ -23,19 +12,37 @@ import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeMana
 import com.h6ah4i.android.widget.advrecyclerview.touchguard.RecyclerViewTouchActionGuardManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
 
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 public class RecyclerListViewFragment extends Fragment {
     private static final String SAVED_STATE_EXPANDABLE_ITEM_MANAGER = "RecyclerViewExpandableItemManager";
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.Adapter mWrappedAdapter;
-    private RecyclerViewExpandableItemManager mRecyclerViewExpandableItemManager;
-    private RecyclerViewDragDropManager mRecyclerViewDragDropManager;
-    private RecyclerViewSwipeManager mRecyclerViewSwipeManager;
-    private RecyclerViewTouchActionGuardManager mRecyclerViewTouchActionGuardManager;
-
     private static String  DRAGGABLE_SWIPEABLE_FRAGMENT = MainActivity.DRAGGABLE_SWIPEABLE_FRAGMENT;
+
+    private RecyclerView mRecyclerView;
+
+    private RecyclerView.LayoutManager mLayoutManager;
+
+    private RecyclerView.Adapter mAdapter;
+
+    private RecyclerView.Adapter mWrappedAdapter;
+
+    private RecyclerViewExpandableItemManager mRecyclerViewExpandableItemManager;
+
+    private RecyclerViewDragDropManager mRecyclerViewDragDropManager;
+
+    private RecyclerViewSwipeManager mRecyclerViewSwipeManager;
+
+    private RecyclerViewTouchActionGuardManager mRecyclerViewTouchActionGuardManager;
 
     public RecyclerListViewFragment() {
         super();
@@ -77,8 +84,10 @@ public class RecyclerListViewFragment extends Fragment {
 
         myItemAdapter.setEventListener(new ExpandableDraggableSwipeableItemAdapter.EventListener() {
             @Override
-            public void onGroupItemRemoved(int groupPosition) {
-                ((ExpandableDraggableSwipeableFragment) getFragmentManager().findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT)).onGroupItemRemoved(groupPosition);
+            public void onGroupItemLikedRemoved(int groupPosition) {
+                ((ExpandableDraggableSwipeableFragment) getFragmentManager()
+                        .findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT)).onGroupItemLikedRemoved(
+                        groupPosition);
             }
 
             @Override
@@ -87,8 +96,11 @@ public class RecyclerListViewFragment extends Fragment {
             }
 
             @Override
-            public void onGroupItemPinned(int groupPosition) {
-                ((ExpandableDraggableSwipeableFragment) getFragmentManager().findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT)).onGroupItemPinned(groupPosition);
+            public void onGroupItemDisLikedRemoved(int groupPosition) {
+                ((ExpandableDraggableSwipeableFragment) getFragmentManager()
+                        .findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT))
+                        .onGroupItemDisLikedRemoved(
+                                groupPosition);
             }
 
             @Override
