@@ -1,4 +1,4 @@
-package com.etb.sway.common.utils;
+package com.etb.sway.utils;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

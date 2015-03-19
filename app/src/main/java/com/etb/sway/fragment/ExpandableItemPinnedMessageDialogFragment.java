@@ -1,4 +1,4 @@
-package com.etb.sway.common.fragment;
+package com.etb.sway.fragment;
 
 import com.etb.sway.MainActivity;
 import com.etb.sway.R;

@@ -1,4 +1,4 @@
-package com.etb.sway.common.data;
+package com.etb.sway.model;
 
 
 import com.etb.sway.R;
@@ -32,51 +32,41 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
        final ImageActions imageActions = new ImageActions(r);
         mData = new LinkedList<>();
 
-
-//                adapter.add(new com.etb.sway.model.CardModel(1,"Verzetsmuseum", "The Dutch Resistance Museum is located in the Plantage neighbourhood in Amsterdam. The Dutch Resistance Museum, chosen as the best historical museum of the Netherlands, tells the story of the Dutch people in World War II.", imageActions.resize( r.getDrawable(
-//                R.drawable.verzetsmuseum)),52.3677799,4.9128112));
-//        adapter.add(new com.etb.sway.model.CardModel(2,"Van Gogh Museum", "The Van Gogh Museum is an art museum in Amsterdam in the Netherlands dedicated to the works of Vincent van Gogh and his contemporaries.", imageActions.resize(r.getDrawable(R.drawable.van_gogh_museum)),52.358626, 4.881065));
-//        adapter.add(new com.etb.sway.model.CardModel(3,"Anne Frank House", "The Anne Frank House is a historic house and biographical museum dedicated to Jewish wartime diarist Anne Frank. The building is located at the Prinsengracht, close to the Westerkerk, in central Amsterdam in the Netherlands.",imageActions.resize( r.getDrawable(R.drawable.anne_frank_house)),52.375414, 4.883944));
-//        adapter.add(new com.etb.sway.model.CardModel(4,"Vondelpark", "The Vondelpark is a public urban park of 47 hectares in Amsterdam, Netherlands. It is part of the borough of Amsterdam-Zuid and situated west from the Leidseplein and the Museumplein.", imageActions.resize(r.getDrawable(R.drawable.vondelpark)),52.358178, 4.868637));
-//        adapter.add(new com.etb.sway.model.CardModel(5,"National Monument", "The National Monument is a 1956 World War II monument on Dam Square in Amsterdam. A national Remembrance of the Dead ceremony is held at the monument every year on 4 May to commemorate the casualties of World War II and subsequent armed conflicts.", imageActions.resize(r.getDrawable(R.drawable.national_monument)),52.373003, 4.893680));
-//        adapter.add(new com.etb.sway.model.CardModel(6,"Albert Cuyp Market", "The Albert Cuyp Market is a street market in Amsterdam, The Netherlands, on the Albert Cuypstraat between Ferdinand Bolstraat and Van Woustraat, in the De Pijp area of the Oud-Zuid district of the city.",imageActions.resize( r.getDrawable(R.drawable.albert_cuyp_market)),52.356164, 4.895387));
-
-         ConcreteGroupData group = new ConcreteGroupData(1, "Verzetsmuseum","The Dutch Resistance Museum is located in the Plantage neighbourhood in Amsterdam. The Dutch Resistance Museum, chosen as the best historical museum of the Netherlands, tells the story of the Dutch people in World War II.",imageActions.resize(r.getDrawable( R.drawable.verzetsmuseum),300,300),52.3677799,4.9128112, RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT);
+        GroupData group = new CardModel(1, "Verzetsmuseum","The Dutch Resistance Museum is located in the Plantage neighbourhood in Amsterdam. The Dutch Resistance Museum, chosen as the best historical museum of the Netherlands, tells the story of the Dutch people in World War II.",imageActions.resize(r.getDrawable( R.drawable.verzetsmuseum),300,300),52.3677799,4.9128112);
          List<ChildData> children = new ArrayList<>();
          String childText = group.getDescription();
                  int childSwipeReaction =  RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_BOTH;
                 children.add(new ConcreteChildData(0, childText, childSwipeReaction));
         mData.add( new Pair<GroupData, List<ChildData>>(group, children));
 
-        group = new ConcreteGroupData(2,"Van Gogh Museum", "The Van Gogh Museum is an art museum in Amsterdam in the Netherlands dedicated to the works of Vincent van Gogh and his contemporaries.", imageActions.resize(r.getDrawable(R.drawable.van_gogh_museum),300,300),52.358626, 4.881065        , RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT);
+        group = new CardModel(2,"Van Gogh Museum", "The Van Gogh Museum is an art museum in Amsterdam in the Netherlands dedicated to the works of Vincent van Gogh and his contemporaries.", imageActions.resize(r.getDrawable(R.drawable.van_gogh_museum),300,300),52.358626, 4.881065        );
+        children = new ArrayList<>();
+        childText = group.getDescription();
+        children.add(new ConcreteChildData(0, childText,  RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_BOTH));
+        mData.add( new Pair<GroupData, List<ChildData>>(group, children));
+
+        group = new CardModel(3,"Anne Frank House", "The Anne Frank House is a historic house and biographical museum dedicated to Jewish wartime diarist Anne Frank. The building is located at the Prinsengracht, close to the Westerkerk, in central Amsterdam in the Netherlands.",imageActions.resize( r.getDrawable(R.drawable.anne_frank_house),300,300),52.375414, 4.883944        );
         children = new ArrayList<>();
         childText = group.getDescription();
         childSwipeReaction =  RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_BOTH;
         children.add(new ConcreteChildData(0, childText, childSwipeReaction));
         mData.add( new Pair<GroupData, List<ChildData>>(group, children));
 
-        group = new ConcreteGroupData(3,"Anne Frank House", "The Anne Frank House is a historic house and biographical museum dedicated to Jewish wartime diarist Anne Frank. The building is located at the Prinsengracht, close to the Westerkerk, in central Amsterdam in the Netherlands.",imageActions.resize( r.getDrawable(R.drawable.anne_frank_house),300,300),52.375414, 4.883944        , RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT);
-        children = new ArrayList<>();
-        childText = group.getDescription();
-        childSwipeReaction =  RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_BOTH;
-        children.add(new ConcreteChildData(0, childText, childSwipeReaction));
-        mData.add( new Pair<GroupData, List<ChildData>>(group, children));
-
-         group = new ConcreteGroupData(4,"Vondelpark", "The Vondelpark is a public urban park of 47 hectares in Amsterdam, Netherlands. It is part of the borough of Amsterdam-Zuid and situated west from the Leidseplein and the Museumplein.", imageActions.resize(r.getDrawable(R.drawable.vondelpark),300,300),52.358178, 4.868637        , RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT);
+         group = new CardModel(4,"Vondelpark", "The Vondelpark is a public urban park of 47 hectares in Amsterdam, Netherlands. It is part of the borough of Amsterdam-Zuid and situated west from the Leidseplein and the Museumplein.", imageActions.resize(r.getDrawable(R.drawable.vondelpark),300,300),52.358178, 4.868637        );
          children = new ArrayList<>();
          childText = group.getDescription();
          childSwipeReaction =  RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_BOTH;
         children.add(new ConcreteChildData(0, childText, childSwipeReaction));
         mData.add( new Pair<GroupData, List<ChildData>>(group, children));
 
-         group = new ConcreteGroupData(5,"National Monument", "The National Monument is a 1956 World War II monument on Dam Square in Amsterdam. A national Remembrance of the Dead ceremony is held at the monument every year on 4 May to commemorate the casualties of World War II and subsequent armed conflicts.", imageActions.resize(r.getDrawable(R.drawable.national_monument),300,300),52.373003, 4.893680        , RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT);
+         group = new CardModel(5,"National Monument", "The National Monument is a 1956 World War II monument on Dam Square in Amsterdam. A national Remembrance of the Dead ceremony is held at the monument every year on 4 May to commemorate the casualties of World War II and subsequent armed conflicts.", imageActions.resize(r.getDrawable(R.drawable.national_monument),300,300),52.373003, 4.893680        );
          children = new ArrayList<>();
          childText = group.getDescription();
          childSwipeReaction =  RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_BOTH;
         children.add(new ConcreteChildData(0, childText, childSwipeReaction));
         mData.add( new Pair<GroupData, List<ChildData>>(group, children));
 
-         group = new ConcreteGroupData(6,"Albert Cuyp Market", "The Albert Cuyp Market is a street market in Amsterdam, The Netherlands, on the Albert Cuypstraat between Ferdinand Bolstraat and Van Woustraat, in the De Pijp area of the Oud-Zuid district of the city.",imageActions.resize( r.getDrawable(R.drawable.albert_cuyp_market),300,300),52.356164, 4.895387        , RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT);
+         group = new CardModel(6,"Albert Cuyp Market", "The Albert Cuyp Market is a street market in Amsterdam, The Netherlands, on the Albert Cuypstraat between Ferdinand Bolstraat and Van Woustraat, in the De Pijp area of the Oud-Zuid district of the city.",imageActions.resize( r.getDrawable(R.drawable.albert_cuyp_market),300,300),52.356164, 4.895387        );
          children = new ArrayList<>();
          childText = group.getDescription();
          childSwipeReaction =  RecyclerViewSwipeManager.REACTION_CAN_NOT_SWIPE_BOTH;
@@ -147,7 +137,7 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
 
         if (toGroupPosition != fromGroupPosition) {
             // assign a new ID
-            final long newId = ((ConcreteGroupData) toGroup.first).generateNewChildId();
+            final long newId = ((CardModel) toGroup.first).generateNewChildId();
             item.setChildId(newId);
         }
 
@@ -236,105 +226,6 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
                 insertedPosition);
     }
 
-    public static final class ConcreteGroupData extends GroupData {
-
-        private final long mId;
-        private final String mText;
-        private final String mDescription;
-        private final int mSwipeReaction;
-        private boolean mPinnedToSwipeLeft;
-        private long mNextChildId;
-        private Drawable mCardImage;
-        private double mLatitude;
-        private double mLongitude;
-
-        ConcreteGroupData(long id, String text,String description , Drawable cardImage,double latitude,double longitude,int swipeReaction) {
-            mId = id;
-            mText = text;
-            mSwipeReaction = swipeReaction;
-            mNextChildId = 0;
-            mDescription = description;
-            mCardImage = cardImage;
-            mLatitude = latitude;
-            mLongitude = longitude;
-        }
-
-        @Override
-        public long getGroupId() {
-            return mId;
-        }
-
-        @Override
-        public boolean isSectionHeader() {
-            return false;
-        }
-
-        @Override
-        public int getSwipeReactionType() {
-            return mSwipeReaction;
-        }
-
-        @Override
-        public String getText() {
-            return mText;
-        }
-
-        @Override
-        public long getId() {
-            return mId;
-        }
-
-        @Override
-        public String getDescription() {
-            return mDescription;
-        }
-
-        @Override
-        public String getTitle() {
-            return mText;
-        }
-
-        @Override
-        public int getSwipeReaction() {
-            return mSwipeReaction;
-        }
-
-        @Override
-        public long getNextChildId() {
-            return 0;
-        }
-
-        @Override
-        public Drawable getCardImage() {
-            return mCardImage;
-        }
-
-        @Override
-        public double getLatitude() {
-            return mLatitude;
-        }
-
-        @Override
-        public double getLongitude() {
-            return mLongitude;
-        }
-
-        @Override
-        public boolean isPinnedToSwipeLeft() {
-            return mPinnedToSwipeLeft;
-        }
-
-        @Override
-        public void setPinnedToSwipeLeft(boolean pinnedToSwipeLeft) {
-            mPinnedToSwipeLeft = pinnedToSwipeLeft;
-        }
-
-        public long generateNewChildId() {
-            final long id = mNextChildId;
-            mNextChildId += 1;
-            return id;
-        }
-    }
 
     public static final class ConcreteChildData extends ChildData {
 
@@ -367,7 +258,7 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
         }
 
         @Override
-        public String getText() {
+        public String getTitle() {
             return mText;
         }
 

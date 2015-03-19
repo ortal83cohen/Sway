@@ -8,6 +8,7 @@ import com.etb.sway.CardsScreenFragment;
 import com.etb.sway.ExpandableDraggableSwipeableFragment;
 import com.etb.sway.GoogleMapView;
 import com.etb.sway.R;
+import com.etb.sway.adapter.SimpleCardStackAdapter;
 import com.etb.sway.helper.ImageActions;
 
 import android.app.Application;
@@ -43,9 +44,9 @@ public class GlobalState extends Application {
 //        expandableDraggableSwipeableFragment.setAdapter(adapter);
     }
 
-    private com.etb.sway.view.SimpleCardStackAdapter getSimpleCardStackAdapter() {
-        com.etb.sway.view.SimpleCardStackAdapter adapter
-                = new com.etb.sway.view.SimpleCardStackAdapter(getApplicationContext());
+    private SimpleCardStackAdapter getSimpleCardStackAdapter() {
+        SimpleCardStackAdapter adapter
+                = new SimpleCardStackAdapter(getApplicationContext());
         Resources r = getResources();
 
         ImageActions imageActions = new ImageActions(r);

@@ -1,4 +1,4 @@
-package com.etb.sway.view;
+package com.etb.sway.adapter;
 
 
 import com.etb.sway.R;
@@ -77,7 +77,6 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
     }
 
     public void add(CardModel item) {
-        item.setOnCardDimissedListener();
         synchronized (mLock) {
             mData.add(item);
         }

@@ -1,4 +1,4 @@
-package com.etb.sway.common.utils;
+package com.etb.sway.utils;
 
 import android.support.v4.view.ViewCompat;
 import android.view.View;

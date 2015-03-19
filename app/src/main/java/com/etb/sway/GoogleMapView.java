@@ -10,7 +10,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import com.etb.sway.common.data.MapPoiInterface;
+import com.etb.sway.model.MapPoiInterface;
 
 import android.app.Activity;
 import android.os.Bundle;

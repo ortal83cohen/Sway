@@ -1,9 +1,9 @@
 package com.etb.sway.adapter;
 
 import com.etb.sway.R;
-import com.etb.sway.common.data.AbstractExpandableDataProvider;
-import com.etb.sway.common.utils.AdapterUtils;
-import com.etb.sway.common.utils.ViewUtils;
+import com.etb.sway.model.AbstractExpandableDataProvider;
+import com.etb.sway.utils.AdapterUtils;
+import com.etb.sway.utils.ViewUtils;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.ItemDraggableRange;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.ExpandableDraggableItemAdapter;
@@ -125,7 +125,7 @@ public class ExpandableDraggableSwipeableItemAdapter
         holder.itemView.setOnClickListener(mItemViewOnClickListener);
 
         // set text
-        holder.mTextView.setText(item.getText());
+        holder.mTextView.setText(item.getTitle());
         holder.mImageView.setImageDrawable(item.getCardImage());
 
         // set background resource (target view ID: container)
@@ -176,7 +176,7 @@ public class ExpandableDraggableSwipeableItemAdapter
         holder.mContainer.setOnClickListener(mSwipeableViewContainerOnClickListener);
 
         // set text
-        holder.mTextView.setText(item.getText());
+        holder.mTextView.setText(item.getTitle());
 
         final int dragState = holder.getDragStateFlags();
         final int swipeState = holder.getSwipeStateFlags();

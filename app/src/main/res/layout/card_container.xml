@@ -4,7 +4,7 @@
               android:layout_height="fill_parent"
               android:orientation="vertical">
 
-    <com.etb.sway.view.CardContainer
+    <com.etb.sway.adapter.CardContainer
             android:id="@+id/layoutview"
             android:layout_width="fill_parent"
             android:layout_height="0dp"

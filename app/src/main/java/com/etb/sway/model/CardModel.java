@@ -1,7 +1,7 @@
 package com.etb.sway.model;
 
 
-import com.etb.sway.common.data.MapPoiInterface;
+import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -12,27 +12,35 @@ import android.util.Log;
  * Created by ortal on 09-Mar-15.
  */
 
-public class CardModel implements MapPoiInterface {
+public final class CardModel extends AbstractExpandableDataProvider.GroupData  {
 
-    private int id;
 
-    private String title;
+    private long mId;
 
-    private String description;
+    private String mTitle;
 
-    private double latitude;
+    private String mDescription;
 
-    private double longitude;
+    private double mLatitude;
 
-    private transient Drawable cardImageDrawable;
+    private double mLongitude;
 
-    private transient Drawable cardLikeImageDrawable;
+    private transient Drawable mCardImageDrawable;
 
-    private transient Drawable cardDislikeImageDrawable;
+    private transient Drawable mCardLikeImageDrawable;
+
+    private transient Drawable mCardDislikeImageDrawable;
 
     private transient OnCardDimissedListener mOnCardDimissedListener = null;
 
     private transient OnClickListener mOnClickListener = null;
+
+    private  boolean mIsSectionHeader = false;
+
+    private  int mSwipeReaction;
+    private boolean mPinnedToSwipeLeft;
+    private long mNextChildId;
+
 
     public CardModel() {
         this(0, null, null, (Drawable) null, 0, 0);
@@ -40,78 +48,62 @@ public class CardModel implements MapPoiInterface {
 
     public CardModel(int id, String title, String description, Drawable cardImage, double latitude,
             double longitude) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.cardImageDrawable = cardImage;
-        this.longitude = longitude;
-        this.latitude = latitude;
+        setOnCardDimissedListener();
+        mSwipeReaction = RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT;
+        mNextChildId = 0;
+        this.mId = id;
+        this.mTitle = title;
+        this.mDescription = description;
+        this.mCardImageDrawable = cardImage;
+        this.mLongitude = longitude;
+        this.mLatitude = latitude;
     }
 
     public CardModel(int id, String title, String description, Bitmap cardImage, double latitude,
             double longitude) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.cardImageDrawable = new BitmapDrawable(null, cardImage);
-        this.longitude = longitude;
-        this.latitude = latitude;
+        setOnCardDimissedListener();
+        this.mId = id;
+        this.mTitle = title;
+        this.mDescription = description;
+        this.mCardImageDrawable = new BitmapDrawable(null, cardImage);
+        this.mLongitude = longitude;
+        this.mLatitude = latitude;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
+    public CardModel(long id, boolean isSectionHeader, String text, int swipeReaction) {
+        mId = id;
+        mIsSectionHeader = isSectionHeader;
+        mTitle = text;
+        mSwipeReaction = swipeReaction;
+        mNextChildId = 0;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.mDescription = description;
     }
 
     public Drawable getCardImageDrawable() {
-        return cardImageDrawable;
+        return mCardImageDrawable;
     }
 
     public void setCardImageDrawable(Drawable cardImageDrawable) {
-        this.cardImageDrawable = cardImageDrawable;
+        this.mCardImageDrawable = cardImageDrawable;
     }
 
     public Drawable getCardLikeImageDrawable() {
-        return cardLikeImageDrawable;
+        return mCardLikeImageDrawable;
     }
 
     public void setCardLikeImageDrawable(Drawable cardLikeImageDrawable) {
-        this.cardLikeImageDrawable = cardLikeImageDrawable;
+        this.mCardLikeImageDrawable = cardLikeImageDrawable;
     }
 
     public Drawable getCardDislikeImageDrawable() {
-        return cardDislikeImageDrawable;
+        return mCardDislikeImageDrawable;
     }
 
     public void setCardDislikeImageDrawable(Drawable cardDislikeImageDrawable) {
-        this.cardDislikeImageDrawable = cardDislikeImageDrawable;
+        this.mCardDislikeImageDrawable = cardDislikeImageDrawable;
     }
 
     public void setOnCardDimissedListener() {
@@ -150,7 +142,6 @@ public class CardModel implements MapPoiInterface {
         };
     }
 
-
     public interface OnCardDimissedListener {
 
         void onLike();
@@ -163,4 +154,75 @@ public class CardModel implements MapPoiInterface {
         void OnClickListener();
     }
 
+    @Override
+    public long getGroupId() {
+        return mId;
+    }
+
+    @Override
+    public boolean isSectionHeader() {
+        return false;
+    }
+
+    @Override
+    public int getSwipeReactionType() {
+        return mSwipeReaction;
+    }
+
+    @Override
+    public String getTitle() {
+        return mTitle;
+    }
+
+    @Override
+    public long getId() {
+        return mId;
+    }
+
+    @Override
+    public String getDescription() {
+        return mDescription;
+    }
+
+    @Override
+    public int getSwipeReaction() {
+        return mSwipeReaction;
+    }
+
+    @Override
+    public long getNextChildId() {
+        return 0;
+    }
+
+    @Override
+    public Drawable getCardImage() {
+        return mCardImageDrawable;
+    }
+
+    @Override
+    public double getLatitude() {
+        return mLatitude;
+    }
+
+    @Override
+    public double getLongitude() {
+        return mLongitude;
+    }
+
+    @Override
+    public boolean isPinnedToSwipeLeft() {
+        return mPinnedToSwipeLeft;
+    }
+
+    @Override
+    public void setPinnedToSwipeLeft(boolean pinnedToSwipeLeft) {
+        mPinnedToSwipeLeft = pinnedToSwipeLeft;
+    }
+
+    public long generateNewChildId() {
+        final long id = mNextChildId;
+        mNextChildId += 1;
+        return id;
+    }
 }
+

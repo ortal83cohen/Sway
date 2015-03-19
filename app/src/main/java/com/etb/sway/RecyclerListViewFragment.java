@@ -2,7 +2,7 @@
 package com.etb.sway;
 
 import com.etb.sway.adapter.ExpandableDraggableSwipeableItemAdapter;
-import com.etb.sway.common.data.AbstractExpandableDataProvider;
+import com.etb.sway.model.AbstractExpandableDataProvider;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.SwipeDismissItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.decoration.SimpleListDividerDecorator;

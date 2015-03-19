@@ -1,6 +1,7 @@
 package com.etb.sway;
 
-import com.etb.sway.common.data.MapPoiInterface;
+import com.etb.sway.adapter.CardContainer;
+import com.etb.sway.model.MapPoiInterface;
 import com.etb.sway.domain.GlobalState;
 import com.etb.sway.model.PoiData;
 
@@ -68,7 +69,7 @@ public class MainActivity extends ActionBarActivity
         }
         if(position == 2){
 
-            com.etb.sway.view.CardContainer mCardContainer = (com.etb.sway.view.CardContainer) findViewById(R.id.layoutview);
+            CardContainer mCardContainer = (CardContainer) findViewById(R.id.layoutview);
             GoogleMapView googleMapView = gs.getGoogleMapView();
             fragmentManager.beginTransaction()
                     .replace(R.id.container, googleMapView,GOOGLE_MAP_FRAGMENT)
@@ -100,10 +101,6 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-
-        GlobalState gs = (GlobalState) getApplication();
 
         int id = item.getItemId();
 

@@ -1,8 +1,8 @@
-package com.etb.sway.common.fragment;
+package com.etb.sway.fragment;
 
 
-import com.etb.sway.common.data.AbstractExpandableDataProvider;
-import com.etb.sway.common.data.ExpandableDataProvider;
+import com.etb.sway.model.AbstractExpandableDataProvider;
+import com.etb.sway.model.ExpandableDataProvider;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

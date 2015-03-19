@@ -1,6 +1,6 @@
 package com.etb.sway;
 
-import com.etb.sway.common.data.MapPoiInterface;
+import com.etb.sway.model.MapPoiInterface;
 import com.etb.sway.model.PoiData;
 
 public interface LikeListener {

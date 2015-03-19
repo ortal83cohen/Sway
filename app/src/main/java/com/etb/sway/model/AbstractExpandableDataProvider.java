@@ -1,5 +1,5 @@
 
-package com.etb.sway.common.data;
+package com.etb.sway.model;
 
 import android.graphics.drawable.Drawable;
 
@@ -28,7 +28,7 @@ public abstract class AbstractExpandableDataProvider {
 
         public abstract int getSwipeReactionType();
 
-        public abstract String getText();
+        public abstract String getTitle();
 
         public abstract long getId() ;
 

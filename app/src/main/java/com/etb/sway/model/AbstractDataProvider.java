@@ -1,4 +1,4 @@
-package com.etb.sway.common.data;
+package com.etb.sway.model;
 
 public abstract class AbstractDataProvider {
 

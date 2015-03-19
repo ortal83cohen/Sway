@@ -1,10 +1,9 @@
 
 package com.etb.sway;
 
-import com.etb.sway.common.data.AbstractExpandableDataProvider;
-import com.etb.sway.common.fragment.ExpandableDataProviderFragment;
-import com.etb.sway.common.fragment.ExpandableItemPinnedMessageDialogFragment;
-import com.etb.sway.view.SimpleCardStackAdapter;
+import com.etb.sway.model.AbstractExpandableDataProvider;
+import com.etb.sway.fragment.ExpandableDataProviderFragment;
+import com.etb.sway.fragment.ExpandableItemPinnedMessageDialogFragment;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.SnackbarManager;
@@ -24,16 +23,11 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
     private static final String FRAGMENT_TAG_DATA_PROVIDER = "data provider";
     private static final String FRAGMENT_LIST_VIEW = "list view";
     private static final String FRAGMENT_TAG_ITEM_PINNED_DIALOG = "item pinned dialog";
-    private com.etb.sway.view.SimpleCardStackAdapter adapter;
 
     public static ExpandableDraggableSwipeableFragment newInstance() {
         ExpandableDraggableSwipeableFragment fragment = new ExpandableDraggableSwipeableFragment();
 
         return fragment;
-    }
-
-    public void setAdapter(SimpleCardStackAdapter adapter) {
-        this.adapter = adapter;
     }
 
     @Override

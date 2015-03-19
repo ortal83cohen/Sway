@@ -1,4 +1,4 @@
-package com.etb.sway.view;
+package com.etb.sway.adapter;
 
 
 import com.etb.sway.LikeListener;

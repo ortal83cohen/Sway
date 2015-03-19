@@ -1,7 +1,5 @@
 package com.etb.sway.model;
 
-import com.etb.sway.common.data.MapPoiInterface;
-
 import java.util.ArrayList;
 
 /**

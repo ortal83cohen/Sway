@@ -1,7 +1,8 @@
 package com.etb.sway;
 
 
-import com.etb.sway.view.SimpleCardStackAdapter;
+import com.etb.sway.adapter.CardContainer;
+import com.etb.sway.adapter.SimpleCardStackAdapter;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -22,9 +23,9 @@ public class CardsScreenFragment extends Fragment {
      * This variable is the container that will host our cards
      */
 
-    private com.etb.sway.view.SimpleCardStackAdapter adapter;
+    private SimpleCardStackAdapter adapter;
 
-    private com.etb.sway.view.CardContainer mCardContainer;
+    private CardContainer mCardContainer;
 
     public static CardsScreenFragment newInstance() {
         CardsScreenFragment fragment = new CardsScreenFragment();
@@ -51,7 +52,7 @@ public class CardsScreenFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mCardContainer = (com.etb.sway.view.CardContainer) getActivity()
+        mCardContainer = (CardContainer) getActivity()
                 .findViewById(R.id.layoutview);
         mCardContainer.setAdapter(adapter);
         mCardContainer.setContext(getActivity());

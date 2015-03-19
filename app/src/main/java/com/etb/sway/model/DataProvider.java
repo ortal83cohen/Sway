@@ -1,4 +1,4 @@
-package com.etb.sway.common.data;
+package com.etb.sway.model;
 
 import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager;
 

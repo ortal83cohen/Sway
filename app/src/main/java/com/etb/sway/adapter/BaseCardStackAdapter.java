@@ -1,4 +1,4 @@
-package com.etb.sway.view;
+package com.etb.sway.adapter;
 
 
 import android.widget.BaseAdapter;
