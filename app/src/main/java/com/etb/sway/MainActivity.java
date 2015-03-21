@@ -58,11 +58,13 @@ public class MainActivity extends ActionBarActivity
 
         if(position == 0){
             fragmentManager.beginTransaction()
-                    .replace(R.id.container,gs.getCardsScreenFragment(),CARDS_SCREEN_FRAGMENT)
+            .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+            .replace(R.id.container,gs.getCardsScreenFragment(),CARDS_SCREEN_FRAGMENT)
                     .commit();
         }
         if(position == 1){
             fragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
                     .replace(R.id.container, gs.getExpandableDraggableSwipeableFragment(),DRAGGABLE_SWIPEABLE_FRAGMENT)
                     .commit();
 
@@ -72,6 +74,7 @@ public class MainActivity extends ActionBarActivity
             CardContainer mCardContainer = (CardContainer) findViewById(R.id.layoutview);
             GoogleMapView googleMapView = gs.getGoogleMapView();
             fragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
                     .replace(R.id.container, googleMapView,GOOGLE_MAP_FRAGMENT)
                     .commit();
         }
