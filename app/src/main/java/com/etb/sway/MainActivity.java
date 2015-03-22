@@ -48,12 +48,6 @@ public class MainActivity extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-                .replace(R.id.container, new LocationChooserFragment(), CARDS_SCREEN_FRAGMENT)
-                .commit();
-
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(new ExpandableDataProviderFragment(), FRAGMENT_TAG_DATA_PROVIDER)
