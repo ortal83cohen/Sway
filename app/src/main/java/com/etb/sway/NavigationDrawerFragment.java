@@ -78,10 +78,10 @@ public class NavigationDrawerFragment extends Fragment {
             mFromSavedInstanceState = true;
         }
 
-        View itemMap = getActivity().findViewById(R.id.item_map);
+//        View itemMap = getActivity().findViewById(R.id.item_map);
 //        itemMap.setVisibility(View.VISIBLE);
         // Select either the default item (0) or the last selected item.
-        selectItem(mCurrentSelectedPosition);
+//        selectItem(mCurrentSelectedPosition);
     }
 
     @Override
@@ -107,8 +107,9 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 new String[]{
-                        getString(R.string.cards_view),
+                        getString(R.string.home),
                         getString(R.string.list_view),
+                        getString(R.string.cards_view),
                         getString(R.string.map_view),
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
@@ -204,6 +205,10 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     public void selectItem(int position) {
+        if (mCurrentSelectedPosition == position) {
+            mDrawerLayout.closeDrawer(mFragmentContainerView);
+            return;
+        }
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
@@ -250,7 +255,7 @@ public class NavigationDrawerFragment extends Fragment {
         // If the drawer is open, show the global app actions in the action bar. See also
         // showGlobalContextActionBar, which controls the top-left area of the action bar.
         if (mDrawerLayout != null && isDrawerOpen()) {
-            inflater.inflate(R.menu.global, menu);
+//            inflater.inflate(R.menu.main, menu);
             showGlobalContextActionBar();
         }
         super.onCreateOptionsMenu(menu, inflater);

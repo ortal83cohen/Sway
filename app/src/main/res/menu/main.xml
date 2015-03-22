@@ -4,12 +4,11 @@
       tools:context=".MainActivity">
     <item
             android:id="@+id/item_map"
-            android:actionLayout="@layout/actionbar_spinner_dropdown"
             app:showAsAction="withText|always" android:icon="@drawable/poi"
             android:title=""/>
 
-    <item android:id="@+id/action_settings"
-          android:title="@string/action_settings"
-          android:orderInCategory="100"
-          app:showAsAction="never"/>
+    <!--<item android:id="@+id/action_settings"-->
+    <!--android:title="@string/action_settings"-->
+    <!--android:orderInCategory="100"-->
+    <!--app:showAsAction="never"/>-->
 </menu>

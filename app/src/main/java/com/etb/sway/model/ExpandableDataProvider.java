@@ -24,15 +24,17 @@ public class ExpandableDataProvider extends AbstractExpandableDataProvider {
 
     // for undo group item
     private GroupData mLastRemovedGroup;
+
     private int mLastRemovedGroupPosition = -1;
 
     // for undo child item
     private long mLastRemovedChildParentGroupId = -1;
+
     private int mLastRemovedChildPosition = -1;
 
     public ExpandableDataProvider(Context context) {
         Resources r = context.getResources();
-       final ImageActions imageActions = new ImageActions(r);
+        final ImageActions imageActions = new ImageActions(r);
         mUnSelectedData = new LinkedList<>();
 
         mUnSelectedData.add(new Poi(1, "Verzetsmuseum",

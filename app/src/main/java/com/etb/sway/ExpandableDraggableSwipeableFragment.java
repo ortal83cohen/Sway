@@ -1,8 +1,7 @@
-
 package com.etb.sway;
 
-import com.etb.sway.model.AbstractExpandableDataProvider;
 import com.etb.sway.fragment.ExpandableItemPinnedMessageDialogFragment;
+import com.etb.sway.model.AbstractExpandableDataProvider;
 import com.etb.sway.model.PoiDataProviderHolderInterface;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
 import com.nispok.snackbar.Snackbar;
@@ -19,8 +18,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ExpandableDraggableSwipeableFragment extends Fragment implements ExpandableItemPinnedMessageDialogFragment.EventListener {
+public class ExpandableDraggableSwipeableFragment extends Fragment
+        implements ExpandableItemPinnedMessageDialogFragment.EventListener {
+
     private static final String FRAGMENT_LIST_VIEW = "list view";
+
     private static final String FRAGMENT_TAG_ITEM_PINNED_DIALOG = "item pinned dialog";
 
     public static ExpandableDraggableSwipeableFragment newInstance() {
@@ -37,7 +39,7 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        View view= super.onCreateView(inflater, container, savedInstanceState);
+        View view = super.onCreateView(inflater, container, savedInstanceState);
 
         getFragmentManager().beginTransaction()
                 .add(R.id.container, new RecyclerListViewFragment(), FRAGMENT_LIST_VIEW)
@@ -52,7 +54,8 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
      * @param groupPosition The position of the group item within data set
      */
     public void onGroupItemLikedRemoved(int groupPosition) {
-        final AbstractExpandableDataProvider.GroupData group = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
+        final AbstractExpandableDataProvider.GroupData group
+                = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
                 .getLastGroupRemoved();
         ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().addLikeItem(group);
 
@@ -64,8 +67,9 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
                             @Override
                             public void onActionClicked(Snackbar snackbar) {
                                 onItemUndoActionClicked();
-                                ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().onUndo(
-                                        group);
+                                ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
+                                        .onUndo(
+                                                group);
                             }
                         })
                         .actionColorResource(R.color.snackbar_action_color_done)
@@ -76,7 +80,8 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
     }
 
     public void onGroupItemDisLikedRemoved(int groupPosition) {
-        final AbstractExpandableDataProvider.GroupData group = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
+        final AbstractExpandableDataProvider.GroupData group
+                = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
                 .getLastGroupRemoved();
         ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().addDisLikeItem(group);
 
@@ -88,8 +93,9 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
                             @Override
                             public void onActionClicked(Snackbar snackbar) {
                                 onItemUndoActionClicked();
-                                ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().onUndo(
-                                        group);
+                                ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
+                                        .onUndo(
+                                                group);
                             }
                         })
                         .actionColorResource(R.color.snackbar_action_color_done)
@@ -129,7 +135,8 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
      * @param groupPosition The position of the group item within data set
      */
     public void onGroupItemPinned(int groupPosition) {
-        final DialogFragment dialog = ExpandableItemPinnedMessageDialogFragment.newInstance(groupPosition, RecyclerView.NO_POSITION);
+        final DialogFragment dialog = ExpandableItemPinnedMessageDialogFragment
+                .newInstance(groupPosition, RecyclerView.NO_POSITION);
 
         getFragmentManager()
                 .beginTransaction()
@@ -144,7 +151,8 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
      * @param childPosition The position of the child item within the group
      */
     public void onChildItemPinned(int groupPosition, int childPosition) {
-        final DialogFragment dialog = ExpandableItemPinnedMessageDialogFragment.newInstance(groupPosition, childPosition);
+        final DialogFragment dialog = ExpandableItemPinnedMessageDialogFragment
+                .newInstance(groupPosition, childPosition);
 
         getFragmentManager()
                 .beginTransaction()
@@ -154,7 +162,9 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
 
     public void onGroupItemClicked(int groupPosition) {
         final Fragment fragment = getFragmentManager().findFragmentByTag(FRAGMENT_LIST_VIEW);
-        AbstractExpandableDataProvider.GroupData data = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().getGroupItem(groupPosition);
+        AbstractExpandableDataProvider.GroupData data
+                = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
+                .getGroupItem(groupPosition);
 
         if (data.isPinnedToSwipeLeft()) {
             // unpin if tapped the pinned item
@@ -165,7 +175,8 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
 
     private void onItemUndoActionClicked() {
         final Fragment fragment = getFragmentManager().findFragmentByTag(FRAGMENT_LIST_VIEW);
-        final long result = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().undoLastRemoval();
+        final long result = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
+                .undoLastRemoval();
 
         if (result == RecyclerViewExpandableItemManager.NO_EXPANDABLE_POSITION) {
             return;
@@ -179,13 +190,15 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
             ((RecyclerListViewFragment) fragment).notifyGroupItemRestored(groupPosition);
         } else {
             // child item
-            ((RecyclerListViewFragment) fragment).notifyChildItemRestored(groupPosition, childPosition);
+            ((RecyclerListViewFragment) fragment)
+                    .notifyChildItemRestored(groupPosition, childPosition);
         }
     }
 
     // implements ExpandableItemPinnedMessageDialogFragment.EventListener
     @Override
-    public void onNotifyExpandableItemPinnedDialogDismissed(int groupPosition, int childPosition, boolean ok) {
+    public void onNotifyExpandableItemPinnedDialogDismissed(int groupPosition, int childPosition,
+            boolean ok) {
         final Fragment fragment = getFragmentManager().findFragmentByTag(FRAGMENT_LIST_VIEW);
 
         if (childPosition == RecyclerView.NO_POSITION) {

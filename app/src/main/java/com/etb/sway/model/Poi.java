@@ -6,13 +6,12 @@ import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeMana
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 /**
  * Created by ortal on 09-Mar-15.
  */
 
-public final class Poi extends AbstractExpandableDataProvider.GroupData  {
+public final class Poi extends AbstractExpandableDataProvider.GroupData {
 
 
     private long mId;
@@ -35,10 +34,12 @@ public final class Poi extends AbstractExpandableDataProvider.GroupData  {
 
 //    private transient OnClickListener mOnClickListener = null;
 
-    private  boolean mIsSectionHeader = false;
+    private boolean mIsSectionHeader = false;
 
-    private  int mSwipeReaction;
+    private int mSwipeReaction;
+
     private boolean mPinnedToSwipeLeft;
+
     private long mNextChildId;
 
 
@@ -49,7 +50,8 @@ public final class Poi extends AbstractExpandableDataProvider.GroupData  {
     public Poi(int id, String title, String description, Drawable cardImage, double latitude,
             double longitude) {
 //        setOnCardDimissedListener();
-        mSwipeReaction = RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT;
+        mSwipeReaction = RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT
+                | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT;
         mNextChildId = 0;
         this.mId = id;
         this.mTitle = title;
@@ -78,10 +80,6 @@ public final class Poi extends AbstractExpandableDataProvider.GroupData  {
         mNextChildId = 0;
     }
 
-    public void setDescription(String description) {
-        this.mDescription = description;
-    }
-
     public Drawable getCardImageDrawable() {
         return mCardImageDrawable;
     }
@@ -104,6 +102,11 @@ public final class Poi extends AbstractExpandableDataProvider.GroupData  {
 
     public void setCardDislikeImageDrawable(Drawable cardDislikeImageDrawable) {
         this.mCardDislikeImageDrawable = cardDislikeImageDrawable;
+    }
+
+    @Override
+    public long getGroupId() {
+        return mId;
     }
 
 //    public void setOnCardDimissedListener() {
@@ -155,11 +158,6 @@ public final class Poi extends AbstractExpandableDataProvider.GroupData  {
 //    }
 
     @Override
-    public long getGroupId() {
-        return mId;
-    }
-
-    @Override
     public boolean isSectionHeader() {
         return false;
     }
@@ -182,6 +180,10 @@ public final class Poi extends AbstractExpandableDataProvider.GroupData  {
     @Override
     public String getDescription() {
         return mDescription;
+    }
+
+    public void setDescription(String description) {
+        this.mDescription = description;
     }
 
     @Override

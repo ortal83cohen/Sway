@@ -1,10 +1,9 @@
 package com.etb.sway.adapter;
 
 
-
 import com.etb.sway.R;
-import com.etb.sway.model.Poi;
 import com.etb.sway.model.Orientations.Orientation;
+import com.etb.sway.model.Poi;
 import com.etb.sway.model.PoiDataProviderHolderInterface;
 
 import android.animation.Animator;
@@ -489,14 +488,16 @@ public class CardContainer extends AdapterView<ListAdapter> {
                     mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
                 }
 
-                    if (targetX < 0) {
-                        ((PoiDataProviderHolderInterface) context).getDataProvider().removeGroupItem(getChildCount() - 1);
-                        ((PoiDataProviderHolderInterface) context).getDataProvider().addDisLikeItem(
-                                poi);
-                    } else {
-                        ((PoiDataProviderHolderInterface) context).getDataProvider().removeGroupItem(getChildCount() - 1);
-                        ((PoiDataProviderHolderInterface) context).getDataProvider().addLikeItem(poi);
-                    }
+                if (targetX < 0) {
+                    ((PoiDataProviderHolderInterface) context).getDataProvider()
+                            .removeGroupItem(getChildCount() - 1);
+                    ((PoiDataProviderHolderInterface) context).getDataProvider().addDisLikeItem(
+                            poi);
+                } else {
+                    ((PoiDataProviderHolderInterface) context).getDataProvider()
+                            .removeGroupItem(getChildCount() - 1);
+                    ((PoiDataProviderHolderInterface) context).getDataProvider().addLikeItem(poi);
+                }
 
                 topCard.animate()
                         .setDuration(duration)

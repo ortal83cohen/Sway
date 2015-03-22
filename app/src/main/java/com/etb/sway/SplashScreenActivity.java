@@ -60,7 +60,7 @@ public class SplashScreenActivity extends Activity {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashScreenActivity.this,
-                        LocationChooserActivity.class);
+                        MainActivity.class);
                 startActivity(intent);
                 finish();
             }

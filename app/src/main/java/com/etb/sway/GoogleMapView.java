@@ -103,7 +103,8 @@ public class GoogleMapView extends Fragment {
             BitmapDescriptor bitmapMarker
                     = BitmapDescriptorFactory
                     .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
-            for (MapPoiInterface MapPoi : ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().getLikeData()) {
+            for (MapPoiInterface MapPoi : ((PoiDataProviderHolderInterface) getActivity())
+                    .getDataProvider().getLikeData()) {
 
                 googleMap.addMarker(new MarkerOptions().
                         position(new LatLng(MapPoi.getLatitude(),

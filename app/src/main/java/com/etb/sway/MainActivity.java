@@ -1,17 +1,19 @@
 package com.etb.sway;
 
-import com.etb.sway.adapter.CardContainer;
 import com.etb.sway.fragment.ExpandableDataProviderFragment;
 import com.etb.sway.model.AbstractExpandableDataProvider;
+import com.etb.sway.model.LocationChangerInterface;
 import com.etb.sway.model.PoiDataProviderHolderInterface;
 
 import android.app.Fragment;
 import android.os.Bundle;
-
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 
 /**
@@ -20,39 +22,37 @@ import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks,
-        PoiDataProviderHolderInterface {
+        PoiDataProviderHolderInterface, LocationChangerInterface {
 
     public static final String DRAGGABLE_SWIPEABLE_FRAGMENT= "draggable_swipeable_fragment" ;
     public static final String CARDS_SCREEN_FRAGMENT= "cards_screen_fragment" ;
+
+    public static final String LOCATION_CHOOSER_FRAGMENT = "location_chooser_fragment";
+
     public static final String GOOGLE_MAP_FRAGMENT= "google_map_fragment" ;
     public static final String FRAGMENT_TAG_DATA_PROVIDER = "data provider";
 
+    private int OPTION_MENU = R.menu.global;
 
-
-//    private PoiData mPoiData;
-
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
-
-    private CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
 
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                .replace(R.id.container, new LocationChooserFragment(), CARDS_SCREEN_FRAGMENT)
+                .commit();
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
@@ -66,33 +66,41 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        if(position == 0){
-            fragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-            .replace(R.id.container, CardsScreenFragment.newInstance(), CARDS_SCREEN_FRAGMENT)
-                    .commit();
+        switch (position) {
+            case 0:
+                OPTION_MENU = R.menu.global;
+                fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                        R.anim.pop_exit)
+                        .replace(R.id.container, LocationChooserFragment.newInstance(),
+                                LOCATION_CHOOSER_FRAGMENT);
+                break;
+            case 1:
+                OPTION_MENU = R.menu.main;
+                fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                        R.anim.pop_exit)
+                        .replace(R.id.container, ExpandableDraggableSwipeableFragment.newInstance(),
+                                DRAGGABLE_SWIPEABLE_FRAGMENT);
+                break;
+            case 2:
+                OPTION_MENU = R.menu.main;
+                fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                        R.anim.pop_exit)
+                        .replace(R.id.container, CardsScreenFragment.newInstance(),
+                                CARDS_SCREEN_FRAGMENT);
+                break;
+            case 3:
+                OPTION_MENU = R.menu.global;
+                GoogleMapView googleMapView = GoogleMapView.newInstance();
+                fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                        R.anim.pop_exit)
+                        .replace(R.id.container, googleMapView, GOOGLE_MAP_FRAGMENT);
         }
-        if(position == 1){
-            fragmentManager.beginTransaction()
-                    .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
-                            R.anim.pop_exit)
-                    .replace(R.id.container, ExpandableDraggableSwipeableFragment.newInstance(),DRAGGABLE_SWIPEABLE_FRAGMENT)
-                    .commit();
+        fragmentTransaction.commit();
 
-        }
-        if(position == 2){
+        invalidateOptionsMenu();
 
-            CardContainer mCardContainer = (CardContainer) findViewById(R.id.layoutview);
-            GoogleMapView googleMapView = GoogleMapView.newInstance();
-            fragmentManager.beginTransaction()
-                    .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
-                            R.anim.pop_exit)
-                    .replace(R.id.container, googleMapView,GOOGLE_MAP_FRAGMENT)
-                    .commit();
-        }
-//        View itemMap = findViewById(R.id.item_map);
-//        itemMap.setVisibility(View.VISIBLE);
     }
 
     public void onSectionAttached(int number) {
@@ -102,16 +110,9 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-//            // Only show items in the action bar relevant to this screen
-//            // if the drawer is not showing. Otherwise, let the drawer
-//            // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main, menu);
 
+        getMenuInflater().inflate(OPTION_MENU, menu);
 
-//            restoreActionBar();
-//            return true;
-//        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -121,41 +122,34 @@ public class MainActivity extends ActionBarActivity
         int id = item.getItemId();
 
         if (item.getItemId() == R.id.item_map) {
-            mNavigationDrawerFragment.selectItem(2);
+            mNavigationDrawerFragment.selectItem(3);
         }
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
-
-//    @Override
-//    public void onUndo(MapPoiInterface MapPoi) {
-//        mPoiData.onUndo(MapPoi);
-//    }
-//
-//    @Override
-//    public void addLikeItem(MapPoiInterface MapPoi) {
-//        mPoiData.addLikeItem(MapPoi);
-//    }
-//
-//    @Override
-//    public void addDisLikeItem(MapPoiInterface MapPoi) {
-//        mPoiData.addDisLikeItem(MapPoi);
-//    }
-//
-//    @Override
-//    public PoiData getData() {
-//        return mPoiData;
-//    }
 
     public AbstractExpandableDataProvider getDataProvider() {
         final Fragment fragment = getFragmentManager().findFragmentByTag(
                 FRAGMENT_TAG_DATA_PROVIDER);
         return ((ExpandableDataProviderFragment) fragment).getDataProvider();
 //        ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
+    }
+
+    @Override
+    public void changLocation(String location) {
+        mNavigationDrawerFragment.selectItem(1);
+        //close keyboard
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputManager = (InputMethodManager) this
+                    .getSystemService(INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 }
 

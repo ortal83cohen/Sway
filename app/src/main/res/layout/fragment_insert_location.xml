@@ -36,8 +36,7 @@
                 android:id="@+id/imageButton"
                 android:src="@drawable/enter"
                 android:layout_gravity="right|center_vertical"
-                android:contentDescription="@string/enter"
-                android:onClick="chosenLocation"/>
+                android:contentDescription="@string/enter"/>
     </FrameLayout>
     <Button
             android:layout_width="wrap_content"

@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 public abstract class CardStackAdapter extends BaseCardStackAdapter {
@@ -68,7 +67,8 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
         return wrapper;
     }
 
-    protected abstract View getCardView(int position, AbstractExpandableDataProvider.GroupData model, View convertView,
+    protected abstract View getCardView(int position,
+            AbstractExpandableDataProvider.GroupData model, View convertView,
             ViewGroup parent);
 
     public boolean shouldFillCardBackground() {
@@ -80,10 +80,12 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
         AbstractExpandableDataProvider.GroupData model;
         synchronized (mLock) {
 //            model = mData.remove(mData.size() - 1);
-            model =((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupItem(
+            model = ((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupItem(
                     (((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupCount()
                             - 1));
-                    ((PoiDataProviderHolderInterface) mContext).getDataProvider().removeGroupItem((((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupCount() - 1));
+            ((PoiDataProviderHolderInterface) mContext).getDataProvider().removeGroupItem(
+                    (((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupCount()
+                            - 1));
         }
         notifyDataSetChanged();
         return model;
