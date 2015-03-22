@@ -2,7 +2,9 @@ package com.etb.sway.adapter;
 
 
 import com.etb.sway.R;
+import com.etb.sway.model.AbstractExpandableDataProvider;
 import com.etb.sway.model.Poi;
+import com.etb.sway.model.PoiDataProviderHolderInterface;
 
 import android.content.Context;
 import android.view.View;
@@ -16,22 +18,19 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
 
     private final Context mContext;
 
-    /**
-     * Lock used to modify the content of {@link #mData}. Any write operation
-     * performed on the deque should be synchronized on this lock.
-     */
+
     private final Object mLock = new Object();
 
-    private ArrayList<Poi> mData;
+//    private ArrayList<Poi> mData;
 
     public CardStackAdapter(Context context) {
         mContext = context;
-        mData = new ArrayList<Poi>();
+//        mData = new ArrayList<Poi>();
     }
 
     public CardStackAdapter(Context context, Collection<? extends Poi> items) {
         mContext = context;
-        mData = new ArrayList<Poi>(items);
+//        mData = new ArrayList<Poi>(items);
     }
 
     @Override
@@ -69,24 +68,22 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
         return wrapper;
     }
 
-    protected abstract View getCardView(int position, Poi model, View convertView,
+    protected abstract View getCardView(int position, AbstractExpandableDataProvider.GroupData model, View convertView,
             ViewGroup parent);
 
     public boolean shouldFillCardBackground() {
         return true;
     }
 
-    public void add(Poi item) {
-        synchronized (mLock) {
-            mData.add(item);
-        }
-        notifyDataSetChanged();
-    }
 
-    public Poi pop() {
-        Poi model;
+    public AbstractExpandableDataProvider.GroupData pop() {
+        AbstractExpandableDataProvider.GroupData model;
         synchronized (mLock) {
-            model = mData.remove(mData.size() - 1);
+//            model = mData.remove(mData.size() - 1);
+            model =((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupItem(
+                    (((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupCount()
+                            - 1));
+                    ((PoiDataProviderHolderInterface) mContext).getDataProvider().removeGroupItem((((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupCount() - 1));
         }
         notifyDataSetChanged();
         return model;
@@ -97,15 +94,17 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
         return getCardModel(position);
     }
 
-    public Poi getCardModel(int position) {
+    public AbstractExpandableDataProvider.GroupData getCardModel(int position) {
         synchronized (mLock) {
-            return mData.get(mData.size() - 1 - position);
+            return ((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupItem(
+                    (((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupCount()
+                            - 1 - position));
         }
     }
 
     @Override
     public int getCount() {
-        return mData.size();
+        return ((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupCount();
     }
 
     @Override

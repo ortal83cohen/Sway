@@ -1,7 +1,5 @@
 package com.etb.sway;
 
-import com.etb.sway.domain.GlobalState;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +27,7 @@ public class SplashScreenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initClasses();
+
         handler = new Handler();
         setContentView(R.layout.activity_splash_screen);
         percent = (TextView) findViewById(R.id.textView2);
@@ -69,8 +67,5 @@ public class SplashScreenActivity extends Activity {
         }, SPLASH_SCREEN_DELAY);
     }
 
-    private void initClasses() {
-        GlobalState gs = (GlobalState) getApplication();
-        gs.init();
-    }
+
 }

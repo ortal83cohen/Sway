@@ -3,8 +3,10 @@ package com.etb.sway;
 
 import com.etb.sway.adapter.ExpandableDraggableSwipeableItemAdapter;
 import com.etb.sway.model.AbstractExpandableDataProvider;
+import com.etb.sway.model.PoiDataProviderHolderInterface;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.SwipeDismissItemAnimator;
+import com.h6ah4i.android.widget.advrecyclerview.decoration.ItemShadowDecorator;
 import com.h6ah4i.android.widget.advrecyclerview.decoration.SimpleListDividerDecorator;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
@@ -12,6 +14,7 @@ import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeMana
 import com.h6ah4i.android.widget.advrecyclerview.touchguard.RecyclerViewTouchActionGuardManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
 
+import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -71,9 +74,9 @@ public class RecyclerListViewFragment extends Fragment {
 
         // drag & drop manager
         mRecyclerViewDragDropManager = new RecyclerViewDragDropManager();
-//        mRecyclerViewDragDropManager.setDraggingItemShadowDrawable(
-//                (NinePatchDrawable) getResources().getDrawable(R.drawable.material_shadow_z3));
-//TODO
+        mRecyclerViewDragDropManager.setDraggingItemShadowDrawable(
+                (NinePatchDrawable) getResources().getDrawable(R.drawable.material_shadow_z3));
+
         // swipe manager
         mRecyclerViewSwipeManager = new RecyclerViewSwipeManager();
 
@@ -132,8 +135,7 @@ public class RecyclerListViewFragment extends Fragment {
         if (supportsViewElevation()) {
             // Lollipop or later has native drop shadow feature. ItemShadowDecorator is not required.
         } else {
-//            mRecyclerView.addItemDecoration(new ItemShadowDecorator((NinePatchDrawable) getResources().getDrawable(R.drawable.material_shadow_z1)));
-        //TODO
+            mRecyclerView.addItemDecoration(new ItemShadowDecorator((NinePatchDrawable) getResources().getDrawable(R.drawable.material_shadow_z1)));
         }
         mRecyclerView.addItemDecoration(new SimpleListDividerDecorator(getResources().getDrawable(R.drawable.list_divider), true));
 
@@ -210,7 +212,8 @@ public class RecyclerListViewFragment extends Fragment {
         final int childPosition = RecyclerViewExpandableItemManager.getPackedPositionChild(expandablePosition);
 
         if (childPosition == RecyclerView.NO_POSITION) {
-            ((ExpandableDraggableSwipeableFragment) getFragmentManager().findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT)).onGroupItemClicked(groupPosition);
+            ((ExpandableDraggableSwipeableFragment) getFragmentManager().findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT)).onGroupItemClicked(
+                    groupPosition);
         }
     }
 
@@ -219,7 +222,7 @@ public class RecyclerListViewFragment extends Fragment {
     }
 
     public AbstractExpandableDataProvider getDataProvider() {
-        return ((ExpandableDraggableSwipeableFragment) getFragmentManager().findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT)).getDataProvider();
+        return ((PoiDataProviderHolderInterface) getActivity()).getDataProvider();
     }
 
     public void notifyGroupItemRestored(int groupPosition) {

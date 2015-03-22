@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.etb.sway.model.MapPoiInterface;
+import com.etb.sway.model.PoiDataProviderHolderInterface;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -102,8 +103,7 @@ public class GoogleMapView extends Fragment {
             BitmapDescriptor bitmapMarker
                     = BitmapDescriptorFactory
                     .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
-            for (MapPoiInterface MapPoi : ((LikeListener) getActivity()).getData()
-                    .getLikeCardList()) {
+            for (MapPoiInterface MapPoi : ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().getLikeData()) {
 
                 googleMap.addMarker(new MarkerOptions().
                         position(new LatLng(MapPoi.getLatitude(),

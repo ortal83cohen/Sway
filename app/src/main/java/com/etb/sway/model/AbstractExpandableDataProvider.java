@@ -3,6 +3,9 @@ package com.etb.sway.model;
 
 import android.graphics.drawable.Drawable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class AbstractExpandableDataProvider {
     public abstract GroupData getLastGroupRemoved();
 
@@ -18,6 +21,20 @@ public abstract class AbstractExpandableDataProvider {
     public abstract void removeGroupItem(int groupPosition);
 
     public abstract long undoLastRemoval();
+
+    public abstract List<GroupData> getLikeData();
+
+    public abstract void setLikeData(ArrayList<GroupData> mLikeData);
+
+    public abstract List<GroupData> getDisLikeData() ;
+
+    public abstract void setDisLikeData(ArrayList<GroupData> dismLikeData) ;
+
+    public abstract void addLikeItem(GroupData mapPoi) ;
+
+    public abstract void addDisLikeItem(GroupData mapPoi) ;
+
+    public abstract void onUndo(GroupData mapPoi);
 
     public static abstract class BaseData {
 

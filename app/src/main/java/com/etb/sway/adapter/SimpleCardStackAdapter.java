@@ -2,6 +2,7 @@ package com.etb.sway.adapter;
 
 
 import com.etb.sway.R;
+import com.etb.sway.model.AbstractExpandableDataProvider;
 import com.etb.sway.model.Poi;
 
 import android.content.Context;
@@ -18,7 +19,7 @@ public final class SimpleCardStackAdapter extends CardStackAdapter {
     }
 
     @Override
-    public View getCardView(int position, Poi model, View convertView, ViewGroup parent) {
+    public View getCardView(int position, AbstractExpandableDataProvider.GroupData model, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.std_card_inner, parent, false);
@@ -26,7 +27,7 @@ public final class SimpleCardStackAdapter extends CardStackAdapter {
         }
 
         ((ImageView) convertView.findViewById(R.id.image))
-                .setImageDrawable(model.getCardImageDrawable());
+                .setImageDrawable(model.getCardImage());
         ((TextView) convertView.findViewById(R.id.title)).setText(model.getTitle());
         ((TextView) convertView.findViewById(R.id.description)).setText(model.getDescription());
 

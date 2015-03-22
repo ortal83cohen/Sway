@@ -23,7 +23,7 @@ public class CardsScreenFragment extends Fragment {
      * This variable is the container that will host our cards
      */
 
-    private SimpleCardStackAdapter adapter;
+    private SimpleCardStackAdapter mAdapter;
 
     private CardContainer mCardContainer;
 
@@ -34,16 +34,14 @@ public class CardsScreenFragment extends Fragment {
     }
 
     public SimpleCardStackAdapter getAdapter() {
-        return adapter;
+        return mAdapter;
     }
 
-    public void setAdapter(SimpleCardStackAdapter adapter) {
-        this.adapter = adapter;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+        mAdapter = new SimpleCardStackAdapter(getActivity());
 
         return inflater.inflate(R.layout.fragment_cards_screen, container, false);
     }
@@ -54,7 +52,7 @@ public class CardsScreenFragment extends Fragment {
 
         mCardContainer = (CardContainer) getActivity()
                 .findViewById(R.id.layoutview);
-        mCardContainer.setAdapter(adapter);
+        mCardContainer.setAdapter(mAdapter);
         mCardContainer.setContext(getActivity());
     }
 

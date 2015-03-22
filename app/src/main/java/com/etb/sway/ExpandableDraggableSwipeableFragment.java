@@ -2,8 +2,8 @@
 package com.etb.sway;
 
 import com.etb.sway.model.AbstractExpandableDataProvider;
-import com.etb.sway.fragment.ExpandableDataProviderFragment;
 import com.etb.sway.fragment.ExpandableItemPinnedMessageDialogFragment;
+import com.etb.sway.model.PoiDataProviderHolderInterface;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.SnackbarManager;
@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class ExpandableDraggableSwipeableFragment extends Fragment implements ExpandableItemPinnedMessageDialogFragment.EventListener {
-    private static final String FRAGMENT_TAG_DATA_PROVIDER = "data provider";
     private static final String FRAGMENT_LIST_VIEW = "list view";
     private static final String FRAGMENT_TAG_ITEM_PINNED_DIALOG = "item pinned dialog";
 
@@ -40,15 +39,10 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
             @Nullable Bundle savedInstanceState) {
         View view= super.onCreateView(inflater, container, savedInstanceState);
 
+        getFragmentManager().beginTransaction()
+                .add(R.id.container, new RecyclerListViewFragment(), FRAGMENT_LIST_VIEW)
+                .commit();
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(new ExpandableDataProviderFragment(), FRAGMENT_TAG_DATA_PROVIDER)
-                    .commit();
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new RecyclerListViewFragment(), FRAGMENT_LIST_VIEW)
-                    .commit();
-        }
         return view;
     }
 
@@ -58,9 +52,9 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
      * @param groupPosition The position of the group item within data set
      */
     public void onGroupItemLikedRemoved(int groupPosition) {
-        final AbstractExpandableDataProvider.GroupData group = getDataProvider()
+        final AbstractExpandableDataProvider.GroupData group = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
                 .getLastGroupRemoved();
-        ((LikeListener) getActivity()).addLikeItem(group);
+        ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().addLikeItem(group);
 
         SnackbarManager.show(
                 Snackbar.with(getActivity().getApplicationContext())
@@ -70,7 +64,7 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
                             @Override
                             public void onActionClicked(Snackbar snackbar) {
                                 onItemUndoActionClicked();
-                                ((LikeListener) getActivity()).onUndo(
+                                ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().onUndo(
                                         group);
                             }
                         })
@@ -82,9 +76,9 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
     }
 
     public void onGroupItemDisLikedRemoved(int groupPosition) {
-        final AbstractExpandableDataProvider.GroupData group = getDataProvider()
+        final AbstractExpandableDataProvider.GroupData group = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
                 .getLastGroupRemoved();
-        ((LikeListener) getActivity()).addDisLikeItem(group);
+        ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().addDisLikeItem(group);
 
         SnackbarManager.show(
                 Snackbar.with(getActivity().getApplicationContext())
@@ -94,7 +88,7 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
                             @Override
                             public void onActionClicked(Snackbar snackbar) {
                                 onItemUndoActionClicked();
-                                ((LikeListener) getActivity()).onUndo(
+                                ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().onUndo(
                                         group);
                             }
                         })
@@ -160,7 +154,7 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
 
     public void onGroupItemClicked(int groupPosition) {
         final Fragment fragment = getFragmentManager().findFragmentByTag(FRAGMENT_LIST_VIEW);
-        AbstractExpandableDataProvider.GroupData data = getDataProvider().getGroupItem(groupPosition);
+        AbstractExpandableDataProvider.GroupData data = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().getGroupItem(groupPosition);
 
         if (data.isPinnedToSwipeLeft()) {
             // unpin if tapped the pinned item
@@ -171,7 +165,7 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
 
     private void onItemUndoActionClicked() {
         final Fragment fragment = getFragmentManager().findFragmentByTag(FRAGMENT_LIST_VIEW);
-        final long result = getDataProvider().undoLastRemoval();
+        final long result = ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().undoLastRemoval();
 
         if (result == RecyclerViewExpandableItemManager.NO_EXPANDABLE_POSITION) {
             return;
@@ -196,13 +190,11 @@ public class ExpandableDraggableSwipeableFragment extends Fragment implements Ex
 
         if (childPosition == RecyclerView.NO_POSITION) {
             // group item
-            getDataProvider().getGroupItem(groupPosition).setPinnedToSwipeLeft(ok);
+            ((PoiDataProviderHolderInterface) getActivity()).getDataProvider().getGroupItem(
+                    groupPosition).setPinnedToSwipeLeft(ok);
             ((RecyclerListViewFragment) fragment).notifyGroupItemChanged(groupPosition);
         }
     }
 
-    public AbstractExpandableDataProvider getDataProvider() {
-        final Fragment fragment = getFragmentManager().findFragmentByTag(FRAGMENT_TAG_DATA_PROVIDER);
-        return ((ExpandableDataProviderFragment) fragment).getDataProvider();
-    }
+
 }

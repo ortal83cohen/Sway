@@ -4,8 +4,9 @@ package com.etb.sway.fragment;
 import com.etb.sway.model.AbstractExpandableDataProvider;
 import com.etb.sway.model.ExpandableDataProvider;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
 
 public class ExpandableDataProviderFragment extends Fragment {
 

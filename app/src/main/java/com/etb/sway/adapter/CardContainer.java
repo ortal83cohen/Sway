@@ -1,10 +1,11 @@
 package com.etb.sway.adapter;
 
 
-import com.etb.sway.LikeListener;
+
 import com.etb.sway.R;
 import com.etb.sway.model.Poi;
 import com.etb.sway.model.Orientations.Orientation;
+import com.etb.sway.model.PoiDataProviderHolderInterface;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -384,9 +385,8 @@ public class CardContainer extends AdapterView<ListAdapter> {
 
                 Poi poi = (Poi) getAdapter().getItem(0);
 
-                if (poi.getOnClickListener() != null) {
-                    poi.getOnClickListener().OnClickListener();
-                }
+                //todo : set On Card Clicked
+
                 pointerIndex = event.getActionIndex();
                 x = event.getX(pointerIndex);
                 y = event.getY(pointerIndex);
@@ -484,20 +484,19 @@ public class CardContainer extends AdapterView<ListAdapter> {
 
                 mTopCard = getChildAt(getChildCount() - 2);
                 Poi poi = (Poi) getAdapter()
-                        .getItem(getAdapter().getCount() - getChildCount());
+                        .getItem(0);
                 if (mTopCard != null) {
                     mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
                 }
 
-                if (poi.getOnCardDimissedListener() != null) {
                     if (targetX < 0) {
-                        ((LikeListener) context).addDisLikeItem(poi);
-                        poi.getOnCardDimissedListener().onDislike();
+                        ((PoiDataProviderHolderInterface) context).getDataProvider().removeGroupItem(getChildCount() - 1);
+                        ((PoiDataProviderHolderInterface) context).getDataProvider().addDisLikeItem(
+                                poi);
                     } else {
-                        ((LikeListener) context).addLikeItem(poi);
-                        poi.getOnCardDimissedListener().onLike();
+                        ((PoiDataProviderHolderInterface) context).getDataProvider().removeGroupItem(getChildCount() - 1);
+                        ((PoiDataProviderHolderInterface) context).getDataProvider().addLikeItem(poi);
                     }
-                }
 
                 topCard.animate()
                         .setDuration(duration)

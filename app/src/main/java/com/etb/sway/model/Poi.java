@@ -31,9 +31,9 @@ public final class Poi extends AbstractExpandableDataProvider.GroupData  {
 
     private transient Drawable mCardDislikeImageDrawable;
 
-    private transient OnCardDimissedListener mOnCardDimissedListener = null;
+//    private transient OnCardDimissedListener mOnCardDimissedListener = null;
 
-    private transient OnClickListener mOnClickListener = null;
+//    private transient OnClickListener mOnClickListener = null;
 
     private  boolean mIsSectionHeader = false;
 
@@ -48,7 +48,7 @@ public final class Poi extends AbstractExpandableDataProvider.GroupData  {
 
     public Poi(int id, String title, String description, Drawable cardImage, double latitude,
             double longitude) {
-        setOnCardDimissedListener();
+//        setOnCardDimissedListener();
         mSwipeReaction = RecyclerViewSwipeManager.REACTION_CAN_SWIPE_LEFT | RecyclerViewSwipeManager.REACTION_CAN_SWIPE_RIGHT;
         mNextChildId = 0;
         this.mId = id;
@@ -61,7 +61,7 @@ public final class Poi extends AbstractExpandableDataProvider.GroupData  {
 
     public Poi(int id, String title, String description, Bitmap cardImage, double latitude,
             double longitude) {
-        setOnCardDimissedListener();
+//        setOnCardDimissedListener();
         this.mId = id;
         this.mTitle = title;
         this.mDescription = description;
@@ -106,53 +106,53 @@ public final class Poi extends AbstractExpandableDataProvider.GroupData  {
         this.mCardDislikeImageDrawable = cardDislikeImageDrawable;
     }
 
-    public void setOnCardDimissedListener() {
-        this.mOnCardDimissedListener = new Poi.OnCardDimissedListener() {
-            public void onLike() {
-
-//                Toast.makeText(MainActivity.ma.getBaseContext(), "I like the card " + getTitle(),
-//                        Toast.LENGTH_SHORT)
-//                        .show();
-                Log.i("Swipeable Cards", "I like the card");
-            }
-
-            public void onDislike() {
-
-//                Toast.makeText(getApplicationContext(), "I dislike the card "+card.getTitle(), Toast.LENGTH_SHORT)
-//                        .show();
-                Log.i("Swipeable Cards", "I dislike the card");
-            }
-        };
-    }
-
-    public OnCardDimissedListener getOnCardDimissedListener() {
-        return this.mOnCardDimissedListener;
-    }
-
-    public OnClickListener getOnClickListener() {
-        return this.mOnClickListener;
-    }
-
-    public void setOnClickListener(OnClickListener listener) {
-        this.mOnClickListener = new Poi.OnClickListener() {
-            @Override
-            public void OnClickListener() {
-                Log.i("Swipeable Cards", "I am pressing the card");
-            }
-        };
-    }
-
-    public interface OnCardDimissedListener {
-
-        void onLike();
-
-        void onDislike();
-    }
-
-    public interface OnClickListener {
-
-        void OnClickListener();
-    }
+//    public void setOnCardDimissedListener() {
+//        this.mOnCardDimissedListener = new Poi.OnCardDimissedListener() {
+//            public void onLike() {
+//
+////                Toast.makeText(MainActivity.ma.getBaseContext(), "I like the card " + getTitle(),
+////                        Toast.LENGTH_SHORT)
+////                        .show();
+//                Log.i("Swipeable Cards", "I like the card");
+//            }
+//
+//            public void onDislike() {
+//
+////                Toast.makeText(getApplicationContext(), "I dislike the card "+card.getTitle(), Toast.LENGTH_SHORT)
+////                        .show();
+//                Log.i("Swipeable Cards", "I dislike the card");
+//            }
+//        };
+//    }
+//
+//    public OnCardDimissedListener getOnCardDimissedListener() {
+//        return this.mOnCardDimissedListener;
+//    }
+//
+//    public OnClickListener getOnClickListener() {
+//        return this.mOnClickListener;
+//    }
+//
+//    public void setOnClickListener(OnClickListener listener) {
+//        this.mOnClickListener = new Poi.OnClickListener() {
+//            @Override
+//            public void OnClickListener() {
+//                Log.i("Swipeable Cards", "I am pressing the card");
+//            }
+//        };
+//    }
+//
+//    public interface OnCardDimissedListener {
+//
+//        void onLike();
+//
+//        void onDislike();
+//    }
+//
+//    public interface OnClickListener {
+//
+//        void OnClickListener();
+//    }
 
     @Override
     public long getGroupId() {
