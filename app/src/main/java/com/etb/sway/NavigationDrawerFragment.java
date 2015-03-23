@@ -79,14 +79,10 @@ public class NavigationDrawerFragment extends Fragment {
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
             mFromSavedInstanceState = true;
         }
-
-//        View itemMap = getActivity().findViewById(R.id.item_map);
-//        itemMap.setVisibility(View.VISIBLE);
-        // Select either the default item (0) or the last selected item.
         if(mCurrentSelectedPosition > 0){
-            selectItem(mCurrentSelectedPosition);
+            selectItem(mCurrentSelectedPosition,true);
         }else {
-            selectItem(mDefaultPosition);
+            selectItem(mDefaultPosition,false);
         }
     }
 
@@ -105,7 +101,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
+                selectItem(position,false);
             }
         });
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
@@ -114,9 +110,10 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.id.text1,
                 new String[]{
                         getString(R.string.home),
+                        getString(R.string.map_view),
                         getString(R.string.list_view),
                         getString(R.string.cards_view),
-                        getString(R.string.map_view),
+                        getString(R.string.feedback),
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
@@ -210,7 +207,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    public void selectItem(int position) {
+    public void selectItem(int position,boolean force) {
 
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
@@ -218,7 +215,7 @@ public class NavigationDrawerFragment extends Fragment {
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
-        if (mCurrentSelectedPosition != position && mCallbacks != null) {
+        if ( ((mCurrentSelectedPosition != position) || force) &&mCallbacks != null) {//mCurrentSelectedPosition != position &&
             mCallbacks.onNavigationDrawerItemSelected(position);
         }
         mCurrentSelectedPosition = position;

@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 /**
  * Created by ortal on 3/14/2015.
  */
-public class GoogleMapView extends Fragment {
+public class GoogleMapFragment extends Fragment {
 
 
     // GoogleMap class
@@ -32,8 +32,8 @@ public class GoogleMapView extends Fragment {
 
     private View view;
 
-    public static GoogleMapView newInstance() {
-        GoogleMapView fragment = new GoogleMapView();
+    public static GoogleMapFragment newInstance() {
+        GoogleMapFragment fragment = new GoogleMapFragment();
         return fragment;
     }
 

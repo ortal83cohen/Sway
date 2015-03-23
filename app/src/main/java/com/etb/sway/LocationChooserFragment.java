@@ -5,6 +5,7 @@ import com.etb.sway.model.LocationChangerInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import android.widget.Toast;
  * Created by ortal on 08-Mar-15.
  */
 public class LocationChooserFragment extends Fragment {
-
+    private static View view;
     AutoCompleteTextView location;
 
     String[] locations = {"amsterdam"};
@@ -29,8 +30,18 @@ public class LocationChooserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_location_chooser, container, false);
+        if (view != null) {
+            ViewGroup parent = (ViewGroup) view.getParent();
+            if (parent != null)
+                parent.removeView(view);
+        }
+        try {
+            view = inflater.inflate(R.layout.fragment_location_chooser, container, false);
+        } catch (InflateException e) {
+        /* view is already there, just return it as it is */
+        }
         return view;
+
     }
 
     @Override

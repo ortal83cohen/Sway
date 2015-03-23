@@ -1,58 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              tools:conext=".LocationChooser"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"      xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent" android:layout_height="fill_parent"
+              android:id="@+id/layoutContainer" android:orientation="horizontal"  tools:conext=".LocationChooser"
               android:background="@color/background_app">
 
-    <TextView
-            android:layout_width="290dp"
-            android:layout_height="33dp"
-            android:text="@string/location_chooser_text"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:textSize="17sp"/>
 
+    <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.10">
+    </RelativeLayout>
+    <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.8">
 
-    <FrameLayout android:layout_width="313dp" android:layout_height="wrap_content"
-                 android:layout_gravity="center_horizontal"
-            >
-
-        <AutoCompleteTextView
-                android:layout_width="300dp"
-                android:layout_height="match_parent"
-                android:hint="@string/location_chooser_example"
-                android:id="@+id/autoCompleteTextView_location"
-                android:gravity="fill|bottom" android:height="60dp"
-                android:layout_alignBottom="@+id/imageButton"
-                android:layout_alignParentLeft="true"
-                />
-        <ImageButton
-                android:layout_width="wrap_content"
+        <!-- This is the part that's 70% of the total width. I'm inserting a LinearLayout and buttons.-->
+        <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton"
-                android:src="@drawable/enter"
-                android:layout_gravity="right|center_vertical"
-                android:contentDescription="@string/enter"/>
-    </FrameLayout>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/my_location"
-            android:id="@+id/button"
-            android:layout_gravity="center_horizontal"
-            />
-    <!--<TextView-->
-    <!--android:layout_width="255dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-    <!--android:text="@string/my_location"-->
-    <!--android:autoLink="web"-->
-    <!--android:layout_centerInParent="true"-->
-    <!--android:id="@+id/textView2" android:layout_weight="0.13"/>-->
+                android:orientation="vertical" android:layout_centerHorizontal="true"
+                >
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/location_chooser_text"
+                    android:id="@+id/textView"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    style="@android:style/TextAppearance.DeviceDefault.Large"
+                  />
 
+            <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/location_chooser_example"
+                    android:id="@+id/autoCompleteTextView_location"
+                    android:height="60dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/text_box"
+                    android:drawableLeft="@drawable/ic_maps_place"
+                    />
+            <Button
+                    android:text="@string/search"
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:id="@+id/SearchLocationButton"
+                    android:layout_gravity="right"
+                    android:contentDescription="@string/enter"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    />
 
+        </LinearLayout>
+        <!-- 70% Width End-->
+
+    </RelativeLayout>
+    <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.10">
+    </RelativeLayout>
 </LinearLayout>
+

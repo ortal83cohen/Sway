@@ -2,14 +2,19 @@ package com.etb.sway;
 
 import com.etb.sway.model.LocationChangerInterface;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -43,7 +48,9 @@ public class InsertLocationFragment extends Fragment {
         location.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
 //        location.setTextColor(Color.RED);
 
-        ImageButton button = (ImageButton) view.findViewById(R.id.imageButton);
+        Button button = (Button) view.findViewById(R.id.SearchLocationButton);
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +72,21 @@ public class InsertLocationFragment extends Fragment {
                             Toast.LENGTH_LONG)
                             .show();
                 }
+            }
+        });
+
+        location.setInputType(InputType.TYPE_CLASS_TEXT);
+
+
+        location.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    ((LocationChangerInterface)getActivity()).changLocation(location.getText().toString());
+                    return true;
+                }
+                return false;
             }
         });
 
