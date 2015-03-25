@@ -434,6 +434,21 @@ public class CardContainer extends AdapterView<ListAdapter> {
         mGravity = gravity;
     }
 
+
+    public void onLose() {
+
+    }
+
+
+    public void onSkip() {
+
+    }
+
+
+    public void onKeep() {
+
+    }
+
     public static class LayoutParams extends ViewGroup.LayoutParams {
 
         int viewType;

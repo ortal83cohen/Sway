@@ -1,4 +1,4 @@
-package com.etb.sway;
+package com.etb.sway.fragment;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,6 +10,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.etb.sway.MainActivity;
+import com.etb.sway.R;
 import com.etb.sway.model.MapPoiInterface;
 import com.etb.sway.model.PoiDataProviderHolderInterface;
 

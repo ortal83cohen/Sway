@@ -1,5 +1,7 @@
-package com.etb.sway;
+package com.etb.sway.fragment;
 
+
+import com.etb.sway.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
  * Created by ortal on 23-Mar-15.
  */
 public class FeedbackFragment extends Fragment {
+
     public static FeedbackFragment newInstance() {
         FeedbackFragment fragment = new FeedbackFragment();
         return fragment;

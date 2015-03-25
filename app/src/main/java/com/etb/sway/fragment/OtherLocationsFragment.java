@@ -1,4 +1,6 @@
-package com.etb.sway;
+package com.etb.sway.fragment;
+
+import com.etb.sway.R;
 
 import android.app.Fragment;
 import android.os.Bundle;

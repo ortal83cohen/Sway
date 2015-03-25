@@ -1,5 +1,7 @@
-package com.etb.sway;
+package com.etb.sway.fragment;
 
+import com.etb.sway.MainActivity;
+import com.etb.sway.R;
 import com.etb.sway.adapter.ExpandableDraggableSwipeableItemAdapter;
 import com.etb.sway.model.AbstractExpandableDataProvider;
 import com.etb.sway.model.PoiDataProviderHolderInterface;
@@ -87,7 +89,8 @@ public class RecyclerListViewFragment extends Fragment {
         //adapter
         getDataProvider();
         final ExpandableDraggableSwipeableItemAdapter
-                myItemAdapter = new ExpandableDraggableSwipeableItemAdapter(getDataProvider());
+                myItemAdapter = new ExpandableDraggableSwipeableItemAdapter(getDataProvider(),
+                getActivity());
 
         myItemAdapter.setEventListener(new ExpandableDraggableSwipeableItemAdapter.EventListener() {
             @Override
@@ -99,9 +102,9 @@ public class RecyclerListViewFragment extends Fragment {
 
             @Override
             public void onChildItemRemoved(int groupPosition, int childPosition) {
-                ((ExpandableDraggableSwipeableFragment) getFragmentManager()
-                        .findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT))
-                        .onChildItemRemoved(groupPosition, childPosition);
+//                ((ExpandableDraggableSwipeableFragment) getFragmentManager()
+//                        .findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT))
+//                        .onChildItemRemoved(groupPosition, childPosition);
             }
 
             @Override
@@ -114,9 +117,9 @@ public class RecyclerListViewFragment extends Fragment {
 
             @Override
             public void onChildItemPinned(int groupPosition, int childPosition) {
-                ((ExpandableDraggableSwipeableFragment) getFragmentManager()
-                        .findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT))
-                        .onChildItemPinned(groupPosition, childPosition);
+//                ((ExpandableDraggableSwipeableFragment) getFragmentManager()
+//                        .findFragmentByTag(DRAGGABLE_SWIPEABLE_FRAGMENT))
+//                        .onChildItemPinned(groupPosition, childPosition);
             }
 
             @Override

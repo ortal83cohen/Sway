@@ -10,14 +10,14 @@
     <fragment android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:id="@+id/insert_location_fragment"
-              android:name="com.etb.sway.InsertLocationFragment"
+              android:name="com.etb.sway.fragment.InsertLocationFragment"
               android:layout_gravity="center_horizontal"
             />
 
     <!--<fragment android:layout_width="fill_parent"-->
     <!--android:layout_height="fill_parent"-->
     <!--android:id="@+id/other_locations_fragment"-->
-    <!--android:name="com.etb.sway.OtherLocationsFragment"-->
+    <!--android:name="com.etb.sway.fragment.OtherLocationsFragment"-->
     <!--android:layout_gravity="center_horizontal"/>-->
 
 </LinearLayout>

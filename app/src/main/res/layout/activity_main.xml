@@ -24,8 +24,23 @@
     <fragment android:id="@+id/navigation_drawer"
               android:layout_width="@dimen/navigation_drawer_width"
               android:layout_height="match_parent"
-              android:layout_gravity="start"
-              android:name="com.etb.sway.NavigationDrawerFragment"
-              tools:layout="@layout/fragment_navigation_drawer"/>
+              android:layout_gravity="left|center"
+              android:name="com.etb.sway.fragment.NavigationDrawerFragment"
+              tools:layout="@layout/fragment_navigation_drawer"
+            >
+        <FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:src="@drawable/fb_signup" android:paddingTop="10dp"/>
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_height="wrap_content"
+                      android:layout_width="fill_parent"
+                      android:text="Sign up with email"
+                      android:id="@+id/email_sign_up"
+                      android:paddingTop="85dp"
+                      android:paddingLeft="10dp"
+
+                    />
+        </FrameLayout>
+    </fragment>
 
 </android.support.v4.widget.DrawerLayout>

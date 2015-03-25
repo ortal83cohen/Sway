@@ -1,5 +1,6 @@
-package com.etb.sway;
+package com.etb.sway.fragment;
 
+import com.etb.sway.R;
 import com.etb.sway.model.LocationChangerInterface;
 
 import android.os.Bundle;
@@ -16,7 +17,9 @@ import android.widget.Toast;
  * Created by ortal on 08-Mar-15.
  */
 public class LocationChooserFragment extends Fragment {
+
     private static View view;
+
     AutoCompleteTextView location;
 
     String[] locations = {"amsterdam"};
@@ -32,8 +35,9 @@ public class LocationChooserFragment extends Fragment {
             @Nullable Bundle savedInstanceState) {
         if (view != null) {
             ViewGroup parent = (ViewGroup) view.getParent();
-            if (parent != null)
+            if (parent != null) {
                 parent.removeView(view);
+            }
         }
         try {
             view = inflater.inflate(R.layout.fragment_location_chooser, container, false);

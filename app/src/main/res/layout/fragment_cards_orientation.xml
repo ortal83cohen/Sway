@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:id="@+id/lose_card"
+            android:background="@drawable/round_button"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="lose"
+            android:textSize="40dp"
+            android:layout_marginRight="50dp"
+            android:textColor="#fff"
+            />
+
+    <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/skip_card"
+            android:background="@drawable/round_button"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="skip"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/lose_card"
+            android:textColor="#fff"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="90dp"
+            />
+    <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:id="@+id/keep_card"
+            android:background="@drawable/round_button"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="keep"
+            android:textColor="#fff"
+            android:layout_alignParentTop="true"
+            android:textSize="40dp"
+            android:layout_toEndOf="@+id/skip_card"/>
+</RelativeLayout>

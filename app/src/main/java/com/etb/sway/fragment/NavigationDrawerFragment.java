@@ -1,16 +1,18 @@
-package com.etb.sway;
+package com.etb.sway.fragment;
+
+import com.etb.sway.R;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,7 +49,7 @@ public class NavigationDrawerFragment extends Fragment {
     /**
      * Helper component that ties the action bar to the navigation drawer.
      */
-    private ActionBarDrawerToggle mDrawerToggle;
+
 
     private DrawerLayout mDrawerLayout;
 
@@ -62,6 +64,8 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
 
     private boolean mUserLearnedDrawer;
+
+    private android.support.v7.app.ActionBarDrawerToggle mDrawerToggle;
 
     public NavigationDrawerFragment() {
     }
@@ -79,10 +83,10 @@ public class NavigationDrawerFragment extends Fragment {
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
             mFromSavedInstanceState = true;
         }
-        if(mCurrentSelectedPosition > 0){
-            selectItem(mCurrentSelectedPosition,true);
-        }else {
-            selectItem(mDefaultPosition,false);
+        if (mCurrentSelectedPosition > 0) {
+            selectItem(mCurrentSelectedPosition, true);
+        } else {
+            selectItem(mDefaultPosition, false);
         }
     }
 
@@ -101,7 +105,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position,false);
+                selectItem(position, false);
             }
         });
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
@@ -112,7 +116,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.home),
                         getString(R.string.map_view),
                         getString(R.string.list_view),
-                        getString(R.string.cards_view),
+//                        getString(R.string.cards_view),
                         getString(R.string.feedback),
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
@@ -156,7 +160,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerToggle = new ActionBarDrawerToggle(
                 getActivity(),                    /* host Activity */
                 mDrawerLayout,                    /* DrawerLayout object */
-                R.drawable.ic_drawer,             /* nav drawer image to replace 'Up' caret */
+//                R.drawable.ic_drawer,             /* nav drawer image to replace 'Up' caret */
                 R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
                 R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
         ) {
@@ -207,7 +211,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    public void selectItem(int position,boolean force) {
+    public void selectItem(int position, boolean force) {
 
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
@@ -215,8 +219,20 @@ public class NavigationDrawerFragment extends Fragment {
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
-        if ( ((mCurrentSelectedPosition != position) || force) &&mCallbacks != null) {//mCurrentSelectedPosition != position &&
+        if (((mCurrentSelectedPosition != position) || force)
+                && mCallbacks != null) {//mCurrentSelectedPosition != position &&
             mCallbacks.onNavigationDrawerItemSelected(position);
+        }
+        if (mDrawerLayout != null) {
+            if (position > 10) {
+                mDrawerToggle.setDrawerIndicatorEnabled(false);
+                mDrawerToggle
+                        .setHomeAsUpIndicator(R.drawable.ic_action_hardware_keyboard_backspace);
+                getActionBar().setDisplayHomeAsUpEnabled(true);
+            } else {
+                mDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_drawer);
+                mDrawerToggle.setDrawerIndicatorEnabled(true);
+            }
         }
         mCurrentSelectedPosition = position;
     }
@@ -266,8 +282,14 @@ public class NavigationDrawerFragment extends Fragment {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.item_map:
+                selectItem(1, false);
+                break;
+            default:
+                selectItem(2, false);
+        }
+        return true;
     }
 
     /**
@@ -295,4 +317,5 @@ public class NavigationDrawerFragment extends Fragment {
          */
         void onNavigationDrawerItemSelected(int position);
     }
+
 }

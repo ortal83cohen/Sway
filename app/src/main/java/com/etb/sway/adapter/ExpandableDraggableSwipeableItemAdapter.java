@@ -1,6 +1,7 @@
 package com.etb.sway.adapter;
 
 import com.etb.sway.R;
+import com.etb.sway.fragment.NavigationDrawerFragment;
 import com.etb.sway.model.AbstractExpandableDataProvider;
 import com.etb.sway.utils.AdapterUtils;
 import com.etb.sway.utils.ViewUtils;
@@ -14,7 +15,9 @@ import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeMana
 import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractDraggableSwipeableItemViewHolder;
 import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractExpandableItemAdapter;
 
+import android.content.Context;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +34,8 @@ public class ExpandableDraggableSwipeableItemAdapter
 
     private static final String TAG = "MyEDSItemAdapter";
 
+    private final Context mContext;
+
     private AbstractExpandableDataProvider mProvider;
 
     private EventListener mEventListener;
@@ -39,7 +44,11 @@ public class ExpandableDraggableSwipeableItemAdapter
 
     private View.OnClickListener mSwipeableViewContainerOnClickListener;
 
-    public ExpandableDraggableSwipeableItemAdapter(AbstractExpandableDataProvider dataProvider) {
+    private NavigationDrawerFragment mNavigationDrawerFragment;
+
+    public ExpandableDraggableSwipeableItemAdapter(AbstractExpandableDataProvider dataProvider,
+            Context context) {
+        mContext = context;
         mProvider = dataProvider;
         mItemViewOnClickListener = new View.OnClickListener() {
             @Override
@@ -148,6 +157,10 @@ public class ExpandableDraggableSwipeableItemAdapter
                 bgResId = R.drawable.bg_group_item_swiping_state;
             } else if ((expandState & RecyclerViewExpandableItemManager.STATE_FLAG_IS_EXPANDED)
                     != 0) {
+                mNavigationDrawerFragment = (NavigationDrawerFragment)
+                        ((ActionBarActivity) mContext).getSupportFragmentManager()
+                                .findFragmentById(R.id.navigation_drawer);
+                mNavigationDrawerFragment.selectItem(11, false);
                 bgResId = R.drawable.bg_group_item_expanded_state;
             } else {
                 bgResId = R.drawable.bg_group_item_normal_state;

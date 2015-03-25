@@ -1,6 +1,6 @@
-package com.etb.sway;
+package com.etb.sway.fragment;
 
-import com.etb.sway.fragment.ExpandableItemPinnedMessageDialogFragment;
+import com.etb.sway.R;
 import com.etb.sway.model.AbstractExpandableDataProvider;
 import com.etb.sway.model.PoiDataProviderHolderInterface;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
@@ -105,29 +105,6 @@ public class ExpandableDraggableSwipeableFragment extends Fragment
                 , getActivity());
     }
 
-    /**
-     * This method will be called when a child item is removed
-     *
-     * @param groupPosition The group position of the child item within data set
-     * @param childPosition The position of the child item within the group
-     */
-    public void onChildItemRemoved(int groupPosition, int childPosition) {
-        SnackbarManager.show(
-                Snackbar.with(getActivity().getApplicationContext())
-                        .text(R.string.snack_bar_text_child_item_removed)
-                        .actionLabel(R.string.snack_bar_action_undo)
-                        .actionListener(new ActionClickListener() {
-                            @Override
-                            public void onActionClicked(Snackbar snackbar) {
-                                onItemUndoActionClicked();
-                            }
-                        })
-                        .actionColorResource(R.color.snackbar_action_color_done)
-                        .duration(5000)
-                        .type(SnackbarType.SINGLE_LINE)
-                        .swipeToDismiss(false)
-                , getActivity());
-    }
 
     /**
      * This method will be called when a group item is pinned
@@ -144,21 +121,6 @@ public class ExpandableDraggableSwipeableFragment extends Fragment
                 .commit();
     }
 
-    /**
-     * This method will be called when a child item is pinned
-     *
-     * @param groupPosition The group position of the child item within data set
-     * @param childPosition The position of the child item within the group
-     */
-    public void onChildItemPinned(int groupPosition, int childPosition) {
-        final DialogFragment dialog = ExpandableItemPinnedMessageDialogFragment
-                .newInstance(groupPosition, childPosition);
-
-        getFragmentManager()
-                .beginTransaction()
-                .add(dialog, FRAGMENT_TAG_ITEM_PINNED_DIALOG)
-                .commit();
-    }
 
     public void onGroupItemClicked(int groupPosition) {
         final Fragment fragment = getFragmentManager().findFragmentByTag(FRAGMENT_LIST_VIEW);

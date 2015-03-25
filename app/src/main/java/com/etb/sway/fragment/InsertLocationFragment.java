@@ -1,10 +1,9 @@
-package com.etb.sway;
+package com.etb.sway.fragment;
 
+import com.etb.sway.R;
 import com.etb.sway.model.LocationChangerInterface;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.Arrays;
@@ -50,7 +48,6 @@ public class InsertLocationFragment extends Fragment {
 
         Button button = (Button) view.findViewById(R.id.SearchLocationButton);
 
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,13 +74,13 @@ public class InsertLocationFragment extends Fragment {
 
         location.setInputType(InputType.TYPE_CLASS_TEXT);
 
-
         location.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // If the event is a key-down event on the "enter" button
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    ((LocationChangerInterface)getActivity()).changLocation(location.getText().toString());
+                    ((LocationChangerInterface) getActivity())
+                            .changLocation(location.getText().toString());
                     return true;
                 }
                 return false;
