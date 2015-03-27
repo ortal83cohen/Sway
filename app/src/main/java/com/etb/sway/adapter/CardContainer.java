@@ -514,34 +514,37 @@ public class CardContainer extends AdapterView<ListAdapter> {
         mTopCard = getChildAt(getChildCount() - 2);
         Poi poi = (Poi) getAdapter()
                 .getItem(0);
+        try {
+            ((PoiDataProviderHolderInterface) context).getDataProvider()
+                    .removeGroupItem(getChildCount() - 1);
+            ((PoiDataProviderHolderInterface) context).getDataProvider().addLikeItem(poi);
 
-        ((PoiDataProviderHolderInterface) context).getDataProvider()
-                .removeGroupItem(getChildCount() - 1);
-        ((PoiDataProviderHolderInterface) context).getDataProvider().addLikeItem(poi);
+            if (TopCard != null) {
+                TopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
+            }
+            if (TopCard != null) {
+                TopCard.animate()
+                        .setDuration(400)
+                        .alpha(.75f)
+                        .setInterpolator(new LinearInterpolator())
+                        .x(1555)
+                        .y(-150)
+                        .rotation(Math.copySign(45, r.nextInt(6666)))
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                removeViewInLayout(TopCard);
+                                ensureFull();
+                            }
 
-        if (TopCard != null) {
-            TopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
-        }
-        if (TopCard != null) {
-            TopCard.animate()
-                    .setDuration(400)
-                    .alpha(.75f)
-                    .setInterpolator(new LinearInterpolator())
-                    .x(1555)
-                    .y(-150)
-                    .rotation(Math.copySign(45, r.nextInt(6666)))
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            removeViewInLayout(TopCard);
-                            ensureFull();
-                        }
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+                                onAnimationEnd(animation);
+                            }
+                        });
+            }
+        } catch (IndexOutOfBoundsException e) {
 
-                        @Override
-                        public void onAnimationCancel(Animator animation) {
-                            onAnimationEnd(animation);
-                        }
-                    });
         }
     }
 
