@@ -1,7 +1,7 @@
 package com.etb.sway.fragment;
 
 import com.etb.sway.R;
-import com.etb.sway.adapter.CardContainer;
+import com.etb.sway.model.OrientationListenerInterface;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -35,14 +35,31 @@ public class CardOrientationFragment extends Fragment {
         /* view is already there, just return it as it is */
         }
 
+        Button loseCard = (Button) view.findViewById(R.id.lose_card);
+        Button skipCard = (Button) view.findViewById(R.id.skip_card);
+        Button keepCard = (Button) view.findViewById(R.id.keep_card);
 
-
-        Button loseCard = (Button) getActivity().findViewById(R.id.lose_card);
-        Button skipCard = (Button) getActivity().findViewById(R.id.skip_card);
-        Button keepCard = (Button) getActivity().findViewById(R.id.keep_card);
-
-
-
+        final OrientationListenerInterface cardScreenFragment
+                = (OrientationListenerInterface) getActivity().getSupportFragmentManager()
+                .findFragmentByTag(CARDS_SCREEN_FRAGMENT);
+        loseCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardScreenFragment.onLose();
+            }
+        });
+        skipCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardScreenFragment.onSkip();
+            }
+        });
+        keepCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardScreenFragment.onKeep();
+            }
+        });
 
         return view;
     }

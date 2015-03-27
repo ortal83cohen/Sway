@@ -59,6 +59,10 @@ public class CardsScreenFragment extends Fragment implements OrientationListener
         } catch (InflateException e) {
         /* view is already there, just return it as it is */
         }
+        mCardContainer = (CardContainer) view
+                .findViewById(R.id.layoutview);
+        mCardContainer.setAdapter(mAdapter);
+        mCardContainer.setContext(getActivity());
         return view;
     }
 
@@ -66,10 +70,7 @@ public class CardsScreenFragment extends Fragment implements OrientationListener
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mCardContainer = (CardContainer) getActivity()
-                .findViewById(R.id.layoutview);
-        mCardContainer.setAdapter(mAdapter);
-        mCardContainer.setContext(getActivity());
+
     }
 
     @Override

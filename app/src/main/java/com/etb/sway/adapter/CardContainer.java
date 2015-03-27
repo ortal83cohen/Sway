@@ -437,16 +437,112 @@ public class CardContainer extends AdapterView<ListAdapter> {
 
     public void onLose() {
 
+        Random r = new Random();
+        final View TopCard = mTopCard;
+        mTopCard = getChildAt(getChildCount() - 2);
+        Poi poi = (Poi) getAdapter()
+                .getItem(0);
+
+        ((PoiDataProviderHolderInterface) context).getDataProvider()
+                .removeGroupItem(getChildCount() - 1);
+        ((PoiDataProviderHolderInterface) context).getDataProvider().addDisLikeItem(
+                poi);
+
+        if (TopCard != null) {
+            TopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
+        }
+        if (TopCard != null) {
+            TopCard.animate()
+                    .setDuration(400)
+                    .alpha(.75f)
+                    .setInterpolator(new LinearInterpolator())
+                    .x(-1500)
+                    .y(-155)
+                    .rotation(Math.copySign(45, -r.nextInt(6666)))
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            removeViewInLayout(TopCard);
+                            ensureFull();
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            onAnimationEnd(animation);
+                        }
+                    });
+        }
     }
 
 
     public void onSkip() {
+        Random r = new Random();
+        final View TopCard = mTopCard;
+        mTopCard = getChildAt(getChildCount() - 2);
+        Poi poi = (Poi) getAdapter()
+                .getItem(0);
+        if (TopCard != null) {
+            TopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
+        }
+        if (TopCard != null) {
+            TopCard.animate()
+                    .setDuration(400)
+                    .alpha(.75f)
+                    .setInterpolator(new LinearInterpolator())
+                    .x(0)
+                    .y(-1550)
+//                    .rotation(Math.copySign(45, r.nextInt(10000) - 5000))
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            removeViewInLayout(TopCard);
+//                            ensureFull();
+                        }
 
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            onAnimationEnd(animation);
+                        }
+                    });
+        }
     }
 
 
     public void onKeep() {
+        Random r = new Random();
+        final View TopCard = mTopCard;
+        mTopCard = getChildAt(getChildCount() - 2);
+        Poi poi = (Poi) getAdapter()
+                .getItem(0);
 
+        ((PoiDataProviderHolderInterface) context).getDataProvider()
+                .removeGroupItem(getChildCount() - 1);
+        ((PoiDataProviderHolderInterface) context).getDataProvider().addLikeItem(poi);
+
+        if (TopCard != null) {
+            TopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
+        }
+        if (TopCard != null) {
+            TopCard.animate()
+                    .setDuration(400)
+                    .alpha(.75f)
+                    .setInterpolator(new LinearInterpolator())
+                    .x(1555)
+                    .y(-150)
+                    .rotation(Math.copySign(45, r.nextInt(6666)))
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            removeViewInLayout(TopCard);
+                            ensureFull();
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            onAnimationEnd(animation);
+                        }
+                    });
+        }
     }
 
     public static class LayoutParams extends ViewGroup.LayoutParams {

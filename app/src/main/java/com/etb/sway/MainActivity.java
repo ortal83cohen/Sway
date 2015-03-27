@@ -30,12 +30,14 @@ public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks,
         PoiDataProviderHolderInterface, LocationChangerInterface {
 
-    public static final String DRAGGABLE_SWIPEABLE_FRAGMENT= "draggable_swipeable_fragment" ;
-    public static final String CARDS_SCREEN_FRAGMENT= "cards_screen_fragment" ;
+    public static final String DRAGGABLE_SWIPEABLE_FRAGMENT = "draggable_swipeable_fragment";
+
+    public static final String CARDS_SCREEN_FRAGMENT = "cards_screen_fragment";
 
     public static final String LOCATION_CHOOSER_FRAGMENT = "location_chooser_fragment";
 
-    public static final String GOOGLE_MAP_FRAGMENT= "google_map_fragment" ;
+    public static final String GOOGLE_MAP_FRAGMENT = "google_map_fragment";
+
     public static final String FRAGMENT_TAG_DATA_PROVIDER = "data provider";
 
     private int OPTION_MENU = R.menu.drawer;
@@ -72,7 +74,8 @@ public class MainActivity extends ActionBarActivity
             case 0:
                 OPTION_MENU = R.menu.drawer;
                 fragmentTransaction
-                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                        .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                                R.anim.pop_exit)
 
                         .replace(R.id.container, LocationChooserFragment.newInstance(),
                                 LOCATION_CHOOSER_FRAGMENT);
@@ -89,8 +92,9 @@ public class MainActivity extends ActionBarActivity
             case 2:
                 OPTION_MENU = R.menu.drawer_map;
                 fragmentTransaction
-                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-                      .addToBackStack(LOCATION_CHOOSER_FRAGMENT)
+                        .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                                R.anim.pop_exit)
+                        .addToBackStack(LOCATION_CHOOSER_FRAGMENT)
                         .replace(R.id.container, ExpandableDraggableSwipeableFragment.newInstance(),
                                 DRAGGABLE_SWIPEABLE_FRAGMENT);
                 break;
@@ -106,7 +110,8 @@ public class MainActivity extends ActionBarActivity
             case 11:
                 OPTION_MENU = R.menu.drawer_map;
                 fragmentTransaction
-                        .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                        .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                                R.anim.pop_exit)
                         .addToBackStack(LOCATION_CHOOSER_FRAGMENT)
                         .replace(R.id.container, CardsScreenFragment.newInstance(),
                                 CARDS_SCREEN_FRAGMENT);
@@ -122,11 +127,12 @@ public class MainActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
 
     }
+
     @Override
     public void onBackPressed() {
 //        if (getSupportFragmentManager().findFragmentByTag(GOOGLE_MAP_FRAGMENT) != null) {
         getSupportFragmentManager().popBackStack(LOCATION_CHOOSER_FRAGMENT, 0);
-        mNavigationDrawerFragment.selectItem(0,false);
+        mNavigationDrawerFragment.selectItem(0, false);
 //        } else {
 //            super.onBackPressed();
 //        }
