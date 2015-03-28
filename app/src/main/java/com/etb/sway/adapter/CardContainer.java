@@ -382,7 +382,7 @@ public class CardContainer extends AdapterView<ListAdapter> {
             case MotionEvent.ACTION_DOWN:
                 mTopCard.getHitRect(childRect);
 
-                Poi poi = (Poi) getAdapter().getItem(0);
+//                Poi poi = (Poi) getAdapter().getItem(0);
 
                 //todo : set On Card Clicked
 

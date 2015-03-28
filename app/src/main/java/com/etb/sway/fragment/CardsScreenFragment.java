@@ -60,7 +60,7 @@ public class CardsScreenFragment extends Fragment implements OrientationListener
         /* view is already there, just return it as it is */
         }
         mCardContainer = (CardContainer) view
-                .findViewById(R.id.layoutview);
+                .findViewById(R.id.card_container);
         mCardContainer.setAdapter(mAdapter);
         mCardContainer.setContext(getActivity());
         return view;
@@ -83,11 +83,11 @@ public class CardsScreenFragment extends Fragment implements OrientationListener
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Fragment f = getFragmentManager()
-                .findFragmentByTag("cards_screen_fragment");
-        if (f != null) {
-            getActivity().getSupportFragmentManager().beginTransaction().remove(f).commit();
-        }
+//        Fragment f = getFragmentManager()
+//                .findFragmentByTag("cards_screen_fragment");
+//        if (f != null) {
+//            getActivity().getSupportFragmentManager().beginTransaction().remove(f).commit();
+//        }
     }
 
     @Override

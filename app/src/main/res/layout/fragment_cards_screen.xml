@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:orientation="vertical"
               android:background="@color/background_app">
 
     <com.etb.sway.adapter.CardContainer
-            android:id="@+id/layoutview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:id="@+id/card_container"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
 
 
     <fragment android:layout_width="fill_parent" android:layout_height="wrap_content"
               tools:layout="@layout/fragment_cards_orientation"
               android:name="com.etb.sway.fragment.CardOrientationFragment"
-              android:id="@+id/cards_orientation"/>
-</LinearLayout>
+              android:id="@+id/cards_orientation" android:layout_alignBottom="@id/card_container" />
+</RelativeLayout>
