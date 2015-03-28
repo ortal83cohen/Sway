@@ -79,7 +79,7 @@ public abstract class CardStackAdapter extends BaseCardStackAdapter {
     public AbstractExpandableDataProvider.GroupData pop() {
         AbstractExpandableDataProvider.GroupData model;
         synchronized (mLock) {
-//            model = mData.remove(mData.size() - 1);
+
             model = ((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupItem(
                     (((PoiDataProviderHolderInterface) mContext).getDataProvider().getGroupCount()
                             - 1));

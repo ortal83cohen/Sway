@@ -1,7 +1,7 @@
 package com.etb.sway;
 
 import com.etb.sway.fragment.CardsScreenFragment;
-import com.etb.sway.fragment.ExpandableDataProviderFragment;
+import com.etb.sway.fragment.DataProviderFragment;
 import com.etb.sway.fragment.ExpandableDraggableSwipeableFragment;
 import com.etb.sway.fragment.FeedbackFragment;
 import com.etb.sway.fragment.GoogleMapFragment;
@@ -58,7 +58,7 @@ public class MainActivity extends ActionBarActivity
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(new ExpandableDataProviderFragment(), FRAGMENT_TAG_DATA_PROVIDER)
+                    .add(new DataProviderFragment(), FRAGMENT_TAG_DATA_PROVIDER)
                     .commit();
 
         }
@@ -163,7 +163,7 @@ public class MainActivity extends ActionBarActivity
     public AbstractExpandableDataProvider getDataProvider() {
         final Fragment fragment = getFragmentManager().findFragmentByTag(
                 FRAGMENT_TAG_DATA_PROVIDER);
-        return ((ExpandableDataProviderFragment) fragment).getDataProvider();
+        return ((DataProviderFragment) fragment).getDataProvider();
 //        ((PoiDataProviderHolderInterface) getActivity()).getDataProvider()
     }
 
