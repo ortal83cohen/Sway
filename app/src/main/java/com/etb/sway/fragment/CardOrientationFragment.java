@@ -3,6 +3,7 @@ package com.etb.sway.fragment;
 import com.etb.sway.R;
 import com.etb.sway.model.OrientationListenerInterface;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.InflateException;
@@ -34,6 +35,8 @@ public class CardOrientationFragment extends Fragment {
         } catch (InflateException e) {
         /* view is already there, just return it as it is */
         }
+
+        view.setBackgroundColor(Color.TRANSPARENT);
 
         Button loseCard = (Button) view.findViewById(R.id.lose_card);
         Button skipCard = (Button) view.findViewById(R.id.skip_card);

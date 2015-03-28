@@ -13,7 +13,7 @@
             android:layout_weight="1"/>
 
 
-    <fragment android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <fragment android:layout_width="fill_parent" android:layout_height="wrap_content"
               tools:layout="@layout/fragment_cards_orientation"
               android:name="com.etb.sway.fragment.CardOrientationFragment"
               android:id="@+id/cards_orientation"/>

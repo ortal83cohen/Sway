@@ -436,85 +436,93 @@ public class CardContainer extends AdapterView<ListAdapter> {
 
 
     public void onLose() {
+        try {
 
-        Random r = new Random();
-        final View TopCard = mTopCard;
-        mTopCard = getChildAt(getChildCount() - 2);
-        Poi poi = (Poi) getAdapter()
-                .getItem(0);
+            Poi poi = (Poi) getAdapter()
+                    .getItem(0);
+            Random r = new Random();
+            final View TopCard = mTopCard;
+            mTopCard = getChildAt(getChildCount() - 2);
 
-        ((PoiDataProviderHolderInterface) context).getDataProvider()
-                .removeGroupItem(getChildCount() - 1);
-        ((PoiDataProviderHolderInterface) context).getDataProvider().addDisLikeItem(
-                poi);
+            ((PoiDataProviderHolderInterface) context).getDataProvider()
+                    .removeGroupItem(getChildCount() - 1);
+            ((PoiDataProviderHolderInterface) context).getDataProvider().addDisLikeItem(
+                    poi);
 
-        if (TopCard != null) {
-            TopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
-        }
-        if (TopCard != null) {
-            TopCard.animate()
-                    .setDuration(400)
-                    .alpha(.75f)
-                    .setInterpolator(new LinearInterpolator())
-                    .x(-1500)
-                    .y(-155)
-                    .rotation(Math.copySign(45, -r.nextInt(6666)))
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            removeViewInLayout(TopCard);
-                            ensureFull();
-                        }
+            if (TopCard != null) {
+                TopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
+            }
+            if (TopCard != null) {
+                TopCard.animate()
+                        .setDuration(400)
+                        .alpha(.75f)
+                        .setInterpolator(new LinearInterpolator())
+                        .x(-1500)
+                        .y(-155)
+                        .rotation(Math.copySign(45, -r.nextInt(6666)))
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                removeViewInLayout(TopCard);
+                                ensureFull();
+                            }
 
-                        @Override
-                        public void onAnimationCancel(Animator animation) {
-                            onAnimationEnd(animation);
-                        }
-                    });
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+                                onAnimationEnd(animation);
+                            }
+                        });
+            }
+        } catch (IndexOutOfBoundsException e) {
+
         }
     }
 
 
     public void onSkip() {
-        Random r = new Random();
-        final View TopCard = mTopCard;
-        mTopCard = getChildAt(getChildCount() - 2);
-        Poi poi = (Poi) getAdapter()
-                .getItem(0);
-        if (TopCard != null) {
-            TopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
-        }
-        if (TopCard != null) {
-            TopCard.animate()
-                    .setDuration(400)
-                    .alpha(.75f)
-                    .setInterpolator(new LinearInterpolator())
-                    .x(0)
-                    .y(-1550)
+        try {
+            Poi poi = (Poi) getAdapter()
+                    .getItem(0);
+            final View TopCard = mTopCard;
+            mTopCard = getChildAt(getChildCount() - 2);
+            if (TopCard != null) {
+                TopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
+            }
+            if (TopCard != null) {
+                TopCard.animate()
+                        .setDuration(400)
+                        .alpha(.75f)
+                        .setInterpolator(new LinearInterpolator())
+                        .x(0)
+                        .y(-1550)
 //                    .rotation(Math.copySign(45, r.nextInt(10000) - 5000))
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            removeViewInLayout(TopCard);
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                removeViewInLayout(TopCard);
 //                            ensureFull();
-                        }
+                            }
 
-                        @Override
-                        public void onAnimationCancel(Animator animation) {
-                            onAnimationEnd(animation);
-                        }
-                    });
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+                                onAnimationEnd(animation);
+                            }
+                        });
+            }
+        } catch (IndexOutOfBoundsException e) {
+
         }
     }
 
 
     public void onKeep() {
-        Random r = new Random();
-        final View TopCard = mTopCard;
-        mTopCard = getChildAt(getChildCount() - 2);
-        Poi poi = (Poi) getAdapter()
-                .getItem(0);
         try {
+
+            Poi poi = (Poi) getAdapter()
+                    .getItem(0);
+            Random r = new Random();
+            final View TopCard = mTopCard;
+            mTopCard = getChildAt(getChildCount() - 2);
             ((PoiDataProviderHolderInterface) context).getDataProvider()
                     .removeGroupItem(getChildCount() - 1);
             ((PoiDataProviderHolderInterface) context).getDataProvider().addLikeItem(poi);
